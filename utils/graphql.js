@@ -73,12 +73,13 @@ export async function fetchRepositoryData(repositories) {
     structuredData.homepageUrl = repository.homepageUrl;
     structuredData.star = repository.stargazers.totalCount;
 
+    
     repositoryData.push(structuredData);
   }
-
+  
   if (repositoryData.length === 1) {
     return repositoryData[0];
   }
-
+  
   return repositoryData;
 }

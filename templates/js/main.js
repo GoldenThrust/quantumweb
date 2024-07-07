@@ -9,7 +9,6 @@ const works = document.querySelectorAll(".works span");
 const workpopup = document.getElementById("workpopup");
 
 requestAnimationFrame(AnimateSlide);
-// getWorks()
 
 NavBar();
 typeText();
@@ -26,3 +25,4 @@ bgcover.addEventListener("click", () => {
     bgcover.style.display = "none";
     workpopup.style.display = "none";
 })
+

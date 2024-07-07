@@ -1,0 +1,88 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --link: #fd62a3;
+  --focused-link: #fcfcfc;
+  --background: #181616;
+  --text-color: #9d9d9d;
+}
+
+::-webkit-scrollbar {
+  width: 2px;
+  background-color: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff00d47d;
+  box-shadow: 0 0 5px red;
+  border-radius: 100%;
+}
+
+html {
+  position: fixed;
+  width: 100vw;
+  height: 100%;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  color-scheme: dark light;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--background);
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  scroll-behavior: smooth;
+}
+
+img {
+  width: 100%;
+}
+
+.portlogo_container {
+  display: flex;
+  margin-left: 5px;
+}
+
+.portlogo_container .portlogo {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.portlogo_container:hover .portlogo {
+  filter: drop-shadow(0px 0px 6px var(--background));
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.portlogo {
+  transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.portname {
+    font-size: larger;
+    font-weight: 700;
+  }
+
+  .portname .seg {
+    color: #ac87aa;
+    font-family: "Courier New", Courier, monospace;
+    filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
+  }
+
+  .portname .seg2 {
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(120deg, #db00ff 20%, #ff00ff 100%);
+    background-clip: text;
+    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  }

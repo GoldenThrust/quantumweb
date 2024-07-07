@@ -16,7 +16,6 @@ overrides;
 @layer defaults {
   :root {
     --link: #fd62a3;
-    --visited-link: #a4a4a4;
     --focused-link: #fcfcfc;
     --background: #181616;
     --text-color: #9d9d9d;
@@ -53,11 +52,6 @@ overrides;
     font-family: "Times New Roman", Times, serif;
     color: white;
     scroll-behavior: smooth;
-    cursor: url("img/olajide.jpg"), auto;
-  }
-
-  body:hover {
-    cursor: url("img/olajide.jpg"), auto;
   }
 
   h2 {
@@ -254,19 +248,6 @@ overrides;
       transition: left 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
-    header .opener {
-      position: absolute;
-      top: 80px;
-      left: -4%;
-      height: 25px;
-      width: 50px;
-      transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    }
-
-    header .opener img {
-      height: 100%;
-    }
-
     .resume a {
       display: flex;
       justify-content: center;
@@ -309,10 +290,6 @@ overrides;
         font-weight: 300;
         font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
       }
-
-      header .opener {
-        display: none;
-      }
     }
 
     @media screen and (min-width: 1200px) {
@@ -349,7 +326,7 @@ overrides;
 
       .mainImg {
         height: calc(40vw + 40vh);
-        background: url("./img/olajide.jpg") lightgray 50% / cover no-repeat;
+        background: url("./img/olajide.png") lightgray 50% / cover no-repeat;
         border-radius: 0 30%;
         border: 1px solid #000;
         box-shadow: 5px 10px 16px #cd54af1c;
@@ -578,18 +555,7 @@ overrides;
         margin-top: 10px;
       }
 
-      @media screen and (max-width: 1200px) {
-        #works .works {
-          grid-template-columns: repeat(auto-fit, 40%);
-        }
-      }
-
-      @media screen and (max-width: 550px) {
-        #works .works {
-          grid-template-columns: repeat(auto-fit, 95%);
-        }
-      }
-
+      
       #workpopup {
         position: absolute;
         top: 50%;
@@ -633,7 +599,10 @@ overrides;
       #workpopup p {
         font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
           sans-serif;
-        font-size: 15px;
+        font-size: 16px;
+        font-style: oblique;
+        font-variant: small-caps;
+        font-weight: bold;
       }
 
       #work-slide-container {
@@ -682,9 +651,9 @@ overrides;
         align-items: center;
         justify-content: center;
         font-size: 13px;
-        position: relative;
-        top: 0;
-        left: 85%;
+        position: absolute;
+        top: 10px;
+        right: 10px;
         width: 40px;
         aspect-ratio: 1;
         background: url("./img/star.png") no-repeat;
@@ -730,6 +699,26 @@ overrides;
       @keyframes scroll {
         to {
           transform: translate(calc(-100% - var(--gap)));
+        }
+      }
+
+      @media screen and (max-width: 1200px) {
+        #workpopup {
+          width: 70%;
+        }
+
+        #works .works {
+          grid-template-columns: repeat(auto-fit, 40%);
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        #workpopup {
+          width: 90%;
+        }
+
+        #works .works {
+          grid-template-columns: repeat(auto-fit, 95%);
         }
       }
     }

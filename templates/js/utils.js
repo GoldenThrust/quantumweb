@@ -36,24 +36,34 @@ export function typeText() {
 }
 
 export function NavBar() {
-  const opener = document.querySelector(".opener");
-  const nav = document.querySelector(".headerNav");
-  let open = false;
-  function navMenu() {
-    if (open) {
-      nav.style.left = "0";
-      opener.style.left = "80%";
-      opener.style.transform = "rotate(180deg)";
-      open = false;
-    } else {
-      nav.style.left = "-100%";
-      opener.style.left = "-4%";
-      opener.style.transform = "rotate(0deg)";
-      open = true;
-    }
-  }
+  const NavBar = document.querySelector(".headerNav");
 
-  opener.addEventListener("click", navMenu);
+  let mouseStart = null;
+
+  window.addEventListener("touchstart", (e) => {
+    console.log("touchstart", e.touches[0].clientX);
+    mouseStart = e.touches[0].clientX;
+  });
+
+  window.addEventListener("touchmove", (e) => {
+    const dx = e.touches[0].clientX - mouseStart;
+
+    if (mouseStart < 30) {
+      if (dx > 10) {
+        NavBar.attributeStyleMap.set("left", CSS.percent(0));
+      }
+    } else if (
+      NavBar.attributeStyleMap.get("left").value === 0
+    ) {
+      if (dx < 0) {
+        NavBar.attributeStyleMap.set("left", CSS.percent(-100));
+      }
+    }
+  });
+
+  window.addEventListener("touchend", (e) => {
+    mouseStart = null;
+  });
 }
 
 export function IntroVId() {
@@ -93,7 +103,6 @@ export default function createElement(
   return element;
 }
 
-
 export function checkChildOverflow(element) {
   const lastChild = element.lastElementChild;
 
@@ -101,7 +110,7 @@ export function checkChildOverflow(element) {
     return false;
   }
 
-  const isOverflowing = 
+  const isOverflowing =
     lastChild.offsetLeft + lastChild.offsetWidth > element.clientWidth + 360;
 
   return isOverflowing;
