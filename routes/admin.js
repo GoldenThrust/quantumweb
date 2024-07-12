@@ -11,10 +11,5 @@ admin.get('/login', (req, res) => {
 
 admin.post("/login", validate(loginValidator), adminController.login);
 
-admin.get("/dashboard", isAuthenticated, async (req, res) => {
-  res.render('admin/dashboard', {
-    session: req.session.admin.id
-  })
-});
-
+admin.get("/dashboard", isAuthenticated, adminController.dashboard)
 export default admin;

@@ -48,6 +48,12 @@ class AdminController {
       });
     }
   }
+
+  async dashboard(req, res) {
+    res.render("admin/dashboard", {
+      session: req.session.admin.id,
+    });
+  }
 }
 const adminController = new AdminController();
 
