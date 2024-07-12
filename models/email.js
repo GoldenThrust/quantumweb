@@ -1,9 +1,8 @@
-import { type } from "express/lib/response";
 import mongoose from "mongoose";
 
 
-const Email = mongoose.Schema({
-    Vis: {
+const EmailSchema = mongoose.Schema({
+    user: {
         type: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
@@ -15,3 +14,5 @@ const Email = mongoose.Schema({
         required: true
     }
 }, { timestamp: true })
+
+const Email = mongoose.model('Email', EmailSchema);

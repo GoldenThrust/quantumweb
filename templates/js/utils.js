@@ -1,9 +1,11 @@
+const alert = document.getElementById("alert");
+
+const specialization = document.querySelector(".specialization");
 const professions = [
   "Full-Stack Web Developer",
   "Software Engineer",
   "Data Scientist",
 ];
-const specialization = document.querySelector(".specialization");
 let currentTextIndex = 0;
 let currentText = professions[currentTextIndex];
 let isErasing = false;
@@ -41,7 +43,6 @@ export function NavBar() {
   let mouseStart = null;
 
   window.addEventListener("touchstart", (e) => {
-    console.log("touchstart", e.touches[0].clientX);
     mouseStart = e.touches[0].clientX;
   });
 
@@ -114,4 +115,9 @@ export function checkChildOverflow(element) {
     lastChild.offsetLeft + lastChild.offsetWidth > element.clientWidth + 360;
 
   return isOverflowing;
+}
+
+export function showAlert(text) {
+  alert.innerText = text;
+  alert.attributeStyleMap.set("right", 0);
 }

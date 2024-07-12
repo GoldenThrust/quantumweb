@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adeniji Olajide</title>
+    <link rel="shortcut icon" href="../img/quantum.png" type="image/png" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+  </head>
+  <body>
+    <header>
+      <div class="portlogo_container">
+        <div class="portlogo">
+          <img src="../img/quantum.png" alt="Quantum Logo" />
+        </div>
+        <span class="portname flex-center">
+          <span class="seg">uantum</span><span class="seg2">Web</span>
+        </span>
+      </div>
+    </header>
+    <main>
+      <img src="../img/olajide.png" alt="Adeniji Olajide Image" />
+      <h1>ADMIN LOGIN</h1>
+      <form action="/admin/login" method="post">
+        <!-- <input type="email" name="email" id="email" placeholder="Email" required> -->
+        <!-- <input type="password" name="password" id="password" placeholder="Password" required> -->
+        <input type="email" name="email" id="email" placeholder="Email" />
+        <input
+          type="password"
+          name="password"
+          id="password"
+          placeholder="Password"
+        />
+        <input type="submit" value="Login" />
+      </form>
+      <% if (errors) { %>
+      <p><%= errors.msg %></p>
+      <% } %>
+    </main>
+  </body>
+</html>

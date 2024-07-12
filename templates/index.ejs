@@ -17,6 +17,7 @@
 
   <body>
     <aside>
+      <div id="alert">Hello World</div>
       <div id="bgcover"></div>
       <canvas id="background"></canvas>
       <div class="glow"></div>
@@ -28,7 +29,7 @@
           <!-- <div style="--x: 25px; --y: 27px; --color: #ff00d6"></div>
           <div style="--x: 6px; --y: -2px; --color: black"></div>
           <div style="--x: 30px; --y: -25px; --color: yellow"></div> -->
-          <img src="img/quantum.png" alt="" srcset="" />
+          <img src="img/quantum.png" alt="Quantum logo" />
         </div>
         <span class="portname flex-center">
           <span class="seg">uantum</span><span class="seg2">Web</span>
@@ -45,7 +46,7 @@
         </ul>
       </nav>
       <div class="resume">
-        <a href="./file/Adeniji-Olajide-CV.pdf" download>Resume/CV</a>
+        <a href="./files/Adeniji-Olajide-CV.pdf" download>Resume/CV</a>
       </div>
     </header>
     <main>
@@ -202,13 +203,13 @@
         <h2>WORKS</h2>
         <div class="works">
           <% repos.forEach((repo)=> { %>
-          <span data-key="<%- repo.id %>">
+          <span data-key="<%= repo.id %>">
             <video
-              src="portfoliovideo/<%- repo.trailer %>"
-              poster="portfolioimage/<%- repo.thumbnail %>"
+              src="portfoliovideo/<%= repo.trailer %>"
+              poster="portfolioimage/<%= repo.thumbnail %>"
               muted
             ></video>
-            <div class="workname"><%- repo.name %></div>
+            <div class="workname"><%= repo.name %></div>
           </span>
           <% }) %>
         </div>
@@ -283,7 +284,7 @@
               /></a>
             </div>
             <div class="service frame">
-              <img src="img/webgraphics.svg" alt="" class="frameBackground" />
+              <img src="img/webgraphics.svg" alt="Web Graphics" class="frameBackground" />
               <h3>Mobile Application Development</h3>
               <p>
                 Bring your business to the fingertips of your customers with our
@@ -346,7 +347,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </div>
           <div class="blog">
@@ -372,7 +373,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </div>
           <div class="blog">
@@ -397,7 +398,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </div>
           <div class="blog">
@@ -423,7 +424,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </div>
           <div class="blog">
@@ -448,7 +449,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </div>
           <div class="blog">
@@ -473,7 +474,7 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </div>
         </div>
@@ -485,14 +486,14 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
             <a
               href="http://"
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="dev node" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
           </span>
           <span class="text">Join Me</span>
@@ -502,14 +503,14 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="Medium" class="icon"
+              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
             /></a>
             <a
               href="http://"
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="Medium" class="icon"
+              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
             /></a>
           </span>
         </div>
@@ -519,22 +520,22 @@
         <h2>Contact Me</h2>
 
         <div class="contact">
-          <form action="" method="post">
+          <form action="/chirpmail" id="mailchirp" method="post">
             <textarea
-              name=""
-              id=""
+              name="message"
+              id="message"
               cols="30"
               rows="20"
               placeholder="Message"
             ></textarea>
-            <input type="text" name="" id="" placeholder="Full Name" />
+            <input type="text" name="name" id="name" placeholder="Full Name" required />
             <input
               type="email"
-              name=""
-              id=""
-              placeholder="Email"
+              name="email"
+              id="email"
+              placeholder="Email" required
             />
-            <input type="button" value="Send" />
+            <input type="submit" value="Send">
           </form>
           <div class="simplecontact">
             <a href="mailto:adenijiolajid01@gmail.com"
@@ -548,35 +549,35 @@
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/instagram.svg" alt="" class="icon"
+              ><img src="img/blog/instagram.svg" alt="Instagram Logo" class="icon"
             /></a>
             <a
               href="http://"
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="" class="icon"
+              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
             /></a>
             <a
               href="http://"
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="" class="icon"
+              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
             /></a>
             <a
               href="http://"
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="" class="icon"
+              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
             /></a>
             <a
               href="http://"
               target="_blank"
               rel="noopener noreferrer"
               class="blogIcon"
-              ><img src="img/blog/instagram.svg" alt="" class="icon"
+              ><img src="img/blog/instagram.svg" alt="Instgram Logo" class="icon"
             /></a>
           </div>
         </div>

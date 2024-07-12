@@ -69,20 +69,32 @@ img {
 }
 
 .portname {
-    font-size: larger;
-    font-weight: 700;
-  }
+  font-size: larger;
+  font-weight: 700;
+}
 
-  .portname .seg {
-    color: #ac87aa;
-    font-family: "Courier New", Courier, monospace;
-    filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
-  }
+.portname .seg {
+  color: #ac87aa;
+  font-family: "Courier New", Courier, monospace;
+  filter: drop-shadow(2px 2px 2px rgb(0, 0, 0));
+}
 
-  .portname .seg2 {
-    -webkit-background-clip: text !important;
-    -webkit-text-fill-color: transparent;
-    background: linear-gradient(120deg, #db00ff 20%, #ff00ff 100%);
-    background-clip: text;
-    font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  }
+.portname .seg2 {
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(120deg, #db00ff 20%, #ff00ff 100%);
+  background-clip: text;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+.flex-center {
+  display: flex;
+  place-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
+}
