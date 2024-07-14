@@ -5,6 +5,7 @@ export const mailQueue = new Queue('mailQueue');
 
 mailQueue.process(async (job) => {
     const { name, email, message, host } = job.data;
+    console.log(`${name} ${email} ${message}, ${host}`);
     mailService.sendMessage(name, email, message, host);
-    mailService.sendRecentMessage(email, host)
+    mailService.sendReceiveMessage(email, host)
 })

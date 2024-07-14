@@ -20,9 +20,12 @@ class MailService {
         pass: MAIL_PASSWORD,
       },
     });
+
+    console.log('Starting email service...');
   }
 
   sendMessage(name, email, message, hostname) {  
+    console.log('Sending message');
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
 
@@ -58,7 +61,8 @@ class MailService {
     });
   }
 
-  sendRecentMessage(email, hostname) {
+  sendReceiveMessage(email, hostname) {
+    console.log('Sending recent message email');
     const imageUrl = DEV ? "http://localhost:3000/img/quantumlogo.png" : `https://${hostname}/img/quantumlogo.png`;
 
     const data = `<!DOCTYPE html>
