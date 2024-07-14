@@ -67,12 +67,14 @@ app.post("/test", (req, res)=> {
 })
 app.post("/chirpmail",multer().none(), async (req, res) => {
   const { name, email, message } = req.body;
+  const host = req.get("host");
   if (!name || !email || !message) {
     return res.status(400).send("All fields are required.");
   }
 
-  console.log("sending mail from router");
-  mailQueue.add({ name, email, message, host: req.get("host") });
+  mailService.sendMessage(name, email, message, host);
+  mailService.sendReceiveMessage(email, host)
+  mailQueue.add({ name, email, message, host });
   res.status(200).send("Chirpmail sent successfully.");
 });
 
