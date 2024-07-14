@@ -981,7 +981,7 @@ overrides;
       position: absolute;
       width: 200%;
       height: 200%;
-      background: conic-gradient(#ff00d6 10deg, transparent 180deg);
+      background: conic-gradient(#5a0a4bcd 10deg, transparent 180deg);
       z-index: -1;
       animation: flow 5s linear infinite;
     }
@@ -1127,8 +1127,9 @@ overrides;
     /* display: none; */
     position: absolute;
     top: 100px;
-    right: -50%;
+    right: -100%;
     height: 50px;
+    max-width: 100%;
     display: flex;
     place-items: center;
     place-content: center;

@@ -55,8 +55,6 @@ app.get("/", async (req, res) => {
     repos = await fetchRepositoryData(featureRepo);
     redis.set("featuresRepo", JSON.stringify(repos), 604800);
   }
-
-  console.log("home page");
   
   res.render("index", {
     repos,
@@ -73,9 +71,7 @@ app.post("/chirpmail",multer().none(), async (req, res) => {
     return res.status(400).send("All fields are required.");
   }
 
-  mailService.sendMessage(name, email, message, host);
-  mailService.sendReceiveMessage(email, host)
-  mailQueue.add({ name, email, message, host });
+  await mailQueue.add({ name, email, message, host });
   res.status(200).send("Chirpmail sent successfully.");
 });
 

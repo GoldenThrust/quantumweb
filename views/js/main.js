@@ -58,6 +58,6 @@ bgcover.addEventListener("click", () => {
 
 alert.addEventListener("transitionend", () => {
   setTimeout(() => {
-    alert.attributeStyleMap.set("right", CSS.percent(-50));
+    alert.attributeStyleMap.set("right", CSS.percent(-100));
   }, 2000);
 });
