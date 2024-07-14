@@ -20,8 +20,6 @@ class MailService {
         pass: MAIL_PASSWORD,
       },
     });
-
-    console.log('Starting email service...');
   }
 
   sendMessage(name, email, message, hostname) {  
