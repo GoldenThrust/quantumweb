@@ -138,6 +138,10 @@ overrides;
   iframe {
     width: 100%;
   }
+
+  ::selection {
+    color: snow;
+  }
 }
 
 @layer patterns {
@@ -949,7 +953,11 @@ overrides;
   }
 
   @layer certificate {
-    #certificate .certificate {
+    #certificates {
+      margin: 30px;
+    }
+  
+    #certificates .certificates {
       display: flex;
       flex-direction: row;
       justify-content: space-around;
@@ -957,7 +965,7 @@ overrides;
       align-items: center;
       gap: 30px;
     }
-    #certificate .certificate div {
+    #certificates .certificates div {
       position: relative;
       width: 400px;
       overflow: hidden;
@@ -968,7 +976,7 @@ overrides;
       transition: transform 1s ease-in-out;
     }
 
-    #certificate .certificate div::before {
+    #certificates .certificates div::before {
       content: "";
       position: absolute;
       width: 200%;
@@ -978,7 +986,7 @@ overrides;
       animation: flow 5s linear infinite;
     }
 
-    #certificate .certificate div:hover {
+    #certificates .certificates div:hover {
       transform: scale(1.2);
     }
 

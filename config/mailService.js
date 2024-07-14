@@ -22,7 +22,7 @@ class MailService {
     });
   }
 
-  sendMessage(name, email, message, hostname) {
+  sendMessage(name, email, message, hostname) {  
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
 

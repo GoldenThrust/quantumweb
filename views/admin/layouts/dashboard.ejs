@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adeniji Olajide</title>
+    <link rel="shortcut icon" href="../../img/quantum.png" type="image/png" />
+    <link rel="stylesheet" href="../styles/style.css" />
+    <script src="../js/main.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="portlogo_container">
+        <div class="portlogo">
+          <img src="../../img/quantum.png" alt="Quantum Logo" />
+        </div>
+        <span class="portname flex-center">
+          <span class="seg">uantum</span><span class="seg2">Web</span>
+        </span>
+      </div>
+      <input type="search" name="search" id="search" placeholder="Search" />
+    </header>
+    <main>
+      <aside>
+        <a href="/admin/dashboard/projects" <% if (path === "projects") { %>  class="<%= 'active' %>"" <%  } %> ><img src="../../img/projects.png" alt="Projects link" /></a>
+        <a href="/admin/dashboard/users" <% if (path === "users") { %>  class="<%= 'active' %>"" <%  } %>
+          ><img src="../../img/users.png" alt="Users link"
+        /></a>
+        <a href="/admin/dashboard/emails" <% if (path === "emails") { %>  class="<%= 'active' %>"" <%  } %>><img src="../../img/emails.png" alt="Emails" /></a>
+      </aside>
+      <%- body %>
+    </main>
+  </body>
+</html>

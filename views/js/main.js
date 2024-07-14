@@ -55,8 +55,9 @@ bgcover.addEventListener("click", () => {
   bgcover.style.display = "none";
   workpopup.style.display = "none";
 });
+
 alert.addEventListener("transitionend", () => {
   setTimeout(() => {
-    alert.style.right = "-50%";
+    alert.attributeStyleMap.set("right", CSS.percent(-50));
   }, 2000);
 });

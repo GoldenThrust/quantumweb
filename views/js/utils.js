@@ -119,5 +119,5 @@ export function checkChildOverflow(element) {
 
 export function showAlert(text) {
   alert.innerText = text;
-  alert.attributeStyleMap.set("right", 0);
+  alert.attributeStyleMap.set("right", CSS.percent(0));
 }

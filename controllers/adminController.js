@@ -38,7 +38,7 @@ class AdminController {
               errors: { msg: err.message },
             });
           }
-          res.redirect("/admin/dashboard");
+          res.redirect("/admin/dashboard/users");
         });
       });
     } catch (err) {
@@ -50,8 +50,12 @@ class AdminController {
   }
 
   async dashboard(req, res) {
+    if (!["users", "projects", "emails"].includes(req.params.path)) {
+      return res.redirect("/admin/dashboard/users");
+    };
     res.render("admin/dashboard", {
-      session: req.session.admin.id,
+      layout: 'admin/layouts/dashboard',
+      path: req.params.path
     });
   }
 }

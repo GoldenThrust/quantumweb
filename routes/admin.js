@@ -11,5 +11,7 @@ admin.get('/login', (req, res) => {
 
 admin.post("/login", validate(loginValidator), adminController.login);
 
-admin.get("/dashboard", isAuthenticated, adminController.dashboard)
+// admin.get("/dashboard/:path", adminController.dashboard);
+admin.get("/dashboard/:path", isAuthenticated, adminController.dashboard);
+
 export default admin;
