@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import os from "os";
 import repos from "./routes/repos.js";
+import mailService from './config/mailService.js';
 
 import "dotenv/config";
 import mongodb, { redis } from "./config/db.js";
