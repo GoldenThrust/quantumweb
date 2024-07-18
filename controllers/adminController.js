@@ -49,13 +49,28 @@ class AdminController {
     }
   }
 
-  async dashboard(req, res) {
-    if (!["users", "projects", "emails"].includes(req.params.path)) {
-      return res.redirect("/admin/dashboard/users");
-    };
-    res.render("admin/dashboard", {
-      layout: 'admin/layouts/dashboard',
-      path: req.params.path
+  dashboard(req, res) {
+    return res.redirect("/admin/dashboard/users");
+  }
+
+  dashboardEmails(req, res) {
+    return res.render("admin/dashboard/emails", {
+      layout: "admin/layouts/dashboard",
+      path: "emails"
+    });
+  }
+
+  dashboardUsers(req, res) {
+    return res.render("admin/dashboard/users", {
+      layout: "admin/layouts/dashboard",
+      path: "users"
+    });
+  }
+
+  dashboardProjects(req, res) {
+    return res.render("admin/dashboard/projects", {
+      layout: "admin/layouts/dashboard",
+      path: "projects"
     });
   }
 }
