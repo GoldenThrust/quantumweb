@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+img {
+  width: 100%;
+}
+
 :root {
   --link: #fd62a3;
   --focused-link: #fcfcfc;
@@ -13,6 +17,7 @@
 
 ::-webkit-scrollbar {
   width: 2px;
+  height: 0;
   background-color: var(--background);
 }
 
@@ -161,4 +166,176 @@ canvas {
   width: 100%;
   height: 100%;
   position: absolute;
+}
+
+footer {
+  position: absolute;
+  right: 50%;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 50px black;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  width: 50px;
+  cursor: pointer;
+  background-color: #663d564e;
+  font-size: 20px;
+  font-weight: 900;
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+footer:hover {
+  filter: drop-shadow(0px 0px 10px black);
+}
+
+footer:active {
+  transform: scale(0.5);
+  background: linear-gradient(180deg, #8d33d127, #bababa08);
+}
+
+main {
+  padding: 30px 0 0 100px;
+}
+
+#projects {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+
+.project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1e1a1c;
+  border-radius: 20px;
+  width: 95%;
+  box-shadow: 0 0 15px black;
+  cursor: grab;
+}
+
+.project:active {
+  cursor: grabbing;
+}
+
+.project > *, .project-create {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 15px;
+  width: 95%;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-edit {
+  display: none;
+}
+
+.project-view {
+  /* display: none; */
+}
+
+.project-view img {
+  width: 20px;
+  margin-left: 30px;
+}
+
+:is(.project-edit, .project-create) > *,
+:is(.project-edit, .project-create) input {
+  width: 40%;
+  height: 40px;
+  background-color: #2d2b2b;
+  border: 2px solid #ad00ff;
+}
+
+:is(.project-edit, .project-create) input {
+  width: 48%;
+  padding: 0 20px;
+}
+
+:is(.project-edit, .project-create) > div {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:is(.project-edit, .project-create) > div div {
+  display: flex;
+  gap: 2px;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  max-width: 80%;
+  overflow: auto hidden;
+  user-select: none;
+}
+
+:is(.project-edit, .project-create) > div div span {
+  font-size: 10px;
+  background-color: #1F1327;
+  padding: 5px 10px;
+  border-radius: 20px;
+  height: 20px;
+  cursor: pointer;
+  width: auto;
+}
+:is(.project-edit, .project-create) input[list="tools"] {
+  border: none;
+  width: 100%;
+  outline: none;
+}
+
+:is(.project-edit, .project-create) input[type="submit"] {
+  padding: 0;
+  background-color: #de43d8;
+  width: 100%;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 0 10px;
+}
+
+.project-view :is(.edit-project, .delete-project) {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  :is(.project-edit, .project-create) input {
+    width: 100%;
+  }
+
+  :is(.project-edit, .project-create) > div div {
+    max-width: 30%;
+  } 
+}
+
+/* Add styles for the drag feedback */
+.project.dragging {
+  opacity: 0.5;
+  border: 2px dashed #000;
+  background-color: #ad00ff;
+}
+
+#project-create-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.766);
+}
+
+.project-create {
+  background-color: #1e1a1c;
+  border-radius: 20px;
+  box-shadow: 0 0 15px black;
 }

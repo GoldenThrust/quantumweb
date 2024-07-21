@@ -6,7 +6,7 @@
     <title>Adeniji Olajide</title>
     <link rel="shortcut icon" href="../img/quantum.png" type="image/png" />
     <link rel="stylesheet" href="./style.css" />
-    <script src="main.js" defer></script>
+    <script src="main.js" type="module" defer></script>
   </head>
   <body>
     <header>
@@ -25,9 +25,513 @@
         <a href=""
           ><img src="../views/img/projects.png" alt="Projects link"
         /></a>
-        <a href="" class="active"><img src="../views/img/users.png" alt="Users link" /></a>
+        <a href="" class="active"
+          ><img src="../views/img/users.png" alt="Users link"
+        /></a>
         <a href=""><img src="../views/img/emails.png" alt="Emails" /></a>
       </aside>
+      <div id="project-create-bg">
+        <form class="project-create">
+          <input type="text" name="name" placeholder="Project Name" required />
+          <input type="text" name="git-link" placeholder="Github Link" required />
+          <input type="text" name="project-preview" placeholder="Preview Name" required />
+          <input type="text" name="project-link" placeholder="Project Link" required />
+          <div>
+            <div id="tools">
+            </div>
+            <input type="text" list="tools" placeholder="HTML" required />
+          </div>
+          <input type="submit" value="Done" />
+        </form>
+      </div>
+      
+      <div id="projects">
+        <datalist id="tools">
+          <option value="github"></option>
+          <option value="Node JS"></option>
+          <option value="React"></option>
+          <option value="Ansible"></option>
+          <option value="Laravel"></option>
+        </datalist>
+        <div class="project" draggable="true" data-key="1">
+          <div class="project-view">
+            <div class="project-name">Hello World</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="2">
+          <div class="project-view">
+            <div class="project-name">Loart</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="3">
+          <div class="project-view">
+            <div class="project-name">Rolert</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="4">
+          <div class="project-view">
+            <div class="project-name">Grab</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="5">
+          <div class="project-view">
+            <div class="project-name">Leosin</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="6">
+          <div class="project-view">
+            <div class="project-name">Crab</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="7">
+          <div class="project-view">
+            <div class="project-name">Tatoo</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="8">
+          <div class="project-view">
+            <div class="project-name">Rolert</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="9">
+          <div class="project-view">
+            <div class="project-name">Roenn</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+
+        <div class="project" draggable="true" data-key="10">
+          <div class="project-view">
+            <div class="project-name">lllalla</div>
+            <div>
+              <img
+                src="../views/img/edit.png"
+                alt="Edit Project"
+                class="edit-project"
+              />
+              <img
+                src="../views/img/delete.png"
+                alt="Delete Project"
+                class="delete-project"
+              />
+            </div>
+          </div>
+          <form class="project-edit">
+            <input type="text" name="name" placeholder="Project Name" />
+            <input type="text" name="git-link" placeholder="Github Link" />
+            <input
+              type="text"
+              name="project-preview"
+              placeholder="Preview Name"
+            />
+            <input type="text" name="project-link" placeholder="Project Link" />
+            <div>
+              <div>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+                <span data-key="1">HTML</span>
+                <span data-key="2">CSS</span>
+                <span data-key="3">Javascript</span>
+              </div>
+              <input type="text" list="tools" placeholder="HTML" />
+            </div>
+            <input type="submit" value="Done" />
+          </form>
+        </div>
+      </div>
     </main>
+    <footer>+</footer>
   </body>
 </html>

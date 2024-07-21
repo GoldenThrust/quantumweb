@@ -94,6 +94,7 @@ export default function createElement(
     element.innerText = content;
   }
 
+  
   if (attribute) {
     for (const key in attribute) {
       element.setAttribute(key, attribute[key]);
