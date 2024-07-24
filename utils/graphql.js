@@ -2,6 +2,16 @@ import { graphql } from "@octokit/graphql";
 import { GITHUB_TOKEN } from "../utils/constant.js";
 import { redis } from "../config/db.js";
 
+export function parseGitHubUrl(url) {
+  const regex = /https:\/\/github\.com\/([^/]+)\/([^/]+)/;
+  const match = url.match(regex);
+  if (match) {
+    return { owner: match[1], name: match[2] };
+  } else {
+    throw new Error("Invalid GitHub URL");
+  }
+}
+
 export async function makeGraphQLRequest(owner, repoName, path) {
   const repoPath = path !== undefined ? `${path}/` : "";
 
@@ -41,6 +51,44 @@ export async function makeGraphQLRequest(owner, repoName, path) {
   }
 }
 
+export async function fetchProjectReposData(gitUrl) {
+  const { owner, name } = parseGitHubUrl(gitUrl);
+  const query = `
+  query ($owner: String!, $name: String!) {
+    repository(owner: $owner, name: $name) {
+      name
+      description
+      url
+      homepageUrl
+      isPrivate
+      stargazers {
+        totalCount
+      }
+    }
+  }
+`;
+
+  try {
+    const { repository } = await graphql(query, {
+      owner,
+      name,
+      headers: {
+        authorization: `token ${GITHUB_TOKEN}`,
+      },
+    });
+
+    const project = {
+      ...repository,
+      stargazers: repository.stargazers.totalCount
+    }
+
+    return project;
+  } catch (error) {
+    console.error("Error making GraphQL request:", error);
+    throw error;
+  }
+}
+
 export async function fetchRepositoryData(repositories) {
   const repositoryData = [];
 
@@ -67,19 +115,18 @@ export async function fetchRepositoryData(repositories) {
     structuredData.tools = repoObj[1];
     structuredData.thumbnail = repoObj[2];
     structuredData.trailer = repoObj[3];
-    structuredData.figma = repoObj[4] === 'null'? null : repoObj[4];
+    structuredData.figma = repoObj[4] === "null" ? null : repoObj[4];
     structuredData.description = repository.description;
     structuredData.url = repository.isPrivate ? null : repository.url;
     structuredData.homepageUrl = repository.homepageUrl;
     structuredData.star = repository.stargazers.totalCount;
 
-    
     repositoryData.push(structuredData);
   }
-  
+
   if (repositoryData.length === 1) {
     return repositoryData[0];
   }
-  
+
   return repositoryData;
 }

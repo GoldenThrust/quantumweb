@@ -31,4 +31,5 @@ export const toolsTechImage = {
     webrtc: "webrtc.svg",
     websocket: "websocket.svg",
     ubuntu: "ubuntu.svg",
+    ejs: "ejs.svg",
 }

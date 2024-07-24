@@ -1,5 +1,7 @@
 import Admin from "../models/admin.js";
 import { compare, hash } from "bcrypt";
+import { toolsTechImage } from "../views/js/constant.js";
+import Project from "../models/project.js";
 
 class AdminController {
   async login(req, res) {
@@ -66,11 +68,15 @@ class AdminController {
       path: "users"
     });
   }
+  
+  async dashboardProjects(req, res) {
+    const projects = await Project.find().sort({key: 1});
 
-  dashboardProjects(req, res) {
     return res.render("admin/dashboard/projects", {
+      projects,
       layout: "admin/layouts/dashboard",
-      path: "projects"
+      path: "projects",
+      tools: Object.keys(toolsTechImage)
     });
   }
 }

@@ -6,7 +6,7 @@
     <title>Adeniji Olajide</title>
     <link rel="shortcut icon" href="../../img/quantum.png" type="image/png" />
     <link rel="stylesheet" href="../styles/style.css" />
-    <script src="../js/main.js" defer></script>
+    <script src="../js/main.js" type="module" defer></script>
   </head>
   <body>
     <header>
@@ -21,6 +21,7 @@
       <input type="search" name="search" id="search" placeholder="Search" />
     </header>
     <main>
+      <div id="alert"></div>
       <aside>
         <a href="/admin/dashboard/projects" <% if (path === "projects") { %>  class="<%= 'active' %>"" <%  } %> ><img src="../../img/projects.png" alt="Projects link" /></a>
         <a href="/admin/dashboard/users" <% if (path === "users") { %>  class="<%= 'active' %>"" <%  } %>

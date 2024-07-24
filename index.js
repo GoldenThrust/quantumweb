@@ -2,9 +2,7 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-import os from "os";
 import repos from "./routes/repos.js";
-import mailService from './config/mailService.js';
 
 import "dotenv/config";
 import mongodb, { redis } from "./config/db.js";
@@ -16,6 +14,7 @@ import { DEV, featureRepo } from "./utils/constant.js";
 import { mailQueue } from "./worker.js";
 import multer from "multer";
 import expressLayouts from "express-ejs-layouts";
+import project from "./routes/project.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -67,16 +66,20 @@ app.post("/test", (req, res)=> {
 app.post("/chirpmail",multer().none(), async (req, res) => {
   const { name, email, message } = req.body;
   const host = req.get("host");
-  if (!name || !email || !message) {
+  // if (!name || !email || !message) {
     return res.status(400).send("All fields are required.");
-  }
+  // }
 
   await mailQueue.add({ name, email, message, host });
   res.status(200).send("Chirpmail sent successfully.");
 });
 
 app.set('layout', 'layout');
+
 app.use("/admin", admin);
+app.use("/project", project);
+
+
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"));
 });

@@ -1,8 +1,7 @@
-import { type } from "express/lib/response";
 import mongoose from "mongoose";
 
 const ProjectSchema = new mongoose.Schema({
-    priority: {
+    key: {
         type: Number,
         required: true,
     },
@@ -16,20 +15,17 @@ const ProjectSchema = new mongoose.Schema({
         type: [String],
         required: true,
     },
-    thumbnail: {
+    preview: {
         type: String,
         required: true,
     },
-    trailer: {
-        type: String,
-        required: true,
-    },
+    private: Boolean,
     figma: String,
     stars: Number,
     url: String,
     homepage: String,
 });
 
-const Project = mongoose.model("Project", UserSchema);
+const Project = mongoose.model("Project", ProjectSchema);
 
 export default Project;
