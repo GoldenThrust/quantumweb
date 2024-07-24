@@ -66,9 +66,12 @@ app.post("/test", (req, res)=> {
 app.post("/chirpmail",multer().none(), async (req, res) => {
   const { name, email, message } = req.body;
   const host = req.get("host");
-  // if (!name || !email || !message) {
+
+  return res.status(400).send("Mail services are currently disabled due to bot infiltration.");
+
+  if (!name || !email || !message) {
     return res.status(400).send("All fields are required.");
-  // }
+  }
 
   await mailQueue.add({ name, email, message, host });
   res.status(200).send("Chirpmail sent successfully.");
