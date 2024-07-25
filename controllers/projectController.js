@@ -8,6 +8,12 @@ class ProjectController {
     const figmaLink = req.body["figma-link"];
     const projectPreview = req.body["project-preview"];
 
+    const project = Project.find({name});
+
+    if (project.length) {
+      return res.status(400).json({ error: "Project already exists" });
+    }
+
     const { description, url, homepageUrl, isPrivate, stargazers } =
       await fetchProject(gitLink);
 

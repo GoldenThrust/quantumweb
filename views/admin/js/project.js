@@ -76,7 +76,8 @@ async function updateKeys() {
   });
 
   if (!resp.ok) {
-    showAlert("Failed to update project keys.");
+    const err = await resp.json();
+    showAlert(err.error);
     return;
   }
 }
@@ -108,7 +109,8 @@ export default function initProject() {
       })
 
       if (!response.ok) {
-        showAlert("Failed to refresh project.");
+        const err = await response.json();
+        showAlert(err.error);
         return;
       }
     
@@ -132,17 +134,18 @@ export default function initProject() {
       const formData = new FormData(elem);
       for (const [key, value] of formData) {
         if (!value && key !== "figma-link") {
-          alert("Please fill in all required fields.");
+          const err = await response.json();
+          showAlert(err.error);
           return;
         }
 
         if (key === "git-link" && !isGitHubLink(value)) {
-          alert("Please enter a valid GitHub link.");
+          showAlert("Please enter a valid GitHub link.");
           return;
         }
 
         if (value && key === "figma-link" && !isFigmaLink(value)) {
-          alert("Please enter a valid Figma link.");
+          showAlert("Please enter a valid Figma link.");
           return;
         }
 
@@ -164,7 +167,8 @@ export default function initProject() {
       });
 
       if (!response.ok) {
-        showAlert("Failed to update project.");
+        const err = await response.json();
+        showAlert(err.error);
         return;
       }
 
@@ -201,7 +205,8 @@ export default function initProject() {
     })
 
     if (!response.ok) {
-      showAlert("Failed to delete project.");
+      const err = await response.json();
+      showAlert(err.error);
       return;
     } else {
       project.remove();
@@ -274,12 +279,12 @@ export default function initProject() {
       project[key] = value;
 
       if (key == "git-link" && !isGitHubLink(value)) {
-        alert("Please enter a valid GitHub link.");
+        showAlert("Please enter a valid GitHub link.");
         return;
       }
 
       if (value && key === "figma-link" && !isFigmaLink(value)) {
-        alert("Please enter a valid Figma link.");
+        showAlert("Please enter a valid Figma link.");
         return;
       }
     }
@@ -292,7 +297,7 @@ export default function initProject() {
     });
 
     if (!project["tools"]) {
-      alert("Please add at least one tool.");
+      showAlert("Please add at least one tool.");
       return;
     }
 

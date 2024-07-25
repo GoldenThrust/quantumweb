@@ -1,4 +1,4 @@
-import createElement from "../views/js/utils.js";
+import createElement, { showAlert } from "../views/js/utils.js";
 const aside = document.querySelector("aside");
 const footer = document.querySelector("footer");
 
@@ -80,9 +80,8 @@ forms.forEach((elem) => {
     e.preventDefault();
     const formData = new FormData(elem);
     for (const [key, value] of formData) {
-      console.log(key, value);
       if (!value) {
-        alert("Please fill in all required fields.");
+        showAlert("Please fill in all required fields.");
         return window.location.reload();
       }
       project[key] = value;
