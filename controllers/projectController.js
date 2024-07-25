@@ -1,5 +1,5 @@
 import Project from "../models/project.js";
-import { fetchProjectReposData } from "../utils/fetchData.js";
+import { fetchProject } from "../utils/fetchData.js";
 
 class ProjectController {
   async create(req, res) {
@@ -9,7 +9,7 @@ class ProjectController {
     const projectPreview = req.body["project-preview"];
 
     const { description, url, homepageUrl, isPrivate, stargazers } =
-      await fetchProjectReposData(gitLink);
+      await fetchProject(gitLink);
 
     try {
       const project = new Project({
@@ -64,9 +64,57 @@ class ProjectController {
     }
   }
 
-  async delete(req, res) {}
+  async delete(req, res) {
+    const { id } = req.body;
+    
+    if (!id) {
+      return res.status(400).json({ error: "Invalid input" });
+    }
 
-  async update(req, res) {}
+    try {
+      const result = await Project.findByIdAndDelete(id);
+      
+      if (!result) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+      
+      res.status(200).json({ message: "Project deleted successfully" });
+      
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to delete project" });
+      return;
+    }
+  }
+
+  async update(req, res) {
+    const { id, project } = req.body;
+
+    if (!id || !project) {
+      return res.status(400).json({ error: "Invalid input" });
+    }
+
+    try {
+      const result = await Project.findByIdAndUpdate(id, {
+        name: project.name,
+        url: project['git-link'],
+        preview: project['project-preview'],
+        tools: project.tools,
+        figma: project['figma-link']
+      }, {new: true});      
+
+      if (!result) {
+        return res.status(404).json({ error: "Project not found" });
+      }
+
+      res.status(200).json({ message: "Project updated successfully", result });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Failed to update project" });
+      return;
+    }
+
+  }
 
   async refresh(req, res) {
     const { id } = req.body;
@@ -80,7 +128,7 @@ class ProjectController {
   
       const url = project.url;
     
-      const data = await fetchProjectReposData(url);
+      const data = await fetchProject(url);
 
       const result = await Project.findByIdAndUpdate(
         id,

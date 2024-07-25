@@ -22,7 +22,6 @@ const deleteProjectButton = document.getElementById("delete-project");
 
 // Function to remove tools
 function removeTools(e, elem) {
-  console.log(e.target);
   if (e.target.nodeName == "SPAN") {
     const key = elem.dataset.key;
     e.target.remove();
@@ -120,10 +119,13 @@ export default function initProject() {
   // Form submission handling
   forms.forEach((elem) => {
     const div = elem.querySelector("div div");
-    const span = div.querySelectorAll("span");
-    const id = e.target.closest(".project").id;
-
+  
     elem.addEventListener("submit", async (e) => {
+      const id = elem.closest(".project").id;
+      const span = div.querySelectorAll("span");
+
+
+
       const project = {};
       e.preventDefault();
 
@@ -147,6 +149,7 @@ export default function initProject() {
         project[key] = value;
       }
 
+
       span.forEach((el) => {
         if (project["tools"]) project["tools"].push(el.textContent);
         else project["tools"] = [el.textContent];
@@ -159,6 +162,11 @@ export default function initProject() {
           "Content-Type": "application/json",
         },
       });
+
+      if (!response.ok) {
+        showAlert("Failed to update project.");
+        return;
+      }
 
       window.location.reload();
     });
@@ -175,19 +183,31 @@ export default function initProject() {
   deleteProject.forEach((elem) => {
     elem.addEventListener("click", (e) => {
       const project = e.target.closest(".project");
-      const key = project.dataset.key;
-      dialog.id = key;
+      const id = project.id;
+      dialog.id = id;
       dialog.showModal();
     });
   });
 
-  deleteProjectButton.addEventListener("click", (e) => {
-    console.log(dialog.id);
-    const projectKey = dialog.id;
-    const project = document.querySelector(`[data-key="${projectKey}"]`);
-    project.remove();
-    showAlert(`Project ${projectKey} deleted`);
-    dialog.id = "";
+  deleteProjectButton.addEventListener("click", async (e) => {
+    const id = dialog.id;
+    const project = document.getElementById(id);
+    const response = await fetch('/project/delete', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id })
+    })
+
+    if (!response.ok) {
+      showAlert("Failed to delete project.");
+      return;
+    } else {
+      project.remove();
+      showAlert(`Project ${projectKey} deleted`);
+      dialog.id = "";
+    }
   });
 
   // Edit project on edit button click

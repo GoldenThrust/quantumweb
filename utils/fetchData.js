@@ -52,7 +52,7 @@ export async function makeGraphQLRequest(owner, repoName, path) {
   }
 }
 
-export async function fetchProjectReposData(gitUrl) {
+export async function fetchProject(gitUrl) {
   const { owner, name } = parseGitHubUrl(gitUrl);
   const query = `
   query ($owner: String!, $name: String!) {
