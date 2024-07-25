@@ -345,159 +345,28 @@
 
       <div id="blog">
         <h2>BLOG</h2>
+        
         <div class="blogs">
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img
-                src="img/assets/personal-portfolio.png"
-                alt="Personal Portfolio"
-            /></a>
-            <div class="title">How i create my Portfolio</div>
-            <div class="summary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-              perferendis quis quasi laborum vitae quas, esse dolorum quod nemo
-              laudantium quibusdam asperiores earum voluptas possimus,
-              voluptatem enim magnam id voluptatibus! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Dolorum recusandae laborum odio
-              sapiente corporis id ullam non amet aperiam possimus harum
-              inventore architecto repudiandae, suscipit doloremque reiciendis.
-              Eos, quas esse.
+          <% blogs.forEach((blog)=> { %> 
+            <div class="blog">
+              <a href="http://" target="_blank" rel="noopener noreferrer"
+                ><img
+                  src="<%= blog.cover_image %>"
+                  alt="Personal Portfolio"
+              /></a>
+              <div class="title"><%= blog.title %></div>
+              <div class="summary">
+                <%= blog.description %>
+              </div>
+              <a
+                href="<%= blog.url %>"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="blogIcon"
+                ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
+              /></a>
             </div>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img
-                src="img/assets/personal-portfolio.png"
-                alt="Personal Portfolio"
-            /></a>
-
-            <div class="title">How i create my Portfolio</div>
-            <div class="summary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-              perferendis quis quasi laborum vitae quas, esse dolorum quod nemo
-              laudantium quibusdam asperiores earum voluptas possimus,
-              voluptatem enim magnam id voluptatibus! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Iusto deleniti neque enim ipsum
-              vitae nobis necessitatibus perferendis autem dignissimos. Quae
-              corporis voluptates saepe veritatis velit et, unde quam? Facilis,
-              porro?
-            </div>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img
-                src="img/assets/personal-portfolio.png"
-                alt="Personal Portfolio"
-            /></a>
-
-            <div class="title">How i create my Portfolio</div>
-            <div class="summary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-              perferendis quis quasi laborum vitae quas, esse dolorum quod nemo
-              laudantium quibusdam asperiores earum voluptas possimus,
-              voluptatem enim magnam id voluptatibus! Lorem ipsum dolor sit amet
-              consectetur adipisicing elit. Consectetur accusantium cupiditate
-              minima fugiat. Nam tempora amet fugit sint odio incidunt ex magnam
-              maiores pariatur consequatur, voluptates nemo dolorem quam facere.
-            </div>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img
-                src="img/assets/personal-portfolio.png"
-                alt="Personal Portfolio"
-            /></a>
-
-            <div class="title">How i create my Portfolio</div>
-            <div class="summary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-              perferendis quis quasi laborum vitae quas, esse dolorum quod nemo
-              laudantium quibusdam asperiores earum voluptas possimus,
-              voluptatem enim magnam id voluptatibus! Lorem ipsum dolor sit amet
-              consectetur, adipisicing elit. Ab esse quidem sed. Accusamus id
-              eaque vero. Consectetur necessitatibus dicta nemo distinctio
-              veniam consequuntur, ipsa laboriosam dolor neque, accusantium
-              quibusdam vel!
-            </div>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img
-                src="img/assets/personal-portfolio.png"
-                alt="Personal Portfolio"
-            /></a>
-
-            <div class="title">How i create my Portfolio</div>
-            <div class="summary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-              perferendis quis quasi laborum vitae quas, esse dolorum quod nemo
-              laudantium quibusdam asperiores earum voluptas possimus,
-              voluptatem enim magnam id voluptatibus! Lorem ipsum dolor, sit
-              amet consectetur adipisicing elit. Quidem quaerat expedita,
-              tempora blanditiis in, quisquam ab illo at eius dolores animi sint
-              beatae provident fugiat vitae. Earum tempore mollitia error.
-            </div>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img
-                src="img/assets/personal-portfolio.png"
-                alt="Personal Portfolio"
-            /></a>
-
-            <div class="title">How i create my Portfolio</div>
-            <div class="summary">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-              perferendis quis quasi laborum vitae quas, esse dolorum quod nemo
-              laudantium quibusdam asperiores earum voluptas possimus,
-              voluptatem enim magnam id voluptatibus! Lorem ipsum dolor sit amet
-              consectetur, adipisicing elit. Sapiente libero dolorum eveniet ad
-              quia nobis sed. Beatae, non explicabo! Velit molestiae doloremque
-              saepe, sit nam quae iure nisi reiciendis placeat.
-            </div>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
+          <% }) %>
         </div>
         <a href="blogs.html" class="amazed">Be Amazed</a>
         <div class="join">

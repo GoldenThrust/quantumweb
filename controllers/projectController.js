@@ -1,5 +1,5 @@
 import Project from "../models/project.js";
-import { fetchProjectReposData } from "../utils/graphql.js";
+import { fetchProjectReposData } from "../utils/fetchData.js";
 
 class ProjectController {
   async create(req, res) {

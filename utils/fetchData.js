@@ -1,6 +1,7 @@
 import { graphql } from "@octokit/graphql";
-import { GITHUB_TOKEN } from "../utils/constant.js";
+import { GITHUB_TOKEN } from "./constant.js";
 import { redis } from "../config/db.js";
+import axios from "axios";
 
 export function parseGitHubUrl(url) {
   const regex = /https:\/\/github\.com\/([^/]+)\/([^/]+)/;
@@ -79,8 +80,8 @@ export async function fetchProjectReposData(gitUrl) {
 
     const project = {
       ...repository,
-      stargazers: repository.stargazers.totalCount
-    }
+      stargazers: repository.stargazers.totalCount,
+    };
 
     return project;
   } catch (error) {
@@ -129,4 +130,20 @@ export async function fetchRepositoryData(repositories) {
   }
 
   return repositoryData;
+}
+
+export async function fetchBlogPost() {
+  try {
+    const response = await axios.get("https://dev.to/api/articles/me/published", {
+      headers: {
+        "api-key": process.env.DEVTO_KEY,
+      },
+    });
+
+    const data = response.data;
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
 }

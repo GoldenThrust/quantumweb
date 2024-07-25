@@ -9,7 +9,7 @@ import mongodb, { redis } from "./config/db.js";
 import admin from "./routes/admin.js";
 import session from "express-session";
 import RedisStore from "connect-redis";
-import { fetchRepositoryData } from "./utils/graphql.js";
+import { fetchBlogPost, fetchRepositoryData } from "./utils/fetchData.js";
 import { DEV, featureRepo } from "./utils/constant.js";
 import { mailQueue } from "./worker.js";
 import multer from "multer";
@@ -55,10 +55,15 @@ app.get("/", async (req, res) => {
     redis.set("featuresRepo", JSON.stringify(repos), 604800);
   }
   
+  const blogs = await fetchBlogPost();
+  
   res.render("index", {
+    blogs,
     repos,
   });
 });
+
+
 
 app.post("/test", (req, res)=> {
   res.send("Hello, World!");

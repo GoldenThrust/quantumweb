@@ -1,6 +1,6 @@
 import { Router } from "express";
 import "dotenv/config";
-import { fetchRepositoryData } from "../utils/graphql.js";
+import { fetchRepositoryData } from "../utils/fetchData.js";
 import {
   DEV,
   featureRepo,
