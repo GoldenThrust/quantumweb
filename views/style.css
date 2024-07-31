@@ -240,7 +240,7 @@ overrides;
     header nav {
       position: fixed;
       top: 0;
-      left: 0%;
+      left: -100%;
       display: flex;
       justify-content: center;
       color: white;
@@ -251,6 +251,7 @@ overrides;
       height: 100vh;
       background: linear-gradient(180deg, #0e070c 0%, #0d030c 100%);
       transition: left 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+      box-shadow: 2px 2px 10px black;
     }
 
     .resume a {
@@ -294,6 +295,7 @@ overrides;
         font-size: 1rem;
         font-weight: 300;
         font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+        box-shadow: none;
       }
     }
 
@@ -969,6 +971,7 @@ overrides;
       align-items: center;
       gap: 30px;
     }
+
     #certificates .certificates div {
       position: relative;
       width: 400px;
@@ -993,6 +996,13 @@ overrides;
     #certificates .certificates div:hover {
       transform: scale(1.2);
     }
+
+    @media screen and (max-width: 918px) {
+      #certificates .certificates div {
+        width: clamp(400px, 98%, 800px);
+      } 
+    }
+
 
     @keyframes flow {
       to {

@@ -23,6 +23,15 @@
   border-radius: 100%;
 }
 
+main {
+  padding: 30px 0 0 100px;
+}
+
+@media (max-width: 768px) {
+  main {
+    padding-left: 20px;
+  }
+}
 
 #alert {
   z-index: 10;
@@ -208,13 +217,6 @@ aside .active:hover {
 }
 
 
-@media (max-width: 768px) {
-  main {
-    padding-left: 20px;
-  }
-}
-
-
 footer {
   position: absolute;
   right: 50%;
@@ -243,9 +245,6 @@ footer:active {
   background: linear-gradient(180deg, #8d33d127, #bababa08);
 }
 
-main {
-  padding: 30px 0 0 100px;
-}
 
 #projects {
   display: flex;

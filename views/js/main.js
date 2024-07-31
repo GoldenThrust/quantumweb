@@ -15,9 +15,10 @@ requestAnimationFrame(AnimateSlide);
 const specialization = document.querySelector(".specialization");
 const professions = [
   "Software Engineer",
-  "Web Developer",
+  "Frontend Developer",
   "Backend Developer",
-  "System Adminstrator and DevOps"
+  "Full Stack Developer",
+  "SysAdmin and DevOps Engineer"
 ];
 
 let currentTextIndex = 0;

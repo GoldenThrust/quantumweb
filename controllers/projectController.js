@@ -157,7 +157,7 @@ class ProjectController {
   }
 
   async refresh(req, res) {
-    const { id } = req.body;
+    const { id } = req.params;
 
 
     try {

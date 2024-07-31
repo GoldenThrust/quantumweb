@@ -68,7 +68,7 @@ async function updateKeys() {
   });
 
   const resp = await fetch("/project/changekey", {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
     },
@@ -100,13 +100,7 @@ export default function initProject() {
       const projectKey = e.target.closest(".project").dataset.key;
       const id = e.target.closest(".project").id;
 
-      const response = await fetch('/project/refresh', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ id })
-      })
+      const response = await fetch(`/project/refresh/${id}`)
 
       if (!response.ok) {
         const err = await response.json();
@@ -159,7 +153,7 @@ export default function initProject() {
       });
 
       const response = await fetch("/project/update", {
-        method: "POST",
+        method: "PUT",
         body: JSON.stringify({id, project}),
         headers: {
           "Content-Type": "application/json",
@@ -197,7 +191,7 @@ export default function initProject() {
     const id = dialog.id;
     const project = document.getElementById(id);
     const response = await fetch('/project/delete', {
-      method: 'POST',
+      method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       },
