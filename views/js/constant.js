@@ -32,4 +32,6 @@ export const toolsTechImage = {
     websocket: "websocket.svg",
     ubuntu: "ubuntu.svg",
     ejs: "ejs.svg",
+    puppet: "puppet.svg",
+    ruby: "ruby.svg"
 }

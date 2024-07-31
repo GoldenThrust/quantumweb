@@ -1,11 +1,8 @@
 import { Router } from "express";
 import "dotenv/config";
-import { fetchRepositoryData } from "../utils/fetchData.js";
+import { fetchProjectData } from "../utils/fetchData.js";
 import {
   DEV,
-  featureRepo,
-  masterRepo,
-  testWorkData,
 } from "../utils/constant.js";
 import { redis } from "../config/db.js";
 
@@ -27,9 +24,9 @@ repos.get("/repos/:id", async (req, res) => {
   let reposData = null;
 
   if (id < 6) {
-    reposData = DEV ? testWorkData[id] : await fetchRepositoryData([featureRepo[id]]);
+    reposData = DEV ? testWorkData[id] : await fetchProjectData();
   } else {
-    reposData = DEV ? testWorkData[id] : await fetchRepositoryData([masterRepo[id]]);
+    reposData = DEV ? testWorkData[id] : await fetchProjectData();
   }
 
   res.json(reposData)

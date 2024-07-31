@@ -19,6 +19,10 @@ const ProjectSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    hasvideo: {
+        type: Boolean,
+        default: false,
+    },
     private: Boolean,
     figma: String,
     stars: Number,

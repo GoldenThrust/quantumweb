@@ -67,11 +67,11 @@
           <div class="specialization">Full-Stack Web Developer</div>
         </div>
         <div class="introbrief">
-          Welcome to Adeniji Olajide's Portfolio! Hello and welcome!
-          I'm thrilled to have you here. Whether you stumbled upon my website by
+          Welcome to Adeniji Olajide's Portfolio! Hello and welcome! I'm
+          thrilled to have you here. Whether you stumbled upon my website by
           chance or intentionally sought it out, I'm delighted to extend my
-          warmest greetings to you. This space is more than just a collection
-          of projects and accomplishments—it's a reflection of my journey, my
+          warmest greetings to you. This space is more than just a collection of
+          projects and accomplishments—it's a reflection of my journey, my
           passion, and my dedication to the craft of software engineering and
           web development. Each line of code, each pixel on the screen,
           represents countless hours of learning, experimenting, and refining my
@@ -79,11 +79,11 @@
           expertise, to inspire creativity, and to foster meaningful
           connections. Whether you're a fellow developer, a potential client, or
           simply someone curious about what I do, I invite you to explore, to
-          learn, and to engage with the content you find here. Take a moment
-          to browse through my projects, each one a labor of love and a
-          testament to my commitment to excellence. From innovative web
-          applications to elegant user interfaces, each project tells a story—a
-          story of problem-solving, collaboration, and the relentless pursuit of
+          learn, and to engage with the content you find here. Take a moment to
+          browse through my projects, each one a labor of love and a testament
+          to my commitment to excellence. From innovative web applications to
+          elegant user interfaces, each project tells a story—a story of
+          problem-solving, collaboration, and the relentless pursuit of
           perfection. But beyond the code and the designs, I want you to know
           that this portfolio is also a reflection of who I am as a person.
           Approachable, passionate, and always eager to learn and grow. So,
@@ -203,18 +203,20 @@
       <div id="works">
         <h2>WORKS</h2>
         <div class="works">
-          <% repos.forEach((repo)=> { %>
-          <span data-key="<%= repo.id %>">
-            <video
-              src="portfoliovideo/<%= repo.trailer %>"
-              poster="portfolioimage/<%= repo.thumbnail %>"
-              muted
-            ></video>
-            <div class="workname"><%= repo.name %></div>
+          <% projects.project.forEach((project) => { %>
+          <span data-key="<%= project.key %>">
+            <img
+              src="portfolioimage/<%= project.preview %>.png"
+              alt="<%= project.name %>"
+              loading="lazy"
+            />
+            <div class="workname"><%= project.name %></div>
           </span>
           <% }) %>
         </div>
-        <a href="works.html" class="amazed">Show More</a>
+        <% if (projects.hasMore) { %>
+        <span class="show-more" data-key="1">Show More</span>
+        <% } %>
 
         <!-- workpop up -->
         <aside id="workpopup">
@@ -345,30 +347,26 @@
 
       <div id="blog">
         <h2>BLOG</h2>
-        
+
         <div class="blogs">
-          <% blogs.forEach((blog)=> { %> 
-            <div class="blog">
-              <a href="http://" target="_blank" rel="noopener noreferrer"
-                ><img
-                  src="<%= blog.cover_image %>"
-                  alt="Personal Portfolio"
-              /></a>
-              <div class="title"><%= blog.title %></div>
-              <div class="summary">
-                <%= blog.description %>
-              </div>
-              <a
-                href="<%= blog.url %>"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="blogIcon"
-                ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
-              /></a>
-            </div>
+          <% blogs.forEach((blog)=> { %>
+          <div class="blog">
+            <a href="http://" target="_blank" rel="noopener noreferrer"
+              ><img src="<%= blog.cover_image %>" alt="Personal Portfolio"
+            /></a>
+            <div class="title"><%= blog.title %></div>
+            <div class="summary"><%= blog.description %></div>
+            <a
+              href="<%= blog.url %>"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="blogIcon"
+              ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
+            /></a>
+          </div>
           <% }) %>
         </div>
-        <a href="blogs.html" class="amazed">Be Amazed</a>
+        <span class="show-more">Show More</span>
         <div class="join">
           <span class="left">
             <a

@@ -10,6 +10,7 @@ const adminSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    ip_address: [String],
     password: {
         type: String,
         required: true

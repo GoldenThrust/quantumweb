@@ -2,6 +2,7 @@ import { graphql } from "@octokit/graphql";
 import { GITHUB_TOKEN } from "./constant.js";
 import { redis } from "../config/db.js";
 import axios from "axios";
+import Project from "../models/project.js";
 
 export function parseGitHubUrl(url) {
   const regex = /https:\/\/github\.com\/([^/]+)\/([^/]+)/;
@@ -10,45 +11,6 @@ export function parseGitHubUrl(url) {
     return { owner: match[1], name: match[2] };
   } else {
     throw new Error("Invalid GitHub URL");
-  }
-}
-
-export async function makeGraphQLRequest(owner, repoName, path) {
-  const repoPath = path !== undefined ? `${path}/` : "";
-
-  const query = `
-  query ($owner: String!, $repoName: String!) {
-    repository(owner: $owner, name: $repoName) {
-      name
-      description
-      url
-      homepageUrl
-      isPrivate
-      stargazers {
-        totalCount
-      }
-      object(expression: "HEAD:${repoPath}portfolio.md") {
-        ... on Blob {
-          text
-        }
-      }
-    }
-  }
-`;
-
-  try {
-    const { repository } = await graphql(query, {
-      owner,
-      repoName,
-      headers: {
-        authorization: `token ${GITHUB_TOKEN}`,
-      },
-    });
-
-    return repository;
-  } catch (error) {
-    console.error("Error making GraphQL request:", error);
-    throw error;
   }
 }
 
@@ -90,57 +52,48 @@ export async function fetchProject(gitUrl) {
   }
 }
 
-export async function fetchRepositoryData(repositories) {
-  const repositoryData = [];
+export async function fetchProjectData(page=1) {
+  const limit = 6;
+  try {
+    const project = await Project.find().sort({ key: 1 })
+      .skip((page - 1) * limit)
+      .limit(limit);
 
-  for (const [key, repo] of Object.entries(repositories)) {
-    const structuredData = {
-      name: "",
-      thumbnail: "",
-      tools: "",
-      trailer: "",
-      figma: "",
+    const totalProject = await Project.countDocuments();
+
+    const hasMore = (page * limit) < totalProject;
+
+    return {
+      project,
+      currentPage: page,
+      totalPages: Math.ceil(totalProject / limit),
+      hasMore,
     };
-    const [owner, repoName, path] = repo.split("/");
-
-    const repository = await makeGraphQLRequest(owner, repoName, path);
-
-    if (repository.object === null) {
-      continue;
-    }
-
-    const repoObj = repository.object.text.split("\n");
-
-    structuredData.id = key;
-    structuredData.name = repoObj[0];
-    structuredData.tools = repoObj[1];
-    structuredData.thumbnail = repoObj[2];
-    structuredData.trailer = repoObj[3];
-    structuredData.figma = repoObj[4] === "null" ? null : repoObj[4];
-    structuredData.description = repository.description;
-    structuredData.url = repository.isPrivate ? null : repository.url;
-    structuredData.homepageUrl = repository.homepageUrl;
-    structuredData.star = repository.stargazers.totalCount;
-
-    repositoryData.push(structuredData);
+  } catch (err) {
+    return { error: err.message }
   }
-
-  if (repositoryData.length === 1) {
-    return repositoryData[0];
-  }
-
-  return repositoryData;
 }
 
-export async function fetchBlogPost() {
+export async function fetchBlogPost(page=1) {
   try {
-    const response = await axios.get("https://dev.to/api/articles/me/published", {
-      headers: {
-        "api-key": process.env.DEVTO_KEY,
-      },
-    });
+    // let data = JSON.parse(await redis.get('blog'));
+    let data = "";
+  
+    if (!data || data.length < 1) {
+      const response = await axios.get(`https://dev.to/api/articles/me/published?page=${page}&per_page=6`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/vnd.forem.api-v1+json",
+          "api-key": process.env.DEVTO_KEY,
+        },
+      });
 
-    const data = response.data;
+      console.log(response);
+
+      // await redis.set('blog', JSON.stringify(response.data), 6400);
+
+      data = response.data;
+    }
 
     return data;
   } catch (error) {

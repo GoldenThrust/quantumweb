@@ -9,8 +9,8 @@ import mongodb, { redis } from "./config/db.js";
 import admin from "./routes/admin.js";
 import session from "express-session";
 import RedisStore from "connect-redis";
-import { fetchBlogPost, fetchRepositoryData } from "./utils/fetchData.js";
-import { DEV, featureRepo } from "./utils/constant.js";
+import { fetchBlogPost, fetchProjectData } from "./utils/fetchData.js";
+import { DEV } from "./utils/constant.js";
 import { mailQueue } from "./worker.js";
 import multer from "multer";
 import expressLayouts from "express-ejs-layouts";
@@ -48,18 +48,12 @@ app.use(express.json());
 app.use(repos);
 
 app.get("/", async (req, res) => {
-  let repos = JSON.parse(await redis.get("featuresRepo"));
-  
-  if (!repos || repos.length < 1) {
-    repos = await fetchRepositoryData(featureRepo);
-    redis.set("featuresRepo", JSON.stringify(repos), 604800);
-  }
-  
+  let projects = await fetchProjectData();
   const blogs = await fetchBlogPost();
   
   res.render("index", {
     blogs,
-    repos,
+    projects,
   });
 });
 
@@ -68,6 +62,8 @@ app.get("/", async (req, res) => {
 app.post("/test", (req, res)=> {
   res.send("Hello, World!");
 })
+
+
 app.post("/chirpmail",multer().none(), async (req, res) => {
   const { name, email, message } = req.body;
   const host = req.get("host");

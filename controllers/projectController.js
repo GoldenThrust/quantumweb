@@ -1,14 +1,37 @@
 import Project from "../models/project.js";
-import { fetchProject } from "../utils/fetchData.js";
+import { fetchProject, fetchProjectData } from "../utils/fetchData.js";
+import fs from 'fs';
+import path from "path";
+import { __rootDir } from "../utils/constant.js";
+
 
 class ProjectController {
+  constructor() {
+    this.update = this.update.bind(this);
+    this.create = this.create.bind(this);
+    this.refresh = this.refresh.bind(this);
+  }
+
+  async _findVideo(videoPath) {
+    return await new Promise((resolve, reject) => {
+      const fullPath = path.join(__rootDir, `/views/portfoliovideo/${videoPath}.mp4`);
+      console.log(fullPath);
+      fs.access(fullPath, fs.constants.F_OK, (err) => {
+        if (err) {
+          resolve(false);
+        } else {
+          resolve(true);
+        }
+      });
+    });
+  }
   async create(req, res) {
     const { key, name, tools } = req.body;
     const gitLink = req.body["git-link"];
     const figmaLink = req.body["figma-link"];
     const projectPreview = req.body["project-preview"];
 
-    const project = Project.find({name});
+    const project = Project.find({ name });
 
     if (project.length) {
       return res.status(400).json({ error: "Project already exists" });
@@ -16,6 +39,10 @@ class ProjectController {
 
     const { description, url, homepageUrl, isPrivate, stargazers } =
       await fetchProject(gitLink);
+
+    const hasVideo = await this._findVideo(projectPreview);
+
+
 
     try {
       const project = new Project({
@@ -28,6 +55,7 @@ class ProjectController {
         figma: figmaLink,
         stars: stargazers,
         url,
+        hasvideo: hasVideo,
         homepage: homepageUrl,
       });
       project.save();
@@ -72,20 +100,20 @@ class ProjectController {
 
   async delete(req, res) {
     const { id } = req.body;
-    
+
     if (!id) {
       return res.status(400).json({ error: "Invalid input" });
     }
 
     try {
       const result = await Project.findByIdAndDelete(id);
-      
+
       if (!result) {
         return res.status(404).json({ error: "Project not found" });
       }
-      
+
       res.status(200).json({ message: "Project deleted successfully" });
-      
+
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Failed to delete project" });
@@ -95,19 +123,25 @@ class ProjectController {
 
   async update(req, res) {
     const { id, project } = req.body;
+    const projectPreview = project['project-preview'];
 
     if (!id || !project) {
       return res.status(400).json({ error: "Invalid input" });
     }
 
+    const hasVideo = await this._findVideo(projectPreview);
+
+
     try {
       const result = await Project.findByIdAndUpdate(id, {
         name: project.name,
         url: project['git-link'],
-        preview: project['project-preview'],
+        preview: projectPreview,
         tools: project.tools,
-        figma: project['figma-link']
-      }, {new: true});      
+        figma: project['figma-link'],
+        hasvideo: hasVideo
+      }, { new: true });
+
 
       if (!result) {
         return res.status(404).json({ error: "Project not found" });
@@ -124,6 +158,8 @@ class ProjectController {
 
   async refresh(req, res) {
     const { id } = req.body;
+    console.log(this);
+
 
     try {
       const project = await Project.findById(id);
@@ -131,10 +167,14 @@ class ProjectController {
       if (!project) {
         return res.status(404).json({ error: 'Project not found' });
       }
-  
+
       const url = project.url;
-    
+
       const data = await fetchProject(url);
+      console.log(project.preview)
+      console.log("in this", this);
+
+      const hasVideo = await this._findVideo(project.preview);
 
       const result = await Project.findByIdAndUpdate(
         id,
@@ -143,6 +183,7 @@ class ProjectController {
           homepage: data.homepageUrl,
           private: data.isPrivate,
           stargazers: data.stargazers,
+          hasvideo: hasVideo
         },
         { new: true }
       );
@@ -151,8 +192,39 @@ class ProjectController {
     } catch (err) {
       console.error(err);
       res.status(500).json({ error: "Failed to fetch project data" });
-      return;
     }
+  }
+
+  async getProjects(req, res) {
+    const { page } = req.params;
+
+    if (!page) {
+      return res.status(400).json({ error: "Invalid input" });
+    }
+
+    const project = await fetchProjectData(page);
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    res.json(project);
+  }
+
+  async getProject(req, res) {
+    const { key } = req.params;
+
+    if (!key) {
+      return res.status(400).json({ error: "Invalid input" });
+    }
+
+    const project = await Project.findOne({ key });
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    res.json(project);
   }
 }
 

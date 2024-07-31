@@ -1,27 +1,76 @@
-import { typeText, NavBar, IntroVId, showAlert } from "./utils.js";
+import { showAlert } from "./utils.js";
 import { AnimateSlide } from "./canvas.js";
-import { getWork } from "./work.js";
-
+import InitWork from "./work.js";
+const NavBar = document.querySelector(".headerNav");
 const alert = document.getElementById("alert");
 
 const bgcover = document.getElementById("bgcover");
-
-const works = document.querySelectorAll(".works span");
 const workpopup = document.getElementById("workpopup");
 
 const mailChirp = document.getElementById("mailchirp");
 
 requestAnimationFrame(AnimateSlide);
 
-NavBar();
-typeText();
-IntroVId();
-works.forEach((elem) => {
-  elem.addEventListener("click", () => {
-    getWork(elem.dataset.key);
-    bgcover.style.display = "block";
-    workpopup.style.display = "block";
-  });
+
+const specialization = document.querySelector(".specialization");
+const professions = [
+  "Software Engineer",
+  "Web Developer",
+  "Backend Developer",
+  "System Adminstrator and DevOps"
+];
+
+let currentTextIndex = 0;
+let currentText = professions[currentTextIndex];
+let isErasing = false;
+let typingDelay = 100;
+let eraseDelay = 50;
+let mouseStart = 0;
+
+const delay = isErasing ? eraseDelay : typingDelay;
+setInterval(() => {
+  if (isErasing) {
+    currentText = currentText.substring(0, currentText.length - 1);
+  } else {
+    currentText = professions[currentTextIndex].substring(
+      0,
+      currentText.length + 1
+    );
+  }
+
+  specialization.textContent = currentText;
+
+  if (currentText === professions[currentTextIndex] && !isErasing) {
+    isErasing = true;
+    typingDelay = 1000;
+  } else if (currentText === "" && isErasing) {
+    isErasing = false;
+    typingDelay = 100;
+    currentTextIndex = (currentTextIndex + 1) % professions.length;
+  }
+}, delay);
+
+
+window.addEventListener("touchstart", (e) => {
+  mouseStart = e.touches[0].clientX;
+});
+
+window.addEventListener("touchmove", (e) => {
+  const dx = e.touches[0].clientX - mouseStart;
+
+  if (mouseStart < 30) {
+    if (dx > 10) {
+      NavBar.attributeStyleMap.set("left", CSS.percent(0));
+    }
+  } else if (NavBar.attributeStyleMap.get("left").value === 0) {
+    if (dx < 0) {
+      NavBar.attributeStyleMap.set("left", CSS.percent(-100));
+    }
+  }
+});
+
+window.addEventListener("touchend", (e) => {
+  mouseStart = null;
 });
 
 mailChirp.addEventListener("submit", async (e) => {
@@ -61,3 +110,5 @@ alert.addEventListener("transitionend", () => {
     alert.attributeStyleMap.set("right", CSS.percent(-100));
   }, 2000);
 });
+
+InitWork()

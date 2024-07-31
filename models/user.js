@@ -16,6 +16,10 @@ const UserSchema = new mongoose.Schema({
     ip_address: {
         type: String,
         required: true
+    },
+    blocked: {
+        type: Boolean,
+        default: false
     }
 }, { timestamps: true });
 
