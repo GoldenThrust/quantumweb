@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inspiration&family=Twinkle+Star&display=swap"
       rel="stylesheet"
     />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'">
     <script src="js/main.js" type="module" defer></script>
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -206,7 +207,7 @@
           <% projects.project.forEach((project) => { %>
           <span data-key="<%= project.key %>">
             <img
-              src="portfolioimage/<%= project.preview %>.png"
+              src="portfolioimage/<%= project.preview %>.jpg"
               alt="<%= project.name %>"
               loading="lazy"
             />

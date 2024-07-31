@@ -76,8 +76,7 @@ export async function fetchProjectData(page=1) {
 
 export async function fetchBlogPost(page=1) {
   try {
-    // let data = JSON.parse(await redis.get('blog'));
-    let data = "";
+    let data = JSON.parse(await redis.get('blog'));
   
     if (!data || data.length < 1) {
       const response = await axios.get(`https://dev.to/api/articles/me/published?page=${page}&per_page=6`, {
@@ -88,9 +87,7 @@ export async function fetchBlogPost(page=1) {
         },
       });
 
-      console.log(response);
-
-      // await redis.set('blog', JSON.stringify(response.data), 6400);
+      await redis.set('blog', JSON.stringify(response.data), 6400);
 
       data = response.data;
     }

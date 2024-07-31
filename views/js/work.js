@@ -53,7 +53,7 @@ export async function getWork(id) {
 
     if (data.hasvideo) {
       const video = createProjectElement(worksContainer, "video", {
-        poster: `portfolioimage/${data.preview}.png`,
+        poster: `portfolioimage/${data.preview}.jpg`,
         src: `portfoliovideo/${data.preview}.mp4`,
         loop: true
       });
@@ -63,7 +63,7 @@ export async function getWork(id) {
       });
     } else {
       createProjectElement(worksContainer, "img", {
-        src: `portfolioimage/${data.preview}.png`,
+        src: `portfolioimage/${data.preview}.jpg`,
         alt: data.name,
       });
     }
@@ -95,14 +95,14 @@ export async function getWork(id) {
           href: data.homepage,
           target: "_blank",
         });
-        createProjectElement(homepageUrl, "img", { src: "./img/live.png" });
+        createProjectElement(homepageUrl, "img", { src: "./img/live.jpg" });
       }
       if (data.url) {
         const url = createProjectElement(link, "a", {
           href: data.url,
           target: "_blank",
         });
-        createProjectElement(url, "img", { src: "./img/github.png" });
+        createProjectElement(url, "img", { src: "./img/github.jpg" });
       }
     }
   } catch (error) {
@@ -121,12 +121,12 @@ export default function InitWork() {
       if (data.hasvideo) {
         createProjectElement(span, "video", {
           src: `portfoliovideo/${data.preview}.mp4`,
-          poster: `portfolioimage/${data.preview}.png`,
+          poster: `portfolioimage/${data.preview}.jpg`,
           muted: "true",
         });
       } else {
         createProjectElement(span, "img", {
-          src: `portfolioimage/${data.preview}.png`,
+          src: `portfolioimage/${data.preview}.jpg`,
           alt: data.name,
         });
       }

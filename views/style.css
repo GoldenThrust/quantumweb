@@ -243,13 +243,13 @@ overrides;
       left: 0%;
       display: flex;
       justify-content: center;
+      color: white;
       align-items: center;
       width: 80%;
       font-size: larger;
       font-weight: bolder;
       height: 100vh;
-      background-color: white;
-      background: linear-gradient(180deg, #6c50aa1f 0%, #ff78f20f 100%);
+      background: linear-gradient(180deg, #0e070c 0%, #0d030c 100%);
       transition: left 1s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
@@ -275,8 +275,6 @@ overrides;
     }
 
     @media screen and (min-width: 768px) {
-      header nav {
-      }
       header nav ul {
         display: flex;
         gap: 2rem;
