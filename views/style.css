@@ -960,7 +960,7 @@ overrides;
 
   @layer certificate {
     #certificates {
-      margin: 30px;
+      margin: 100px 30px;
     }
 
     #certificates .certificates {

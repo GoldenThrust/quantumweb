@@ -95,14 +95,14 @@ export async function getWork(id) {
           href: data.homepage,
           target: "_blank",
         });
-        createProjectElement(homepageUrl, "img", { src: "./img/live.jpg" });
+        createProjectElement(homepageUrl, "img", { src: "./img/live.png" });
       }
       if (data.url) {
         const url = createProjectElement(link, "a", {
           href: data.url,
           target: "_blank",
         });
-        createProjectElement(url, "img", { src: "./img/github.jpg" });
+        createProjectElement(url, "img", { src: "./img/github.png" });
       }
     }
   } catch (error) {

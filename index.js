@@ -3,7 +3,7 @@ import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
 import repos from "./routes/repos.js";
-
+import cors from "cors";
 import "dotenv/config";
 import mongodb, { redis } from "./config/db.js";
 import admin from "./routes/admin.js";
@@ -13,28 +13,51 @@ import { fetchBlogPost, fetchProjectData } from "./utils/fetchData.js";
 import { DEV } from "./utils/constant.js";
 import { mailQueue } from "./worker.js";
 import multer from "multer";
+import rateLimit from "express-rate-limit";
 import expressLayouts from "express-ejs-layouts";
 import project from "./routes/project.js";
-
+import csrf from "csrf";
+import cookieParser from "cookie-parser";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 
-const app = express();
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 1000,
+  message: 'Too many requests from this IP, please try again after 15 minutes.'
+});
 
+const app = express();
 const server = createServer(app);
+app.use(cors());
+
+app.use(limiter);
+
+app.use(cookieParser());
+
+const tokens = new csrf();
 
 app.use(
   session({
-    store: new RedisStore({client: redis.client, prefix: "quantumweb:"}),
+    store: new RedisStore({ client: redis.client, prefix: "quantumweb:" }),
     secret: process.env.COOKIE_SECRET,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: DEV ? false : true },
+    cookie: { secure: DEV ? false : true, httpOnly: true, sameSite: 'strict' },
   })
 );
 
+app.use((req, res, next) => {
+  if (!req.session.csrfSecret) {
+    req.session.csrfSecret = tokens.secretSync();
+  }
+
+  const token = tokens.create(req.session.csrfSecret);
+  res.locals.csrfToken = token;
+  next();
+});
 
 export const upload = multer({ dest: "views/img/uploads/" });
 
@@ -50,32 +73,41 @@ app.use(repos);
 app.get("/", async (req, res) => {
   let projects = await fetchProjectData();
   const blogs = await fetchBlogPost();
-  
+  const ip = req.ip;
+  const ip2 = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+
+  console.log(ip, ip2);
+
   res.render("index", {
     blogs,
     projects,
+    csrfToken: res.locals.csrfToken
   });
 });
 
-
-
-app.post("/test", (req, res)=> {
+app.post("/test", (req, res) => {
   res.send("Hello, World!");
 })
 
-
-app.post("/chirpmail",multer().none(), async (req, res) => {
+app.post("/chirpmail", multer().none(), async (req, res) => {
   const { name, email, message } = req.body;
   const host = req.get("host");
 
-  return res.status(400).send("Mail services are currently disabled due to bot infiltration.");
+  // return res.status(400).send("Mail services are currently disabled due to bot infiltration.");
 
   if (!name || !email || !message) {
     return res.status(400).send("All fields are required.");
   }
 
-  await mailQueue.add({ name, email, message, host });
-  res.status(200).send("Chirpmail sent successfully.");
+  const secret = req.session.csrfSecret;
+  const token = req.body._csrf;
+
+  if (tokens.verify(secret, token)) {
+    await mailQueue.add({ name, email, message, host });
+    res.status(200).send("Chirpmail sent successfully.");
+  } else {
+    res.status(403).send(`Invalid CSRF token`);
+  }
 });
 
 app.set('layout', 'layout');
