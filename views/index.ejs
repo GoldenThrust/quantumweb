@@ -438,6 +438,7 @@
         <div class="contact">
           <form action="/chirpmail" id="mailchirp" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="text" name="password" id="password" class="d-none" />
             <textarea
               name="message"
               id="message"
