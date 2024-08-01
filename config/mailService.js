@@ -72,8 +72,8 @@ class MailService {
       <a href="beyondimagination.tech"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
       <div style="font-style: italic; margin: 20px 0">
        <p>Thank you for reaching out to us. We have received your message and will respond as soon as possible.</p>
-       <p>For a quicker response, you can contact us directly on WhatsApp using the following link: <a href="https://wa.me/08231231412?text=Hello%20there!%20I%20would%20like%20to%20inquire%20about%20your%20services.%20Can%20you%20please%20assist%20me%3F
-">07084076657</a>.</p>
+       <p>For a quicker response, you can contact us directly on WhatsApp using the following link: <a href="https://wa.me/+2347084076657?text=Hello%20there!%20I%20would%20like%20to%20inquire%20about%20your%20services.%20Can%20you%20please%20assist%20me%3F
+">+2347084076657</a>.</p>
       <p>Best regards</p>
     </div>
     </body>
@@ -81,7 +81,7 @@ class MailService {
 
 
     const mailOptions = {
-      from: `QuantumWeb`,
+      from: `Quantum Web <${process.env.MAIL_USERNAME}>`,
       to: email,
       subject: "Your Message Has Been Received",
       html: data,
