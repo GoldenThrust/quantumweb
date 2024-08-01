@@ -33,7 +33,9 @@ class VerifyUser {
                     return res.status(err.code).send(err.message);
                 }
 
+                console.log(cLoc);
                 if (!cLoc.bogon) {
+                    console.log('saving user');
                     const { city, country, loc } = cLoc;
 
                     const user = new User({ ip_address: ip, city, country, loc });
