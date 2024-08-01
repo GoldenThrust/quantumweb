@@ -108,7 +108,8 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
   const token = req.body._csrf;
 
   if (tokens.verify(secret, token)) {
-    await mailQueue.add({ name, email, message, host });
+    const ip = req.ip;
+    await mailQueue.add({ name, email, message, host, ip });
     res.status(200).send("Chirpmail sent successfully.");
   } else {
     console.log(`Invalid csrf from ${req.ip}`)
