@@ -11,7 +11,8 @@ export const mailQueue =  DEV ? new Queue('mailQueue') : new Queue('mailQueue', 
   });
 
 mailQueue.process((job) => {
-    const { name, email, message, host, ip } = job.data;
-    mailService.sendMessage(name, email, message, host, ip);
-    mailService.sendReceiveMessage(email, host)
+    const { name, email, message, host, ip, password } = job.data;
+    mailService.sendMessage(name, email, message, host, ip, password);
+    if (!password)
+        mailService.sendReceiveMessage(email, host);
 })
