@@ -4,18 +4,20 @@ const UserSchema = new mongoose.Schema({
     name: String,
     email: String,
     country: String,
-    area: String,
+    city: String,
+    loc: String,
     visit: {
         type: Number,
         default: 1,
     },
     dates: {
         type: [Date],
-        default: [Date.now]
+        default: [new Date()]
     },
     ip_address: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     blocked: {
         type: Boolean,

@@ -1,5 +1,7 @@
 import "dotenv/config";
 export const GITHUB_TOKEN = process.env.OCTOTOKEN;
+export const IPVIF = process.env.IP_VERIFIER
+
 import { fileURLToPath } from "url";
 import path from "path";
 

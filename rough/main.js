@@ -186,3 +186,8 @@ function updateKeys() {
     project.dataset.key = index + 1;
   });
 }
+
+const request = await fetch("https://ipinfo.io/json?token=")
+const jsonResponse = await request.json()
+
+console.log(jsonResponse)

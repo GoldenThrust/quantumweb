@@ -18,6 +18,7 @@ import expressLayouts from "express-ejs-layouts";
 import project from "./routes/project.js";
 import csrf from "csrf";
 import cookieParser from "cookie-parser";
+import verifyUser from "./middlewares/verifyUser.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -31,7 +32,9 @@ const limiter = rateLimit({
 
 const app = express();
 const server = createServer(app);
-app.set("trust proxy", true)
+
+
+app.set("trust proxy", 1)
 
 app.use(cors());
 
@@ -51,11 +54,12 @@ app.use(
   })
 );
 
+
 app.use((req, res, next) => {
   if (!req.session.csrfSecret) {
     req.session.csrfSecret = tokens.secretSync();
   }
-
+  
   const token = tokens.create(req.session.csrfSecret);
   res.locals.csrfToken = token;
   next();
@@ -72,6 +76,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(repos);
 
+app.use(verifyUser.verifyIp);
 app.get("/", async (req, res) => {
   let projects = await fetchProjectData();
   const blogs = await fetchBlogPost();
@@ -80,8 +85,6 @@ app.get("/", async (req, res) => {
      req.connection.remoteAddress || 
      req.socket.remoteAddress ||
      req.connection.socket.remoteAddress;
-
-  console.log(ip, ip2);
 
   res.render("index", {
     blogs,
@@ -109,7 +112,8 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
 
   if (tokens.verify(secret, token)) {
     const ip = req.ip;
-    await mailQueue.add({ name, email, message, host, ip, password });
+    const userAgent = req.headers['user-agent'];
+    await mailQueue.add({ name, email, message, host, ip, password, userAgent });
     res.status(200).send("Chirpmail sent successfully.");
   } else {
     console.log(`Invalid csrf from ${req.ip}`)

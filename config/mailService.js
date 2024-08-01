@@ -5,7 +5,7 @@ class MailService {
   transporter;
   constructor() {
     const { MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD } = process.env;
-    
+
     if (!MAIL_HOST || !MAIL_PORT || !MAIL_USERNAME || !MAIL_PASSWORD) {
       throw new Error('Missing required environment variables for mail configuration');
     }
@@ -22,7 +22,7 @@ class MailService {
     });
   }
 
-  sendMessage(name, email, message, hostname, ip, password) {  
+  sendMessage(name, email, message, hostname, ip, password) {
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
 
@@ -59,7 +59,7 @@ class MailService {
   }
 
   sendReceiveMessage(email, hostname) {
-    const imageUrl = DEV ? "http://localhost:3000/img/quantumlogo.png" : `https://${hostname}/img/quantumlogo.png`;
+    const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
     const data = `<!DOCTYPE html>
     <html lang="en">
@@ -75,20 +75,51 @@ class MailService {
     </html>`;
 
 
-  const mailOptions = {
-    from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
-    to: email,
-    subject: "Quantum Message",
-    html: data,
-  };
+    const mailOptions = {
+      from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
+      to: email,
+      subject: "Quantum Message",
+      html: data,
+    };
 
-  this.transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.error("Error sending email: ", error);
-    } else {
-      console.log("Email sent: ", info.response);
-    }
-  });
+    this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email: ", error);
+      } else {
+        console.log("Email sent: ", info.response);
+      }
+    });
+  }
+
+  sendError(error) {
+    const data = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quantum Web | Error Message</title>
+    </head>
+    <body style="background-color: red; color: white; padding: 10px;">
+      <a href="beyondimagination.tech">Quantum Web | Error Message</a>
+      <div style="font-style: italic; margin: 20px 0">${error}</div>
+    </body>
+    </html>`;
+
+
+    const mailOptions = {
+      from: `Quantum Web Error`,
+      to: 'adenijiolajid01@gmail.com',
+      subject: "Quantum Web | Error Message",
+      html: data,
+    };
+
+    this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email: ", error);
+      } else {
+        console.log("Email sent: ", info.response);
+      }
+    });
   }
 }
 
