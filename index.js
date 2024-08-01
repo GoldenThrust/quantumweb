@@ -95,12 +95,12 @@ app.post("/test", (req, res) => {
 })
 
 app.post("/chirpmail", multer().none(), async (req, res) => {
-  const { name, email, message } = req.body;
+  const { fullname, emailaddress, message } = req.body;
   const host = req.get("host");
 
   // return res.status(400).send("Mail services are currently disabled due to bot infiltration.");
 
-  if (!name || !email || !message) {
+  if (!fullname || !emailaddress || !message) {
     return res.status(400).send("All fields are required.");
   }
 
@@ -109,7 +109,7 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
 
   if (tokens.verify(secret, token)) {
     const ip = req.ip;
-    await mailQueue.add({ name, email, message, host, ip });
+    await mailQueue.add({ fullname, emailaddress, message, host, ip });
     res.status(200).send("Chirpmail sent successfully.");
   } else {
     console.log(`Invalid csrf from ${req.ip}`)
