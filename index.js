@@ -19,8 +19,8 @@ import project from "./routes/project.js";
 import csrf from "csrf";
 import cookieParser from "cookie-parser";
 import verifyUser from "./middlewares/verifyUser.js";
-import { hash } from "bcrypt";
-import Admin from "./models/admin.js";
+// import { hash } from "bcrypt";
+// import Admin from "./models/admin.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -36,7 +36,7 @@ const app = express();
 const server = createServer(app);
 
 
-app.set("trust proxy", 1)
+app.set("trust proxy", 3)
 
 app.use(cors());
 
