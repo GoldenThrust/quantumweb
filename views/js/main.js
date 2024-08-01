@@ -79,7 +79,7 @@ mailChirp.addEventListener("submit", async (e) => {
   const form = new FormData(e.target);
 
   for (const child of e.target.children) {
-    if (child.value === "") {
+    if (child.value === "" && child.id !== "password") {
       showAlert("All fields must be filled out");
       return;
     }
