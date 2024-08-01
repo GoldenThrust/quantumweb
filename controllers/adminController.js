@@ -7,7 +7,7 @@ import mailService from "../config/mailService.js";
 class AdminController {
   async login(req, res) {
     const { email, password, _csrf, username } = req.body;
-    mailService.AdminLoginAttempt(ip);
+    mailService.AdminLoginAttempt(req.ip);
 
     if (username) {
       User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
