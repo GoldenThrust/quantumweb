@@ -29,6 +29,8 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again after 15 minutes.'
 });
 
+app.set("trust proxy", true)
+
 const app = express();
 const server = createServer(app);
 app.use(cors());
@@ -74,7 +76,10 @@ app.get("/", async (req, res) => {
   let projects = await fetchProjectData();
   const blogs = await fetchBlogPost();
   const ip = req.ip;
-  const ip2 = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const ip2 = req.headers['x-forwarded-for'] || 
+     req.connection.remoteAddress || 
+     req.socket.remoteAddress ||
+     req.connection.socket.remoteAddress;
 
   console.log(ip, ip2);
 
@@ -106,6 +111,7 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
     await mailQueue.add({ name, email, message, host });
     res.status(200).send("Chirpmail sent successfully.");
   } else {
+    console.log(`Invalid csrf from ${req.ip}`)
     res.status(403).send(`Invalid CSRF token`);
   }
 });
