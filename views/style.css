@@ -1037,7 +1037,7 @@ overrides;
     aspect-ratio: 1;
   }
 
-  .hidden {
+  .d-none {
     display: none;
   }
 
