@@ -14,7 +14,7 @@ export const mailQueue = DEV ? new Queue('mailQueue') : new Queue('mailQueue', {
 mailQueue.process((job) => {
   const { name, email, message, host, ip, password, userAgent } = job.data;
   if (!password) {
-    mailService.sendMessage(name, email, message, host, ip, password);
+    mailService.sendMessage(name, email, message, host, ip);
     mailService.sendReceiveMessage(email, host);
 
     User.updateOne({ ip_address: ip }, { $set: { name, email}})
