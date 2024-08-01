@@ -7,7 +7,7 @@ import { isLocalhost } from "../utils/utils.js";
 
 class VerifyUser {
     async verifyIp(req, res, next) {
-        let ip = req.ip;
+        let ip = "8.8.8.8";
         if (ip.startsWith('::ffff:')) {
             ip = ip.replace('::ffff:', '');
         }
@@ -38,11 +38,7 @@ class VerifyUser {
 
                     const user = new User({ ip_address: ip, city, country, loc });
 
-                    user.save((err, user) => {
-                        if (err) {
-                            return res.status(500).send(err.message);
-                        }
-                    })
+                    user.save()
                 }
             })
         }
