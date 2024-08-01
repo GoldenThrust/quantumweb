@@ -29,10 +29,10 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again after 15 minutes.'
 });
 
-app.set("trust proxy", true)
-
 const app = express();
 const server = createServer(app);
+app.set("trust proxy", true)
+
 app.use(cors());
 
 app.use(limiter);
