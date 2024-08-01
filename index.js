@@ -95,12 +95,12 @@ app.post("/test", (req, res) => {
 })
 
 app.post("/chirpmail", multer().none(), async (req, res) => {
-  const { fullname, emailaddress, message } = req.body;
+  const { name, email, message } = req.body;
   const host = req.get("host");
 
   // return res.status(400).send("Mail services are currently disabled due to bot infiltration.");
 
-  if (!fullname || !emailaddress || !message) {
+  if (!name || !email || !message) {
     return res.status(400).send("All fields are required.");
   }
 
