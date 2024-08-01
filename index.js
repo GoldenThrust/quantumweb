@@ -19,6 +19,8 @@ import project from "./routes/project.js";
 import csrf from "csrf";
 import cookieParser from "cookie-parser";
 import verifyUser from "./middlewares/verifyUser.js";
+import { hash } from "bcrypt";
+import Admin from "./models/admin.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -42,7 +44,7 @@ app.use(limiter);
 
 app.use(cookieParser());
 
-const tokens = new csrf();
+export const tokens = new csrf();
 
 app.use(
   session({
@@ -74,17 +76,16 @@ app.use(expressLayouts);
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(repos);
 
 app.use(verifyUser.verifyIp);
+app.get('/google', (req, res) => {
+  return res.status(401).redirect('https://google.com/');
+});
+
+app.use(repos);
 app.get("/", async (req, res) => {
   let projects = await fetchProjectData();
   const blogs = await fetchBlogPost();
-  const ip = req.ip;
-  const ip2 = req.headers['x-forwarded-for'] || 
-     req.connection.remoteAddress || 
-     req.socket.remoteAddress ||
-     req.connection.socket.remoteAddress;
 
   res.render("index", {
     blogs,

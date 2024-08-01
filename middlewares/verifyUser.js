@@ -21,7 +21,7 @@ class VerifyUser {
             await user.save();
 
             if (user.blocked) {
-                return res.status(401).send('Your IP address has been blocked.');
+                return res.redirect('https://google.com/');
             }
         } else {
             if (isLocalhost(ip)) {

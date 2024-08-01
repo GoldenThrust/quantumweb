@@ -399,3 +399,7 @@ footer:active {
   border-radius: 20px;
   box-shadow: 0 0 15px black;
 }
+
+.d-none {
+  display: none;
+}

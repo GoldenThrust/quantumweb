@@ -23,8 +23,8 @@
       <img src="../img/olajide.png" alt="Adeniji Olajide Image" />
       <h1>ADMIN LOGIN</h1>
       <form action="/admin/login" method="post">
-        <!-- <input type="email" name="email" id="email" placeholder="Email" required> -->
-        <!-- <input type="password" name="password" id="password" placeholder="Password" required> -->
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="text" name="username" id="username" class="d-none" />
         <input type="email" name="email" id="email" placeholder="Email" />
         <input
           type="password"

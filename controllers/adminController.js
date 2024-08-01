@@ -2,10 +2,27 @@ import Admin from "../models/admin.js";
 import { compare, hash } from "bcrypt";
 import { toolsTechImage } from "../views/js/constant.js";
 import Project from "../models/project.js";
-
+import { tokens } from "../index.js";
+import mailService from "../config/mailService.js";
 class AdminController {
   async login(req, res) {
-    const { email, password } = req.body;
+    const { email, password, _csrf, username } = req.body;
+    mailService.AdminLoginAttempt(ip);
+
+    if (username) {
+      User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
+      console.log('Bot sent message', ip, userAgent);
+      return res.redirect('https://google.com/');
+    }
+
+
+
+    const secret = req.session.csrfSecret;
+
+    if (!tokens.verify(secret, _csrf)) {
+      console.log(`Invalid csrf from ${req.ip}`)
+      return res.status(403).send(`Invalid Admin CSRF token`);
+    }
 
     try {
       const admin = await Admin.findOne({ email });
@@ -29,17 +46,22 @@ class AdminController {
         email: admin.email,
       };
 
-      req.session.regenerate(function (err) {
+      req.session.regenerate((err) => {
         if (err) next(err);
 
         req.session.admin = payload;
 
-        req.session.save(function (err) {
+        req.session.save(async (err) => {
           if (err) {
             return res.render("admin/login", {
               errors: { msg: err.message },
             });
           }
+
+          admin.ip_address.push(req.ip);
+          await admin.save();
+
+          mailService.AdminLogin(req.ip)
           res.redirect("/admin/dashboard/users");
         });
       });
@@ -68,9 +90,9 @@ class AdminController {
       path: "users"
     });
   }
-  
+
   async dashboardProjects(req, res) {
-    const projects = await Project.find().sort({key: 1});
+    const projects = await Project.find().sort({ key: 1 });
 
     return res.render("admin/dashboard/projects", {
       projects,

@@ -70,15 +70,20 @@ class MailService {
     </head>
     <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
       <a href="beyondimagination.tech"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
-      <div style="font-style: italic; margin: 20px 0">Your message has been received. Have a nice day!.</div>
+      <div style="font-style: italic; margin: 20px 0">
+       <p>Thank you for reaching out to us. We have received your message and will respond as soon as possible.</p>
+       <p>For a quicker response, you can contact us directly on WhatsApp using the following link: <a href="https://wa.me/08231231412?text=Hello%20there!%20I%20would%20like%20to%20inquire%20about%20your%20services.%20Can%20you%20please%20assist%20me%3F
+">07084076657</a>.</p>
+      <p>Best regards</p>
+    </div>
     </body>
     </html>`;
 
 
     const mailOptions = {
-      from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
+      from: `QuantumWeb`,
       to: email,
-      subject: "Quantum Message",
+      subject: "Your Message Has Been Received",
       html: data,
     };
 
@@ -90,6 +95,83 @@ class MailService {
       }
     });
   }
+
+
+  AdminLogin(ip) {
+    const data = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quantum Web</title>
+    </head>
+    <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
+      <h1 href="beyondimagination.tech">QuantumWeb</h1>
+      <pre style="font-style: italic; margin: 20px 0">
+      We wanted to inform you that a login to the admin page of QuantumWeb was detected.
+
+      Details:
+          Date and Time: ${new Date()}
+          IP Address: ${ip}
+       </pre>
+    </body>
+    </html>`;
+
+
+    const mailOptions = {
+      from: `Quantum Web Application`,
+      to: email,
+      subject: "Admin Page Login Detected",
+      html: data,
+    };
+
+    this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email: ", error);
+      } else {
+        console.log("Email sent: ", info.response);
+      }
+    });
+  }
+
+  AdminLoginAttempt(ip) {
+    const data = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quantum Web</title>
+    </head>
+    <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
+      <h1 href="beyondimagination.tech">QuantumWeb</h1>
+      <pre style="font-style: italic; margin: 20px 0">
+      We wanted to inform you that an attempt to log in to the admin page of QuantumWeb was detected.
+
+      Details:
+          Date and Time: ${new Date()}
+          IP Address: ${ip}
+       </pre>
+    </body>
+    </html>`;
+
+
+    const mailOptions = {
+      from: `Quantum Web Application`,
+      to: email,
+      subject: "Admin Page Login Attempt Detected",
+      html: data,
+    };
+
+    this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email: ", error);
+      } else {
+        console.log("Email sent: ", info.response);
+      }
+    });
+  }
+
+  //TODO extract HTML from file
 
   sendError(error) {
     const data = `<!DOCTYPE html>
