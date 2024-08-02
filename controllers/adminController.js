@@ -12,10 +12,11 @@ class AdminController {
     const ip = req.ip;
     const userAgent = req.headers['user-agent'];
     mailService.AdminLoginAttempt(ip, userAgent);
+    console.log(!username);
 
     if (username) {
       await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
-      console.log('Bot sent message', ip, userAgent);
+      console.log('Red alert: Bot sent message', ip, userAgent);
       return res.redirect('https://google.com/');
     }
 

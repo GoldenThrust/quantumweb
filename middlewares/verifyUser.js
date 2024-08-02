@@ -14,15 +14,15 @@ class VerifyUser {
 
         const user = await User.findOne({ ip_address: ip });
 
-        if (user) {
+        if (user) {            
+            if (user.blocked) {
+                return res.redirect('https://google.com/');
+            }
+
             user.dates.push(new Date());
             user.visit += 1;
 
             await user.save();
-
-            if (user.blocked) {
-                return res.redirect('https://google.com/');
-            }
         } else {
             if (isLocalhost(ip)) {
                 return next();
