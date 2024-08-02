@@ -9,8 +9,9 @@ import mailService from "../config/mailService.js";
 class AdminController {
   async login(req, res) {
     const { email, password, _csrf, username } = req.body;
+    const ip = req.ip;
     const userAgent = req.headers['user-agent'];
-    mailService.AdminLoginAttempt(req.ip, userAgent);
+    mailService.AdminLoginAttempt(ip, userAgent);
 
     if (username) {
       await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
@@ -23,7 +24,7 @@ class AdminController {
     const secret = req.session.csrfSecret;
 
     if (!tokens.verify(secret, _csrf)) {
-      console.log(`Invalid csrf from ${req.ip}`)
+      console.log(`Invalid csrf from ${ip}`)
       return res.status(403).send(`Invalid Admin CSRF token`);
     }
 
@@ -61,10 +62,10 @@ class AdminController {
             });
           }
 
-          admin.ip_address.push(req.ip);
+          admin.ip_address.push(ip);
           await admin.save();
 
-          mailService.AdminLogin(req.ip, userAgent)
+          mailService.AdminLogin(ip, userAgent)
           res.redirect("/admin/dashboard/users");
         });
       });
