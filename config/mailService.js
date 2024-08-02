@@ -121,7 +121,7 @@ class MailService {
 
     const mailOptions = {
       from: `Quantum Web Application`,
-      to: email,
+      to: 'adenijiolajid01@gmail.com',
       subject: "Admin Page Login Detected",
       html: data,
     };
@@ -159,7 +159,7 @@ class MailService {
 
     const mailOptions = {
       from: `Quantum Web Application`,
-      to: email,
+      to: 'adenijiolajid01@gmail.com',
       subject: "Admin Page Login Attempt Detected",
       html: data,
     };
