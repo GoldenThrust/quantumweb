@@ -78,9 +78,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(verifyUser.verifyIp);
-app.get('/google', (req, res) => {
-  return res.status(401).redirect('https://google.com/');
-});
 
 app.use(repos);
 app.get("/", async (req, res) => {

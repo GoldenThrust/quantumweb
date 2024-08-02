@@ -11,15 +11,15 @@ export const mailQueue = DEV ? new Queue('mailQueue') : new Queue('mailQueue', {
   }
 });
 
-mailQueue.process((job) => {
+mailQueue.process(async (job) => {
   const { name, email, message, host, ip, password, userAgent } = job.data;
   if (!password) {
     mailService.sendMessage(name, email, message, host, ip);
     mailService.sendReceiveMessage(email, host);
 
-    User.updateOne({ ip_address: ip }, { $set: { name, email}})
+    await User.updateOne({ ip_address: ip }, { $set: { name, email}})
   } else {
-    User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
+    await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
     console.log('Bot sent message', ip, userAgent);
     return 'User blocked due to suspicious activity';
   }

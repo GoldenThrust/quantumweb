@@ -28,19 +28,18 @@ class VerifyUser {
                 return next();
             }
 
-            ipInfo(ip, IPVIF, (err, cLoc) => {
+            ipInfo(ip, IPVIF, async (err, cLoc) => {
                 if (err) {
                     return res.status(err.code).send(err.message);
                 }
 
-                console.log(cLoc);
                 if (!cLoc.bogon) {
                     console.log('saving user');
                     const { city, country, loc } = cLoc;
 
                     const user = new User({ ip_address: ip, city, country, loc });
 
-                    user.save()
+                    await user.save()
                 }
             })
         }

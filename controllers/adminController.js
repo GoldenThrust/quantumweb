@@ -10,7 +10,7 @@ class AdminController {
     mailService.AdminLoginAttempt(req.ip);
 
     if (username) {
-      User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
+      await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
       console.log('Bot sent message', ip, userAgent);
       return res.redirect('https://google.com/');
     }
