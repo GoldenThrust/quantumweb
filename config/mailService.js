@@ -97,7 +97,7 @@ class MailService {
   }
 
 
-  AdminLogin(ip) {
+  AdminLogin(ip, userAgent) {
     const data = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -111,8 +111,9 @@ class MailService {
       We wanted to inform you that a login to the admin page of QuantumWeb was detected.
 
       Details:
-          Date and Time: ${new Date()}
+          TimeStamp: ${new Date()}
           IP Address: ${ip}
+          UserAgent: ${userAgent}
        </pre>
     </body>
     </html>`;
@@ -134,7 +135,7 @@ class MailService {
     });
   }
 
-  AdminLoginAttempt(ip) {
+  AdminLoginAttempt(ip, userAgent) {
     const data = `<!DOCTYPE html>
     <html lang="en">
     <head>
@@ -150,6 +151,7 @@ class MailService {
       Details:
           Date and Time: ${new Date()}
           IP Address: ${ip}
+          UserAgent: ${userAgent}
        </pre>
     </body>
     </html>`;

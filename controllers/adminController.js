@@ -7,7 +7,8 @@ import mailService from "../config/mailService.js";
 class AdminController {
   async login(req, res) {
     const { email, password, _csrf, username } = req.body;
-    mailService.AdminLoginAttempt(req.ip);
+    const userAgent = req.headers['user-agent'];
+    mailService.AdminLoginAttempt(req.ip, userAgent);
 
     if (username) {
       await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
@@ -61,7 +62,7 @@ class AdminController {
           admin.ip_address.push(req.ip);
           await admin.save();
 
-          mailService.AdminLogin(req.ip)
+          mailService.AdminLogin(req.ip, userAgent)
           res.redirect("/admin/dashboard/users");
         });
       });
