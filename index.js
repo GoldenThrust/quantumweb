@@ -91,6 +91,12 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get('/store', async (req, res) => {
+  res.render("comingsoon", {
+    layout: 'layouts/general'
+  });
+})
+
 app.post("/test", (req, res) => {
   res.send("Hello, World!");
 })
