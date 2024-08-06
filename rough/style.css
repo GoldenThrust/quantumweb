@@ -2,17 +2,19 @@ body {
     overflow: hidden;
 }
 
-#services form {
+#services-page form {
     display: flex;
     gap: 20px;
 }
 
-#services form label {
+#services-page form label {
     display: flex;
     flex-direction: column;
 }
 
-#services form>.service-request-form {
+#services-page form>.service-request-form {
+    position: absolute;
+    top: 0;
     display: none;
     width: 100vw;
     height: 100vh;
@@ -22,10 +24,12 @@ body {
     gap: 50px;
     row-gap: 100px;
     column-rule: solid 6px;
+    padding: 0 100px;
+    column-rule: solid 2px;
 }
 
 
-#services form>.service-request-form:nth-child(1) {
+#services-page form>.service-request-form:nth-child(1) {
     display: grid;
 }
 
@@ -43,6 +47,7 @@ body {
     width: 100px;
     height: 40px;
     border-radius: 0 40px 0 0;
+    background-color: var(--secondary);
 }
 
 #navigation-button button:first-child {
@@ -52,27 +57,24 @@ body {
 }
 
 .service-request-description {
-    display: inherit;
+    display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.service-request-description h3 {
-    color: var(--primary);
-}
-
-#services label {
+#services-page label {
     color: #B899B6;
     font-weight: bolder;
     gap: 10px;
 }
 
-#services h3 {
+#services-page h3 {
     font-size: 30px;
 }
 
-#services input:not(input[type="checkbox"]) {
+#services-page input:not(input[type="checkbox"]) {
     height: 40px;
+    padding-left: 10px;
 }
 
 .input-data {
@@ -80,6 +82,13 @@ body {
     flex-direction: column;
     gap: 30px;
 }
+
+
+#services-page .service-request-description h3 {
+    color: var(--primary);
+    font-size: 5ch;
+}
+
 
 @media screen and (max-width: 768px) {
     .service-request-description {

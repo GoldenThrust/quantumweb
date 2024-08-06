@@ -90,7 +90,7 @@ overrides;
   }
 
   p {
-    line-height: 1.4;
+    /* line-height: 1.4; */
   }
 
   a {
@@ -785,6 +785,15 @@ overrides;
       #services .services .segment .service img.placeorder:hover {
         filter: sepia(100%) saturate(1000%) hue-rotate(250deg);
         width: 30px;
+      }
+
+      .IntroServices b {
+        color: #b9b9b9;
+        transition: color 0.5s ease-in-out;
+      }
+
+      .IntroServices b:hover {
+        color: #ffffff;
       }
 
       #services button {

@@ -19,6 +19,7 @@ import project from "./routes/project.js";
 import csrf from "csrf";
 import cookieParser from "cookie-parser";
 import verifyUser from "./middlewares/verifyUser.js";
+import service from "./routes/services.js";
 // import { hash } from "bcrypt";
 // import Admin from "./models/admin.js";
 const __filename = fileURLToPath(import.meta.url);
@@ -91,7 +92,7 @@ app.get("/", async (req, res) => {
   });
 });
 
-app.get('/store', async (req, res) => {
+app.get('/shop', async (req, res) => {
   res.render("comingsoon", {
     layout: 'layouts/general'
   });
@@ -129,6 +130,7 @@ app.set('layout', 'layouts/layout');
 
 app.use("/admin", admin);
 app.use("/project", project);
+app.use("/service", service);
 
 
 app.use((req, res) => {
