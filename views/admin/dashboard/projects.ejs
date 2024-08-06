@@ -1,20 +1,20 @@
 <main>
   <div id="project-create-bg">
     <form class="project-create">
-      <input type="text" name="name" placeholder="Project Name" required />
-      <input type="text" name="git-link" placeholder="Github Link" required />
+      <input type="text" name="name" placeholder="Project Name" required >
+      <input type="text" name="git-link" placeholder="Github Link" required >
       <input
         type="text"
         name="project-preview"
         placeholder="Preview Name"
         required
-      />
-      <input type="text" name="figma-link" placeholder="Figma Link" />
+      >
+      <input type="text" name="figma-link" placeholder="Figma Link" >
       <div>
         <div></div>
-        <input type="text" list="tools" placeholder="HTML" />
+        <input type="text" list="tools" placeholder="HTML" >
       </div>
-      <input type="submit" value="Done" />
+      <input type="submit" value="Done" >
     </form>
   </div>
 
@@ -33,33 +33,33 @@
             src="../../img/refresh.png"
             alt="Refresh Project"
             class="refresh-project"
-          />
+          >
           <img
             src="../../img/edit.png"
             alt="Edit Project"
             class="edit-project"
-          />
+          >
           <img
             src="../../img/delete.png"
             alt="Delete Project"
             class="delete-project"
-          />
+          >
         </div>
       </div>
       <form class="project-edit">
-        <input type="text" name="name" placeholder="Project Name" value="<%- project.name %>"/>
-        <input type="text" name="git-link" placeholder="Github Link" value="<%- project.url %>" />
-        <input type="text" name="project-preview" placeholder="Preview Name" value="<%- project.preview %>"/>
-        <input type="text" name="figma-link" placeholder="figma Link" value="<%- project.figma %>" />
+        <input type="text" name="name" placeholder="Project Name" value="<%- project.name %>">
+        <input type="text" name="git-link" placeholder="Github Link" value="<%- project.url %>" >
+        <input type="text" name="project-preview" placeholder="Preview Name" value="<%- project.preview %>">
+        <input type="text" name="figma-link" placeholder="figma Link" value="<%- project.figma %>" >
         <div>
           <div tabindex="1">
             <% project.tools.forEach((tool)=> { %>
               <span><%- tool %></span>
             <% }); %>
           </div>
-          <input type="text" list="tools" placeholder="HTML" />
+          <input type="text" list="tools" placeholder="HTML" >
         </div>
-        <input type="submit" value="Done" />
+        <input type="submit" value="Done" >
       </form>
     </div>
     <% }); %>

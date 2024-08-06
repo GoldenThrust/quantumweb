@@ -3,7 +3,7 @@ import { AnimateSlide } from "./canvas.js";
 import InitWork from "./work.js";
 const NavBar = document.querySelector(".headerNav");
 const alert = document.getElementById("alert");
-
+const menu = document.getElementById("menu");
 const bgcover = document.getElementById("bgcover");
 const workpopup = document.getElementById("workpopup");
 
@@ -21,12 +21,12 @@ const professions = [
   "SysAdmin and DevOps Engineer"
 ];
 
+let menuOpen = false;
 let currentTextIndex = 0;
 let currentText = professions[currentTextIndex];
 let isErasing = false;
 let typingDelay = 100;
 let eraseDelay = 50;
-let mouseStart = 0;
 
 const delay = isErasing ? eraseDelay : typingDelay;
 setInterval(() => {
@@ -51,24 +51,13 @@ setInterval(() => {
   }
 }, delay);
 
-
-window.addEventListener("touchstart", (e) => {
-  mouseStart = e.touches[0].clientX;
-});
-
-window.addEventListener("touchmove", (e) => {
-  const dx = e.touches[0].clientX - mouseStart;
-
-  if (mouseStart < 30) {
-    if (dx > 10) {
-      NavBar.attributeStyleMap.set("left", CSS.percent(0));
-    }
-  } else if (NavBar.attributeStyleMap.get("left").value === 0) {
-    if (dx < 0) {
-      NavBar.attributeStyleMap.set("left", CSS.percent(-100));
-    }
-  }
-});
+menu.addEventListener("click", (e) => {
+  if (menuOpen)
+    NavBar.attributeStyleMap.set("left", CSS.percent(-100));
+  else
+    NavBar.attributeStyleMap.set("left", CSS.percent(0));
+  menuOpen = !menuOpen;
+})
 
 window.addEventListener("touchend", (e) => {
   mouseStart = null;
@@ -113,3 +102,22 @@ alert.addEventListener("transitionend", () => {
 });
 
 InitWork()
+
+
+console.log(`            :*#*:                
+           :%@@@@@#.             
+          *@@@@@@@@@*.           
+        *@@@@@@@@@@@@@*          
+      =@@@@@@@=.+@@@@@@@=        
+    =@@@@@@@*.    *@@@@@@@:      
+  :@@@@@@@#.       .#@@@@@@@=    
+  %@@@@@%:           .#@@@@@@    
+ :@@@@@@@#.       .#@@@@@@@:    
+    =@@@@@@@*     *@@@@@@@=      
+      +@@@@@@@  +@@@@@@@+        
+        *@@@@:=@@@@@@@*          
+         .#@=@@@@@@@#.           
+           :%@@@@@%:             
+              :*%*:                
+                .-+=:.    
+                   .%#@+.`);

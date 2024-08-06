@@ -40,7 +40,7 @@ app.set("trust proxy", 3)
 
 app.use(cors());
 
-app.use(limiter);
+// app.use(limiter);
 
 app.use(cookieParser());
 
@@ -81,7 +81,7 @@ app.use(verifyUser.verifyIp);
 
 app.use(repos);
 app.get("/", async (req, res) => {
-  let projects = await fetchProjectData();
+  const projects = await fetchProjectData();
   const blogs = await fetchBlogPost();
 
   res.render("index", {
@@ -119,7 +119,7 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
   }
 });
 
-app.set('layout', 'layout');
+app.set('layout', 'layouts/layout');
 
 app.use("/admin", admin);
 app.use("/project", project);

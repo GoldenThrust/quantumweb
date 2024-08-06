@@ -87,7 +87,7 @@ export async function fetchBlogPost(page=1) {
         },
       });
 
-      await redis.set('blog', JSON.stringify(response.data), 6400);
+      await redis.set('blog', JSON.stringify(response.data), 64000);
 
       data = response.data;
     }

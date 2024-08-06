@@ -15,10 +15,11 @@ overrides;
 
 @layer defaults {
   :root {
-    --link: #fd62a3;
+    --primary: #fd62a3;
     --focused-link: #fcfcfc;
     --background: #181616;
     --text-color: #9d9d9d;
+    --secondary: #ad00ff;
   }
 
   ::-webkit-scrollbar {
@@ -98,11 +99,11 @@ overrides;
   }
 
   a:link {
-    color: var(--link);
+    color: var(--primary);
   }
 
   a:visited {
-    color: var(--link);
+    color: var(--primary);
   }
 
   a:focus {
@@ -192,27 +193,6 @@ overrides;
       transition: all 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     }
 
-    /* .portlogo_container .portlogo div {
-            width: 15px;
-            aspect-ratio: 1;
-            background-color: var(--color);
-            transform: translate(var(--x), var(--y));
-            border-radius: 50%;
-            animation: dancing_logo 2s linear infinite alternate-reverse forwards;
-        } */
-
-    /* @keyframes dancing_logo {
-            from {
-                box-shadow: 0 0 15px var(--color);
-                transform: translate(calc(var(--x) - 1), calc(var(--y)));
-            }
-
-            to {
-                box-shadow: 2px 2px 10px var(--color);
-                transform: translate(calc(var(--x)), calc(var(--y)));
-            }
-        } */
-
     .portname {
       font-size: larger;
       font-weight: 700;
@@ -243,15 +223,40 @@ overrides;
       left: -100%;
       display: flex;
       justify-content: center;
-      color: white;
       align-items: center;
+      flex-direction: column;
       width: 80%;
       font-size: larger;
       font-weight: bolder;
       height: 100vh;
-      background: linear-gradient(180deg, #0e070c 0%, #0d030c 100%);
+      background: linear-gradient(180deg, #0e070cce 0%, #0d030cb9 100%);
       transition: left 1s cubic-bezier(0.075, 0.82, 0.165, 1);
       box-shadow: 2px 2px 10px black;
+    }
+
+    header > div:last-of-type {
+      display: none;
+    }
+
+    .mobile {
+      display: inline;
+    }
+
+    #menu {
+      width: auto;
+      height: 50%;
+      padding-right: 10px;
+      cursor: "pointer";
+      transition: all 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+    }
+
+    #menu:active {
+      filter: blur(5px) invert(1);
+      transform: translate(-40px) scale(1.2);
+    }
+
+    .resume.mobile a {
+      background: linear-gradient(141deg, #ad5cc2 0%, hwb(295 7% 48%) 100%);
     }
 
     .resume a {
@@ -276,6 +281,14 @@ overrides;
     }
 
     @media screen and (min-width: 768px) {
+      .mobile {
+        display: none;
+      }
+
+      header > div:last-of-type {
+        display: inline;
+      }
+
       header nav ul {
         display: flex;
         gap: 2rem;
@@ -603,7 +616,7 @@ overrides;
       #workpopup h4 {
         font-size: 1.5rem;
         margin: 20px 0;
-        text-shadow: 0 0 10px var(--link);
+        text-shadow: 0 0 10px var(--primary);
       }
 
       #workpopup p {
@@ -631,11 +644,11 @@ overrides;
       #work-slide-container img {
         width: 4rem;
         aspect-ratio: 1;
-        border: solid 2px var(--link);
+        border: solid 2px var(--primary);
         padding: 10px;
         border-radius: 50%;
         background-color: #fd62a317;
-        box-shadow: 0 0 10px var(--link);
+        box-shadow: 0 0 10px var(--primary);
       }
 
       .slide {
@@ -747,8 +760,10 @@ overrides;
 
       #services .services .IntroServices {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
+        /* text-align: left; */
         line-height: 20ch;
       }
 
@@ -770,6 +785,48 @@ overrides;
       #services .services .segment .service img.placeorder:hover {
         filter: sepia(100%) saturate(1000%) hue-rotate(250deg);
         width: 30px;
+      }
+
+      #services button {
+        margin-top: 40px;
+        height: 50px;
+        aspect-ratio: 18/5;
+        background: transparent;
+        border: 5px double var(--secondary);
+        border-radius: 30px 0;
+        font-size: large;
+        font-weight: 500;
+        font-family: cursive;
+        outline: none;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        text-shadow: 2px 2px var(--primary);
+        animation: servicebtn 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite alternate-reverse;
+      }
+
+      @keyframes servicebtn {
+        0% {
+          border-radius: 10px 0;
+          color: red;
+        }
+        50% {
+          border-radius: 10px 50px;
+          color: indigo;
+        }
+        100% {
+          border-radius: 0 30px;
+          color: white;
+        }
+      }
+
+      #services button:hover {
+        animation-play-state: paused;
+        box-shadow: 0 0 15px 2px var(--secondary);
+        border-radius: 0;
+      }
+
+      #services button a {
+        color: whitesmoke;
       }
 
       @media screen and (min-width: 768px) {
@@ -902,8 +959,8 @@ overrides;
 
       #contact .contact form *:hover {
         box-shadow: 2px 2px 10px #ad00ff;
-        border: 0.2px solid var(--link);
-        color: var(--link);
+        border: 0.2px solid var(--primary);
+        color: var(--primary);
       }
 
       form *:hover::placeholder {
@@ -1000,9 +1057,8 @@ overrides;
     @media screen and (max-width: 918px) {
       #certificates .certificates div {
         width: clamp(400px, 98%, 800px);
-      } 
+      }
     }
-
 
     @keyframes flow {
       to {
@@ -1098,7 +1154,7 @@ overrides;
   }
 
   .show-more:hover {
-    color: var(--link);
+    color: var(--primary);
     transform: scale(0.9, 1);
   }
 

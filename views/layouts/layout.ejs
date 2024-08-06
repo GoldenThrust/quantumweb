@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Adeniji Olajide</title>
+    <link rel="shortcut icon" href="img/quantum.png" type="image/png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inspiration&family=Twinkle+Star&display=swap"
+      rel="stylesheet"
+    />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <script src="js/main.js" type="module"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <aside>
+      <div id="alert"></div>
+      <div id="bgcover"></div>
+      <canvas id="background"></canvas>
+      <div class="glow"></div>
+      <button class="button" style="display: none"></button>
+    </aside>
+    <header>
+      <div class="portlogo_container">
+        <div class="portlogo">
+          <img src="img/quantum.png" alt="Quantum logo" />
+        </div>
+        <span class="portname flex-center">
+          <span class="seg">uantum</span><span class="seg2">Web</span>
+        </span>
+      </div>
+      <nav class="headerNav">
+        <ul>
+          <li><a href="/#home">Home</a></li>
+          <li><a href="/#works">Works</a></li>
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#blog">Blog</a></li>
+          <li><a href="/store">Certificates</a></li>
+          <li><a href="/#contact">Contact</a></li>
+        </ul>
+        <div class="resume mobile">
+          <a href="./files/Adeniji-Olajide-CV.pdf" download>Resume</a>
+        </div>
+      </nav>
+      <div class="resume">
+        <a href="./files/Adeniji-Olajide-CV.pdf" download>Resume</a>
+      </div>
+      <img src="./img/menu.svg" class="mobile" id="menu" alt="" />
+    </header>
+    <%- body %>
+    <footer>
+      <marquee
+        title="deprecated: This is the first HTML element I wrote when I began learning web development."
+        >©2024 QuantumWeb. All Rights Reserved</marquee
+      >
+    </footer>
+    <canvas id="foreground"></canvas>
+  </body>
+</html>
