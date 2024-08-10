@@ -56,7 +56,7 @@ overrides;
   }
 
   h2 {
-    text-align: center;
+    text-align: center;qu
     font-size: 12vw;
     background: conic-gradient(
       from 180deg at 50% 50%,
@@ -351,12 +351,13 @@ overrides;
         border-radius: 0 30%;
         border: 1px solid #000;
         box-shadow: 5px 10px 16px #cd54af1c;
-        filter: grayscale(1);
-        transition: filter 1s ease;
+        filter: saturate(2) grayscale(1);
+        transition: filter 1s ease-in-out;
+        /* z-index: -1; */
       }
 
       .mainImg:hover {
-        filter: grayscale(0);
+        filter: saturate(2) grayscale(0);
       }
 
       .greeting {
@@ -368,6 +369,7 @@ overrides;
       .nameIntro {
         margin: 10px 0;
         font-size: 3.5vw;
+        position: relative;
       }
 
       .myName {

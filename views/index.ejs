@@ -1,414 +1,400 @@
-    <main>
-      <!-- <div id="bgcover"></div> -->
-      <div id="home">
-        <div class="mainImg">
-          <!-- image container -->
-        </div>
-        <div class="introPiece">
-          <div class="greeting">Hello World!</div>
-          <div class="nameIntro">
-            I am &nbsp;<span class="myName"
-              >Adeniji &natur; <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Olajide</span
-            >
-          </div>
-          <div class="specialization">Full-Stack Web Developer</div>
-        </div>
-        <div class="introbrief">
-          Welcome to Adeniji Olajide's Portfolio! Hello and welcome! I'm
-          thrilled to have you here. Whether you stumbled upon my website by
-          chance or intentionally sought it out, I'm delighted to extend my
-          warmest greetings to you. This space is more than just a collection of
-          projects and accomplishments—it's a reflection of my journey, my
-          passion, and my dedication to the craft of software engineering and
-          web development. Each line of code, each pixel on the screen,
-          represents countless hours of learning, experimenting, and refining my
-          skills. My goal with this portfolio is simple: to showcase my
-          expertise, to inspire creativity, and to foster meaningful
-          connections. Whether you're a fellow developer, a potential client, or
-          simply someone curious about what I do, I invite you to explore, to
-          learn, and to engage with the content you find here. Take a moment to
-          browse through my projects, each one a labor of love and a testament
-          to my commitment to excellence. From innovative web applications to
-          elegant user interfaces, each project tells a story—a story of
-          problem-solving, collaboration, and the relentless pursuit of
-          perfection. But beyond the code and the designs, I want you to know
-          that this portfolio is also a reflection of who I am as a person.
-          Approachable, passionate, and always eager to learn and grow. So,
-          whether you're here to learn more about my work, to discuss potential
-          collaborations, or simply to say hello, know that you're always
-          welcome here.
-        </div>
+<main>
+  <!-- <div id="bgcover"></div> -->
+  <div id="home">
+    <div class="mainImg">
+      <!-- image container -->
+    </div>
+    <div class="introPiece">
+      <div class="greeting">Hello World!</div>
+      <div class="nameIntro">
+        I am &nbsp;<span class="myName"
+          >Adeniji &natur; <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Olajide</span
+        >
       </div>
+      <div class="specialization">Full-Stack Web Developer</div>
+    </div>
+    <div class="introbrief">
+      Welcome to Adeniji Olajide's Portfolio! Hello and welcome! I'm thrilled to
+      have you here. Whether you stumbled upon my website by chance or
+      intentionally sought it out, I'm delighted to extend my warmest greetings
+      to you. This space is more than just a collection of projects and
+      accomplishments—it's a reflection of my journey, my passion, and my
+      dedication to the craft of software engineering and web development. Each
+      line of code, each pixel on the screen, represents countless hours of
+      learning, experimenting, and refining my skills. My goal with this
+      portfolio is simple: to showcase my expertise, to inspire creativity, and
+      to foster meaningful connections. Whether you're a fellow developer, a
+      potential client, or simply someone curious about what I do, I invite you
+      to explore, to learn, and to engage with the content you find here. Take a
+      moment to browse through my projects, each one a labor of love and a
+      testament to my commitment to excellence. From innovative web applications
+      to elegant user interfaces, each project tells a story—a story of
+      problem-solving, collaboration, and the relentless pursuit of perfection.
+      But beyond the code and the designs, I want you to know that this
+      portfolio is also a reflection of who I am as a person. Approachable,
+      passionate, and always eager to learn and grow. So, whether you're here to
+      learn more about my work, to discuss potential collaborations, or simply
+      to say hello, know that you're always welcome here.
+    </div>
+  </div>
 
-      <div id="about">
-        <div class="expertise">
-          <h3>Expertise</h3>
-          <div class="expertiseInfo">
-            <div>
-              <div class="pro">Software Engineeer</div>
-              <div class="frame">
-                <img
-                  src="img/softwareabout.png"
-                  alt="software engineering"
-                  class="frameBackground"
-                />
-                While working as a Software Engineer at ALX, I found myself
-                engaged in a vibrant and cooperative atmosphere that fostered
-                creativity and individual development. This experience afforded
-                me the opportunity to participate in various projects, utilizing
-                diverse programming languages, techniques, tools, and
-                technologies. I gained proficiency in ideation and the
-                deconstruction of intricate projects into more manageable
-                components.
-              </div>
-            </div>
-            <div class="rule"></div>
-            <div>
-              <div class="pro">Full-Stack Web Developer</div>
-              <div class="frame">
-                <img
-                  src="img/fullstackabout.png"
-                  alt="full stack developer"
-                  class="frameBackground"
-                />
-                During my time at New Horizon, I acquired skills as a Full Stack
-                Web Developer. I mastered Frontend and designing with Pure CSS
-                or Sass/bootstrap. I excelled in programming using vanilla
-                JavaScript or Vue/JQuery. I also delved into backend work,
-                learning schema design, API development, and using POSTMAN. I
-                gained expertise in PHP/Laravel and MySQL as databases
-                management system.
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="toolsandtechnology">
-          <div class="tools">
-            <canvas id="toolslide"></canvas>
-          </div>
-          <div class="glow"></div>
-        </div>
-      </div>
-
-      <div id="works">
-        <h2>WORKS</h2>
-        <div class="works">
-          <% projects.project.forEach((project) => { %>
-          <span data-key="<%= project.key %>">
+  <div id="about">
+    <div class="expertise">
+      <h3>Expertise</h3>
+      <div class="expertiseInfo">
+        <div>
+          <div class="pro">Software Engineeer</div>
+          <div class="frame">
             <img
-              src="portfolioimage/<%= project.preview %>.jpg"
-              alt="<%= project.name %>"
-              loading="lazy"
+              src="img/softwareabout.png"
+              alt="software engineering"
+              class="frameBackground"
             />
-            <div class="workname"><%= project.name %></div>
-          </span>
-          <% }) %>
-        </div>
-        <% if (projects.hasMore) { %>
-        <span class="show-more" data-key="1">Show More</span>
-        <% } %>
-
-        <!-- workpop up -->
-        <aside id="workpopup">
-          <!-- dynamic data -->
-        </aside>
-      </div>
-
-      <div id="services">
-        <h2>Services</h2>
-        <div class="services">
-          <div class="IntroServices frame">
-            <div>
-              I am a passionate software engineer dedicated to crafting
-              innovative, high-quality solutions that empower your business to
-              thrive. My commitment is to provide tailored solutions that meet
-              your specific needs. My expertise spans a wide range of software
-              engineering services:
-              <ul>
-                <li>
-                  <b>Web and API Development:</b>
-                  <p>
-                    I build robust, scalable, and user-friendly web applications
-                    and APIs that seamlessly integrate with your existing
-                    systems.
-                  </p>
-                </li>
-                <li>
-                  <b>System Administration and DevOps:</b>
-                  <p>
-                    I provide comprehensive sysadmin and DevOps services, ensuring your IT infrastructure is robust, secure, and optimized for performance.
-                  </p>
-                </li>
-                <li>
-                  <b>Code Quality Assurance:</b>
-                  <p>
-                    i prioritize code quality and maintainability, ensuring your
-                    software is reliable, secure, and performs optimally.
-                  </p>
-                </li>
-                <li>
-                  <b>Mobile App Development:</b>
-                  <p>
-                    I develop native and cross-platform mobile applications
-                    using React Native and Progressive Web Applications (PWAs)
-                    that provide a seamless user experience and enhance your
-                    brand reach.
-                  </p>
-                </li>
-                <li>
-                  <b>SEO Services:</b>
-                  <p>
-                    I implement effective SEO strategies to enhance your
-                    website's visibility, drive traffic, and improve your search
-                    engine rankings.
-                  </p>
-                </li>
-              </ul>
-              Ready to take your business to the next level? Click the button
-              below to request a service and let's get started on your project
-              today.
-              <br>
-              <a href="/service/request"><img src="./img/services.svg" alt=""></a>
-            </div>
-          </div>
-          <div class="segment">
-            <div class="service frame">
-              <img
-                src="img/Webdevelopment.svg"
-                alt=""
-                class="frameBackground"
-              />
-              <h3>Web Application Development</h3>
-              <p>
-                Harness the potential of modern web development to create responsive, scalable, and secure web applications tailored to your business needs. With extensive experience in both front-end and back-end development, I build robust, user-friendly web solutions designed to drive business growth and enhance customer engagement. My approach ensures that your web applications are not only visually appealing but also highly functional, providing a seamless user experience across all devices.
-              </p>
-              <a href="/services/web"
-                ><img src="img/order.svg" alt="get service" class="placeorder"
-              /></a>
-            </div>
-            <div class="service frame">
-              <img
-                src="img/Api_development.svg"
-                alt=""
-                class="frameBackground"
-              />
-              <h3>API Development</h3>
-              <p>
-                Empower your applications with seamless communication and data exchange through custom API development. I design and implement efficient, secure, and maintainable APIs tailored to your specific needs. My expertise ensures that your APIs facilitate reliable and scalable performance, whether for mobile apps, web services, or third-party integrations. By focusing on robust architecture, I enhance the functionality of your systems and provide a smooth experience for developers and end-users alike.
-              </p>
-              <a href="/services/api"
-                ><img src="img/order.svg" alt="get service" class="placeorder"
-              /></a>
-            </div>
-            <div class="service frame">
-              <img
-                src="img/webgraphics.svg"
-                alt="Web Graphics"
-                class="frameBackground"
-              />
-              <h3>Mobile Application Development</h3>
-              <p>
-                Bring your business to the fingertips of your customers with our
-                mobile application development services. We create
-                high-performance, intuitive, and user-friendly mobile apps for
-                both iOS and Android platforms. Using frameworks like React
-                Native and Flutter, we deliver apps that provide a seamless user
-                experience and meet your business objectives.
-              </p>
-              <a href="/services/mobile"
-                ><img src="img/order.svg" alt="get service" class="placeorder"
-              /></a>
-            </div>
-            <div class="service frame">
-              <img
-                src="img/quality_assurance.svg"
-                alt=""
-                class="frameBackground"
-              />
-              <h3>Code Quality Assurance</h3>
-              <p>
-                Ensure your software meets the highest quality standards with
-                our comprehensive code quality assurance services. We conduct
-                rigorous testing, code reviews, and performance assessments to
-                identify and address potential issues early in the development
-                cycle. Our focus on best practices, automated testing, and
-                continuous integration helps deliver reliable, maintainable, and
-                bug-free software.
-              </p>
-              <a href=".services/qa"
-                ><img src="img/order.svg" alt="get service" class="placeorder"
-              /></a>
-            </div>
+            While working as a Software Engineer at ALX, I found myself engaged
+            in a vibrant and cooperative atmosphere that fostered creativity and
+            individual development. This experience afforded me the opportunity
+            to participate in various projects, utilizing diverse programming
+            languages, techniques, tools, and technologies. I gained proficiency
+            in ideation and the deconstruction of intricate projects into more
+            manageable components.
           </div>
         </div>
-      </div>
-
-      <div id="blog">
-        <h2>BLOG</h2>
-
-        <div class="blogs">
-          <% blogs.forEach((blog)=> { %>
-          <div class="blog">
-            <a href="http://" target="_blank" rel="noopener noreferrer"
-              ><img src="<%= blog.cover_image %>" alt="Personal Portfolio"
-            /></a>
-            <div class="title"><%= blog.title %></div>
-            <div class="summary"><%= blog.description %></div>
-            <a
-              href="<%= blog.url %>"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </div>
-          <% }) %>
-        </div>
-        <span class="show-more">Show More</span>
-        <div class="join">
-          <span class="left">
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-          </span>
-          <span class="text">Join Me</span>
-          <span class="right">
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
-            /></a>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
-            /></a>
-          </span>
-        </div>
-      </div>
-
-      <div id="certificates">
-        <!-- <h2>Certification</h2> -->
-
-        <div class="certificates">
-          <div title="ALX software engineering certificate">
+        <div class="rule"></div>
+        <div>
+          <div class="pro">Full-Stack Web Developer</div>
+          <div class="frame">
             <img
-              src="./img/certificate/alx.png"
-              alt="ALX software engineering certificate"
+              src="img/fullstackabout.png"
+              alt="full stack developer"
+              class="frameBackground"
             />
-          </div>
-          <div title="New Horizon Full Stack Web Developer Certificate">
-            <img
-              src="./img/certificate/newhorizon.png"
-              alt="New Horizon Full Stack Web Developer Certificate"
-            />
-          </div>
-          <div
-            title="JP Morgan Software Engineering Job Simulation Certificate"
-          >
-            <img
-              src="./img/certificate/jpmorgan.png"
-              alt="JP Morgan Software Engineering Job Simulation Certificate"
-            />
+            During my time at New Horizon, I acquired skills as a Full Stack Web
+            Developer. I mastered Frontend and designing with Pure CSS or
+            Sass/bootstrap. I excelled in programming using vanilla JavaScript
+            or Vue/JQuery. I also delved into backend work, learning schema
+            design, API development, and using POSTMAN. I gained expertise in
+            PHP/Laravel and MySQL as databases management system.
           </div>
         </div>
       </div>
+    </div>
+    <div class="toolsandtechnology">
+      <div class="tools">
+        <canvas id="toolslide"></canvas>
+      </div>
+      <div class="glow"></div>
+    </div>
+  </div>
 
-      <div id="contact">
-        <h2>Contact Me</h2>
+  <div id="works">
+    <h2>WORKS</h2>
+    <div class="works">
+      <% projects.project.forEach((project) => { %>
+      <span data-key="<%= project.key %>">
+        <img
+          src="portfolioimage/<%= project.preview %>.jpg"
+          alt="<%= project.name %>"
+          loading="lazy"
+        />
+        <div class="workname"><%= project.name %></div>
+      </span>
+      <% }) %>
+    </div>
+    <% if (projects.hasMore) { %>
+    <span class="show-more" data-key="1">Show More</span>
+    <% } %>
 
-        <div class="contact">
-          <form action="/chirpmail" id="mailchirp" method="post">
-            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-            <input type="text" name="password" id="password" class="d-none" />
-            <textarea
-              name="message"
-              id="message"
-              cols="30"
-              rows="20"
-              placeholder="Message"
-            ></textarea>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Full Name"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              required
-            />
-            <input type="submit" value="Send" />
-          </form>
-          <div class="simplecontact">
-            <a href="mailto:adenijiolajid01@gmail.com"
-              >adenijiolajid01@gmail.com</a
-            >
-            <a href="tel:+23407084076657">+2347084076657</a>
-          </div>
-          <div class="icons">
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img
-                src="img/blog/instagram.svg"
-                alt="Instagram Logo"
-                class="icon"
-            /></a>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
-            /></a>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-            /></a>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
-            /></a>
-            <a
-              href="http://"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blogIcon"
-              ><img
-                src="img/blog/instagram.svg"
-                alt="Instgram Logo"
-                class="icon"
-            /></a>
-          </div>
+    <!-- workpop up -->
+    <aside id="workpopup">
+      <!-- dynamic data -->
+    </aside>
+  </div>
+
+  <div id="services">
+    <h2>Services</h2>
+    <div class="services">
+      <div class="IntroServices frame">
+        <div>
+          I am a passionate software engineer dedicated to crafting innovative,
+          high-quality solutions that empower your business to thrive. My
+          commitment is to provide tailored solutions that meet your specific
+          needs. My expertise spans a wide range of software engineering
+          services:
+          <ul>
+            <li>
+              <b>Web and API Development:</b>
+              <p>
+                I build robust, scalable, and user-friendly web applications and
+                APIs that seamlessly integrate with your existing systems.
+              </p>
+            </li>
+            <li>
+              <b>System Administration and DevOps:</b>
+              <p>
+                I provide comprehensive sysadmin and DevOps services, ensuring
+                your IT infrastructure is robust, secure, and optimized for
+                performance.
+              </p>
+            </li>
+            <li>
+              <b>Code Quality Assurance:</b>
+              <p>
+                i prioritize code quality and maintainability, ensuring your
+                software is reliable, secure, and performs optimally.
+              </p>
+            </li>
+            <li>
+              <b>Mobile App Development:</b>
+              <p>
+                I develop native and cross-platform mobile applications using
+                React Native and Progressive Web Applications (PWAs) that
+                provide a seamless user experience and enhance your brand reach.
+              </p>
+            </li>
+            <li>
+              <b>SEO Services:</b>
+              <p>
+                I implement effective SEO strategies to enhance your website's
+                visibility, drive traffic, and improve your search engine
+                rankings.
+              </p>
+            </li>
+          </ul>
+          Ready to take your business to the next level? Click the button below
+          to request a service and let's get started on your project today.
+          <br />
+          <a href="/service/request"><img src="./img/services.svg" alt="" /></a>
         </div>
       </div>
-    </main>
+      <div class="segment">
+        <div class="service frame">
+          <img src="img/Webdevelopment.svg" alt="" class="frameBackground" />
+          <h3>Web Application Development</h3>
+          <p>
+            Harness the potential of modern web development to create
+            responsive, scalable, and secure web applications tailored to your
+            business needs. With extensive experience in both front-end and
+            back-end development, I build robust, user-friendly web solutions
+            designed to drive business growth and enhance customer engagement.
+            My approach ensures that your web applications are not only visually
+            appealing but also highly functional, providing a seamless user
+            experience across all devices.
+          </p>
+          <a href="/services/web"
+            ><img src="img/order.svg" alt="get service" class="placeorder"
+          /></a>
+        </div>
+        <div class="service frame">
+          <img src="img/Api_development.svg" alt="" class="frameBackground" />
+          <h3>API Development</h3>
+          <p>
+            Empower your applications with seamless communication and data
+            exchange through custom API development. I design and implement
+            efficient, secure, and maintainable APIs tailored to your specific
+            needs. My expertise ensures that your APIs facilitate reliable and
+            scalable performance, whether for mobile apps, web services, or
+            third-party integrations. By focusing on robust architecture, I
+            enhance the functionality of your systems and provide a smooth
+            experience for developers and end-users alike.
+          </p>
+          <a href="/services/api"
+            ><img src="img/order.svg" alt="get service" class="placeorder"
+          /></a>
+        </div>
+        <div class="service frame">
+          <img
+            src="img/webgraphics.svg"
+            alt="Web Graphics"
+            class="frameBackground"
+          />
+          <h3>Mobile Application Development</h3>
+          <p>
+            Bring your business to the fingertips of your customers with our
+            mobile application development services. We create high-performance,
+            intuitive, and user-friendly mobile apps for both iOS and Android
+            platforms. Using frameworks like React Native and Flutter, we
+            deliver apps that provide a seamless user experience and meet your
+            business objectives.
+          </p>
+          <a href="/services/mobile"
+            ><img src="img/order.svg" alt="get service" class="placeorder"
+          /></a>
+        </div>
+        <div class="service frame">
+          <img src="img/quality_assurance.svg" alt="" class="frameBackground" />
+          <h3>Code Quality Assurance</h3>
+          <p>
+            Ensure your software meets the highest quality standards with our
+            comprehensive code quality assurance services. We conduct rigorous
+            testing, code reviews, and performance assessments to identify and
+            address potential issues early in the development cycle. Our focus
+            on best practices, automated testing, and continuous integration
+            helps deliver reliable, maintainable, and bug-free software.
+          </p>
+          <a href=".services/qa"
+            ><img src="img/order.svg" alt="get service" class="placeorder"
+          /></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="blog">
+    <h2>BLOG</h2>
+
+    <div class="blogs">
+      <% blogs.forEach((blog)=> { %>
+      <div class="blog">
+        <a href="http://" target="_blank" rel="noopener noreferrer"
+          ><img src="<%= blog.cover_image %>" alt="Personal Portfolio"
+        /></a>
+        <div class="title"><%= blog.title %></div>
+        <div class="summary"><%= blog.description %></div>
+        <a
+          href="<%= blog.url %>"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
+        /></a>
+      </div>
+      <% }) %>
+    </div>
+    <span class="show-more">Show More</span>
+    <div class="join">
+      <span class="left">
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
+        /></a>
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
+        /></a>
+      </span>
+      <span class="text">Join Me</span>
+      <span class="right">
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
+        /></a>
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
+        /></a>
+      </span>
+    </div>
+  </div>
+
+  <div id="certificates">
+    <!-- <h2>Certification</h2> -->
+
+    <div class="certificates">
+      <div title="ALX software engineering certificate">
+        <img
+          src="./img/certificate/alx.png"
+          alt="ALX software engineering certificate"
+        />
+      </div>
+      <div title="New Horizon Full Stack Web Developer Certificate">
+        <img
+          src="./img/certificate/newhorizon.png"
+          alt="New Horizon Full Stack Web Developer Certificate"
+        />
+      </div>
+      <div title="JP Morgan Software Engineering Job Simulation Certificate">
+        <img
+          src="./img/certificate/jpmorgan.png"
+          alt="JP Morgan Software Engineering Job Simulation Certificate"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div id="contact">
+    <h2>Contact Me</h2>
+
+    <div class="contact">
+      <form action="/chirpmail" id="mailchirp" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <input type="text" name="password" id="password" class="d-none" />
+        <textarea
+          name="message"
+          id="message"
+          cols="30"
+          rows="20"
+          placeholder="Message"
+        ></textarea>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Full Name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email"
+          required
+        />
+        <input type="submit" value="Send" />
+      </form>
+      <div class="simplecontact">
+        <a href="mailto:adenijiolajid01@gmail.com">adenijiolajid01@gmail.com</a>
+        <a href="tel:+23407084076657">+2347084076657</a>
+      </div>
+      <div class="icons">
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/instagram.svg" alt="Instagram Logo" class="icon"
+        /></a>
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
+        /></a>
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
+        /></a>
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
+        /></a>
+        <a
+          href="http://"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="blogIcon"
+          ><img src="img/blog/instagram.svg" alt="Instgram Logo" class="icon"
+        /></a>
+      </div>
+    </div>
+  </div>
+</main>
