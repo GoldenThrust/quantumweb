@@ -59,10 +59,6 @@ menu.addEventListener("click", (e) => {
   menuOpen = !menuOpen;
 })
 
-window.addEventListener("touchend", (e) => {
-  mouseStart = null;
-});
-
 mailChirp.addEventListener("submit", async (e) => {
   e.preventDefault();
   const form = new FormData(e.target);

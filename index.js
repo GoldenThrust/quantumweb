@@ -20,6 +20,7 @@ import csrf from "csrf";
 import cookieParser from "cookie-parser";
 import verifyUser from "./middlewares/verifyUser.js";
 import service from "./routes/services.js";
+import constructFullURL from "./middlewares/middlewares.js";
 // import { hash } from "bcrypt";
 // import Admin from "./models/admin.js";
 const __filename = fileURLToPath(import.meta.url);
@@ -68,12 +69,14 @@ app.use((req, res, next) => {
   next();
 });
 
+
 export const upload = multer({ dest: "views/img/uploads/" });
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "views")));
 app.use(expressLayouts);
+app.use(constructFullURL)
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -86,6 +89,9 @@ app.get("/", async (req, res) => {
   const blogs = await fetchBlogPost();
 
   res.render("index", {
+    hostname: req.get('host'),
+    url: req.fulUrl,
+    pageTitle: "",
     blogs,
     projects,
     csrfToken: res.locals.csrfToken
@@ -98,7 +104,8 @@ app.get('/shop', async (req, res) => {
   });
 })
 
-app.post("/test", (req, res) => {
+app.get("/test", (req, res) => {
+  console.log(req.fulUrl)
   res.send("Hello, World!");
 })
 

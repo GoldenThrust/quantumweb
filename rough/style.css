@@ -1,97 +1,110 @@
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 #services-page form {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 #services-page form label {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 1;
 }
 
-#services-page form>.service-request-form {
-    position: absolute;
-    top: 0;
-    display: none;
-    width: 100vw;
-    height: 100vh;
-    grid-template-columns: 1fr 1fr;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
-    row-gap: 100px;
-    column-rule: solid 6px;
-    padding: 0 100px;
-    column-rule: solid 2px;
+#services-page form > .service-request-form {
+  position: absolute;
+  top: 0;
+  display: none;
+  width: 100vw;
+  height: 100vh;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  row-gap: 100px;
+  column-rule: solid 6px;
+  padding: 0 100px;
+  column-rule: solid 2px;
 }
 
-
-#services-page form>.service-request-form:nth-child(1) {
-    display: grid;
+#services-page form > .service-request-form:nth-child(1) {
+  display: grid;
 }
 
 #navigation-button {
-    position: absolute;
-    bottom: 20px;
-    right: 40px;
-    display: flex;
-    justify-content: end;
+  position: absolute;
+  bottom: 20px;
+  right: 40px;
+  display: flex;
+  justify-content: end;
 }
 
 #navigation-button button {
-    font-size: 16px;
-    font-weight: 700;
-    width: 100px;
-    height: 40px;
-    border-radius: 0 40px 0 0;
-    background-color: var(--secondary);
+  font-size: 16px;
+  font-weight: 700;
+  width: 100px;
+  height: 40px;
+  border-radius: 0 40px 0 0;
+  background-color: var(--secondary);
 }
 
 #navigation-button button:first-child {
-    border-radius: 0 0 0 40px;
-    background-color: aliceblue;
-    color: black;
+  border-radius: 0 0 0 40px;
+  background-color: aliceblue;
+  color: black;
 }
 
 .service-request-description {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 #services-page label {
-    color: #B899B6;
-    font-weight: bolder;
-    gap: 10px;
+  color: #b899b6;
+  font-weight: bolder;
+  gap: 10px;
 }
 
 #services-page h3 {
-    font-size: 30px;
+  font-size: 30px;
+}
+
+#services-page input {
+  border: 1px solid #ad00ff;
 }
 
 #services-page input:not(input[type="checkbox"]) {
-    height: 40px;
-    padding-left: 10px;
+  height: 40px;
+  padding-left: 10px;
 }
 
 .input-data {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 30px;
 }
 
+.input-data > label {
+  flex: 1 1 calc(50% - 15px);
+}
 
 #services-page .service-request-description h3 {
-    color: var(--primary);
-    font-size: 5ch;
+  color: var(--primary);
+  font-size: 5ch;
 }
 
-
 @media screen and (max-width: 768px) {
-    .service-request-description {
-        display: none;
-    }
+  .service-request-description {
+    display: none;
+  }
+
+  #services-page input:not(input[type="checkbox"]) {
+    width: 90vw;
+    padding-left: 0;
+  }
 }
