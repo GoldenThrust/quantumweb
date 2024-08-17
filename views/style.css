@@ -77,10 +77,6 @@ overrides;
   canvas {
     width: 100%;
     height: 100%;
-  }
-
-  #background,
-  #foreground {
     position: absolute;
     top: 0;
     left: 0;
@@ -89,8 +85,29 @@ overrides;
     pointer-events: none;
   }
 
+  input::-webkit-inner-spin-button,
+  input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  button,
+  input[type="button"],
+  input[type="submit"] {
+    cursor: pointer;
+  }
+  /* 
   p {
-    /* line-height: 1.4; */
+    line-height: 1.4;
+  } */
+
+  textarea {
+    resize: none;
+    padding: 10px;
   }
 
   a {
@@ -643,6 +660,7 @@ overrides;
         align-items: center;
         gap: var(--gap);
         min-width: 100%;
+        min-height: 100px;
       }
 
       #work-slide-container:hover .slide {
@@ -816,7 +834,8 @@ overrides;
         display: block;
         height: 50px;
         cursor: pointer;
-        animation: servicebtn 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite alternate-reverse;
+        animation: servicebtn 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite
+          alternate-reverse;
       }
 
       @keyframes servicebtn {
@@ -1204,7 +1223,8 @@ overrides;
     background-color: #0000007b;
     transition: all 2s ease-in-out;
     display: none;
-    z-index: 1;
+    z-index: 2;
+    background:  url('./img/cancel.png') no-repeat top right;
   }
 
   #bgcover:hover {

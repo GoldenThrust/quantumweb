@@ -3,122 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Adeniji Olajide</title>
-    <link rel="shortcut icon" href="../img/quantum.png" type="image/png" />
-    <link rel="stylesheet" href="../views/style.css" />
-    <link rel="stylesheet" href="./style.css" />
-    <script src="main.js" type="module" defer></script>
+    <title>Document</title>
   </head>
   <body>
-    <header>
-      <div class="portlogo_container">
-        <div class="portlogo">
-          <img src="../views/img/quantum.png" alt="Quantum Logo" />
-        </div>
-        <span class="portname flex-center">
-          <span class="seg">uantum</span><span class="seg2">Web</span>
-        </span>
+    <main style="background-color: #181616; color: #9d9d9d; padding: 10px">
+      <a href="beyondimagination.tech"
+        ><img src="${imageUrl}" width="200px" alt="Quantum Logo"
+      /></a>
+      <div style="font-style: italic; margin: 20px 0">
+        <h1>Project Details</h1>
+        <ul>
+          <li>Name: <span style="color: white;">${name}</span></li>
+          <li>Email: <span style="color: white;">${email}</span></li>
+          <li>Phone Number: <span style="color: white;">${phone}</span></li>
+          <li>Project Name: <span style="color: white;">${projectName}</span></li>
+          <li>Service Required: <span style="color: white;">${serviceRequired}</span></li>
+          <li>Project Description: <p style="color: white;">${projectDescription}</p></li>
+          <li>Payment Type: <span style="color: white;">${serviceRequired}</span></li>
+          <li>Budget Range: <span style="color: white;">${fromPrice} to ${toPrice}</span></li>
+        </ul>
       </div>
-    </header>
-    <main id="services-page">
-      <form action="">
-        <div class="service-request-form">
-          <div class="service-request-description">
-            <h3>Share Your Contact Information</h3>
-            <p>We are going to contact you using the information provided</p>
-          </div>
-          <div id="client-contact" class="input-data">
-            <h3>Your Contact Information</h3>
-            <label for="full name">
-              Full Name
-              <input type="text" name="full-name" id="full name" required placeholder=""/>
-            </label>
-            <label for="Email">
-              Email
-              <input type="email" name="Email" id="Email" required />
-            </label>
-            <label for="phone-number">
-              Phone Number (optional)
-              <input type="tel" name="phone number" id="phone number" />
-            </label>
-          </div>
-        </div>
-        <div class="service-request-form">
-          <div class="project-specification" class="input-data">
-            <h3>Project Specifications</h3>
-            <label for="project-name">
-              Project Name
-              <input type="text" name="project-name" id="project-name" />
-            </label>
-            <label for="service-required">
-              Service Required
-
-              <select name="service-required" id="service-required">
-                <option value="">Web Development</option>
-                <option value="">API Development</option>
-                <option value="">Mobile App Development</option>
-                <option value="">System Administration and DevOps</option>
-                <option value="">Machine Learning and AI Integration</option>
-                <option value="">Code Quality Assurance</option>
-                <option value="">SEO Services</option>
-                <option value="">Bug Fixing and Troubleshooting</option>
-                <option value="">Other</option>
-              </select>
-            </label>
-            <label for="project-description">
-              Project Description
-              <textarea
-                name="project-description"
-                id="project-description"
-                rows="5"
-                required
-              ></textarea>
-            </label>
-            <div class="attachment">
-              <label for="attachment">
-                <span>Attach Files (Max 10MB)</span>
-              </label>
-              <input type="file" name="attachment" id="attachment" />
-              <span class="attachment-info">No file selected</span>
-            </div>
-          </div>
-          <div class="service-request-description">
-            <h3>Tell Us About Your Project</h3>
-            <p>Provide detailed information about the service you require.</p>
-          </div>
-        </div>
-        <div class="service-request-form">
-          <div class="service-request-description">
-            <h3>Define Your Budget</h3>
-            <p>Enter your budget for the project.</p>
-          </div>
-          <div class="service-request-form" class="input-data">
-            <h3>Project Budget</h3>
-            <div id="budget">
-              <span class="selected">Hourly Rate</span>
-              <span>Ontime Payment</span>
-            </div>
-            <div>Estimated Budget (USD):</div>
-            <label for="from-price">
-              From
-              <input type="text" name="from-price" id="from-price" />
-            </label>
-            <label for="to-price">
-              To
-              <input type="text" name="to-price" id="to-price" />
-            </label>
-            <label for="not-sure">
-              <input type="checkbox" name="not-sure" id="not-sure" /> Provide detailed information about the service you require.
-            </label>
-          </div>
-        </div>
-        <div id="navigation-button">
-          <div>
-            <button type="button">Back</button>
-            <button type="button">Next</button>
-          </div>
-        </div>
-      </form>
     </main>
   </body>
 </html>

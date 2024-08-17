@@ -1,0 +1,155 @@
+<main id="services-page">
+  <form action="/service/submit_form" method="post" enctype="multipart/form-data">
+    <div class="service-request-form" style="--position: 0">
+      <div class="service-request-description">
+        <h3>Share Your Contact Information</h3>
+        <p>We are going to contact you using the information provided</p>
+      </div>
+      <div id="client-contact" class="input-data">
+        <h3>Your Contact Information</h3>
+        <label for="full-name">
+          Full Name
+          <input
+            type="text"
+            name="full-name"
+            id="full-name"
+            placeholder="Enter your full name"
+            required
+          />
+        </label>
+        <label for="Email">
+          Email
+          <input
+            type="email"
+            name="email"
+            id="Email"
+            placeholder="Enter your email address"
+            required
+          />
+        </label>
+        <label for="phone-number">
+          Phone/Whatsapp number (optional)
+          <input
+            type="tel"
+            name="phone-number"
+            id="phone-number"
+            placeholder="Enter your phone/WhatsApp number"
+          />
+        </label>
+      </div>
+    </div>
+    <div class="service-request-form" style="--position: 1">
+      <div id="project-specification" class="input-data">
+        <h3>Project Specifications</h3>
+        <label for="project-name">
+          Project Name
+          <input
+            type="text"
+            name="project-name"
+            id="project-name"
+            required
+            placeholder="Enter your project name"
+          />
+        </label>
+        <label for="service-required">
+          Service Required
+          <select name="service-required" id="service-required">
+            <option value="web-development">Web Development</option>
+            <option value="api-development">API Development</option>
+            <option value="mobile-app-development">
+              Mobile App Development
+            </option>
+            <option value="devops">SysAdmins and DevOps</option>
+            <option value="ai-ml">Machine Learning and AI Integration</option>
+            <option value="code-quality">Code Quality Assurance</option>
+            <option value="seo">SEO Services</option>
+            <option value="bug-fixing">Bug Fixing and Troubleshooting</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label for="project-description">
+          Project Description
+          <textarea
+            name="project-description"
+            id="project-description"
+            placeholder="Describe your project in detail"
+            rows="8"
+            required
+          ></textarea>
+        </label>
+        <label for="files">
+          <span>
+            Attach Files (Max 10MB)
+            <input
+              type="file"
+              name="files"
+              multiple
+              id="files"
+              accept=".pdf,.doc,.docx,.png,.jpg"
+            />
+          </span>
+        </label>
+        <div>
+          <span id="attachment-info">No file selected</span>
+        </div>
+      </div>
+      <div class="service-request-description">
+        <h3>Tell Us About Your Project</h3>
+        <p>Provide detailed information about the service you require.</p>
+      </div>
+    </div>
+    <div class="service-request-form" style="--position: 1">
+      <div class="service-request-description">
+        <h3>Define Your Budget</h3>
+        <p>Enter your budget for the project.</p>
+      </div>
+      <div class="input-data">
+        <h3>Project Budget</h3>
+        <div id="budget">
+          <label>
+            <input
+              type="radio"
+              name="payment-type"
+              value="hourly-rate"
+              checked
+            />
+            Hourly Rate
+          </label>
+          <label>
+            <input type="radio" name="payment-type" value="one-time" />One-time
+            Payment
+          </label>
+        </div>
+        <h3 class="estimated-budget">Estimated Budget (USD):</h3>
+        <label for="from-price">
+          From
+          <input
+            type="number"
+            name="from-price"
+            id="from-price"
+            placeholder="Minimum budget"
+            required
+          />
+        </label>
+        <label for="to-price">
+          To
+          <input
+            type="number"
+            name="to-price"
+            id="to-price"
+            placeholder="Maximum budget"
+            min="0"
+            required
+          />
+        </label>
+      </div>
+    </div>
+    <div id="navigation-button">
+      <div>
+        <button type="button">Back</button>
+        <button type="submit">Next</button>
+      </div>
+    </div>
+    <canvas id="foreground"></canvas>
+  </form>
+</main>

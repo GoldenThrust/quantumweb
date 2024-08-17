@@ -1,0 +1,176 @@
+body {
+    /* overflow: hidden; */
+  }
+  
+  #services-page form {
+    display: flex;
+    gap: 20px;
+  }
+  
+  #services-page form label {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label[for="not-sure"] {
+    flex-direction: row !important;
+  }
+  
+  #services-page form > .service-request-form {
+    position: absolute;
+    top: 0;
+    left: calc(var(--position) * 100%);
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    row-gap: 100px;
+    column-rule: solid 6px;
+    padding: 0 100px;
+    column-rule: solid 2px;
+    transition: left 0.5s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  }
+  
+  #navigation-button {
+    position: absolute;
+    bottom: 20px;
+    right: 40px;
+    display: flex;
+    justify-content: end;
+  }
+  
+  #navigation-button button {
+    font-size: 16px;
+    font-weight: 700;
+    width: 100px;
+    height: 40px;
+    border-radius: 0 20px 0 0;
+    background-color: var(--secondary);
+  }
+  
+  #navigation-button button:first-child {
+    border-radius: 0 0 0 20px;
+    background-color: aliceblue;
+    color: black;
+  }
+  
+  .service-request-description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  #services-page label {
+    color: #b899b6;
+    font-weight: bolder;
+    gap: 10px;
+  }
+  
+  #services-page h3 {
+    font-size: 30px;
+  }
+  
+  form input:invalid {
+    border: 1px solid red;
+  }
+  
+  #services-page :is(input, select, textarea), label[for="files"] > span {
+    border: 1px solid #ad00ff;
+  }
+  
+  #services-page :where(select, input:not(input[type="checkbox"])), label[for="files"] > span {
+    height: 40px;
+    padding-left: 10px;
+  }
+  
+  .input-data {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 30px;
+  }
+  
+  .input-data > * {
+    width: 100%;
+  }
+  
+  .input-data > label:not(label[for="project-description"]) {
+    flex: 1 1 calc(50% - 15px);
+  }
+  
+  #attachment-info {
+    width: 100%;
+  }
+  
+  input[type=file], input[type=radio] {
+    display: none;
+  }
+  
+  
+  
+  label[for="files"] > span {
+    display: flex;
+    place-items: center;
+    place-content: center;
+    color: var(--text-color);
+    user-select: none;
+  }
+  
+  #services-page .service-request-description h3 {
+    color: var(--primary);
+    font-size: 5ch;
+  }
+  
+  #budget {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  
+  }
+  
+  #budget label:has(input:checked) {
+    background-color: #DB00FF;
+  }
+  
+  #budget label {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    border: 2px solid #DB00FF;
+    width: 180px;
+    aspect-ratio: 2/1;
+    border-radius: 15px;
+    color: aliceblue;
+    background: url(../img/hourlypay.png) no-repeat 90% 10%;
+  }
+  
+  #budget label:last-child {
+    background: url(../img/onetimepay.png) no-repeat 90% 10%;
+  }
+  
+  .estimated-budget {
+    color: #B899B6;
+  }
+  
+  @media screen and (max-width: 768px) {
+    #budget label {
+      width: 150px;
+      aspect-ratio: 2/1;
+    }
+  
+    .service-request-description {
+      display: none;
+    }
+  
+    #services-page input:not(input[type="checkbox"]) {
+      width: 90vw;
+    }
+    #services-page form > .service-request-form {
+      grid-template-columns: auto;
+      transition: left 0.3s cubic-bezier(0.47, 0, 0.745, 0.715);
+    }
+  }

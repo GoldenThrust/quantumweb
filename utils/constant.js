@@ -1,4 +1,6 @@
 import "dotenv/config";
+import multer from "multer";
+
 export const GITHUB_TOKEN = process.env.OCTOTOKEN;
 export const IPVIF = process.env.IP_VERIFIER
 
@@ -268,3 +270,5 @@ export const countryCode = {
   ZM: "Zambia",
   ZW: "Zimbabwe"
 };
+
+export const upload = multer({ dest: "views/img/uploads/" });

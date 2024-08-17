@@ -1,5 +1,6 @@
 import { createTransport } from "nodemailer";
 import { DEV } from "../utils/constant.js";
+import fs from "fs"
 
 class MailService {
   transporter;
@@ -26,20 +27,13 @@ class MailService {
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
 
-    const data = `<!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Quantum Web</title>
-      </head>
+    const data = `
       <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
          <a href="beyondimagination.tech"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
          <div style="margin: 20px 0; color: brown; font-weight: bolder; font-variant: small-caps;">Name: ${name} - Email: ${email} - IP Address: ${ip}</div>
          <div style="font-style: italic;">
          ${message}</div>
-      </body>
-      </html>`;
+      </body>`;
 
 
     const mailOptions = {
@@ -61,23 +55,22 @@ class MailService {
   sendReceiveMessage(email, hostname) {
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
-    const data = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quantum Web</title>
-    </head>
-    <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
-      <a href="beyondimagination.tech"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
-      <div style="font-style: italic; margin: 20px 0">
-       <p>Thank you for reaching out to us. We have received your message and will respond as soon as possible.</p>
-       <p>For a quicker response, you can contact us directly on WhatsApp using the following link: <a href="https://wa.me/+2347084076657?text=Hello%20there!%20I%20would%20like%20to%20inquire%20about%20your%20services.%20Can%20you%20please%20assist%20me%3F
-">+2347084076657</a>.</p>
-      <p>Best regards</p>
-    </div>
-    </body>
-    </html>`;
+    const data = `
+<body style="background-color: #181616; color: #9d9d9d; padding: 10px; font-family: Arial, sans-serif;">
+  <a href="https://beyondimagination.tech" target="_blank" style="text-decoration: none;">
+    <img src="${imageUrl}" width="200px" alt="Quantum Logo" style="display: block; margin: 0 auto;">
+  </a>
+  <div style="font-style: italic; margin: 20px 0;">
+    <p>Thank you for reaching out to us. We have received your message and will respond as soon as possible.</p>
+    <p>
+      For a faster response, you can contact us directly on WhatsApp using the following link: 
+      <a href="https://wa.me/message/66RFWQWFNLLHP!" target="_blank" style="color: #00aaff;">+2347084076657</a>.
+    </p>
+    <p>Best regards,</p>
+    <p>The Quantum Team</p>
+  </div>
+</body>
+`;
 
 
     const mailOptions = {
@@ -96,15 +89,92 @@ class MailService {
     });
   }
 
+  sendMessageNotReceivedNotification(email, hostname) {
+    const imageUrl = `https://${hostname}/img/quantumlogo.png`;
+
+    const data = `<body style="background-color: #181616; color: #9d9d9d; padding: 10px; font-family: Arial, sans-serif;">
+  <a href="https://beyondimagination.tech" target="_blank" style="text-decoration: none;">
+    <img src="${imageUrl}" width="200px" alt="Quantum Logo" style="display: block; margin: 0 auto;">
+  </a>
+  <div style="font-style: italic; margin: 20px 0;">
+    <p>Thank you for reaching out to us. We apologize for the inconvenience, but it seems your message did not reach us. Please resend your message.</p>
+    <p>
+      For a faster response, you can contact us directly on WhatsApp using the following link: 
+      <a href="https://wa.me/message/66RFWQWFNLLHP!" target="_blank" style="color: #00aaff;">+2347084076657</a>.
+    </p>
+    <p>Best regards,</p>
+    <p>The Quantum Team</p>
+  </div>
+</body>
+`;
+
+
+    const mailOptions = {
+      from: `Quantum Web <${process.env.MAIL_USERNAME}>`,
+      to: email,
+      subject: "Your Message Has Been Received",
+      html: data,
+    };
+
+    this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error("Error sending email: ", error);
+      } else {
+        console.log("Email sent: ", info.response);
+      }
+    });
+  }
+
+  async sendServicesDetails(data) {
+    const { name, email, phone, projectName, serviceRequired, projectDescription, paymentType, fromPrice, toPrice, filePath, attachments, hostname } = data;
+
+    const imageUrl = `https://${hostname}/img/quantumlogo.png`;
+
+    const message = `<body style="background-color: #181616; color: #9d9d9d; padding: 10px">
+      <a href="beyondimagination.tech"
+        ><img src="${imageUrl}" width="200px" alt="Quantum Logo"
+      /></a>
+      <div style="font-style: italic; margin: 20px 0">
+        <h1>Project Details</h1>
+        <ul>
+          <li>Name: <span style="color: white;">${name}</span></li>
+          <li>Email: <span style="color: white;">${email}</span></li>
+          <li>Phone Number: <span style="color: white;">${phone}</span></li>
+          <li>Project Name: <span style="color: white;">${projectName}</span></li>
+          <li>Service Required: <span style="color: white;">${serviceRequired}</span></li>
+          <li>Project Description: <p style="color: white;">${projectDescription}</p></li>
+          <li>Payment Type: <span style="color: white;">${paymentType}</span></li>
+          <li>Budget Range: <span style="color: white;">${fromPrice} to ${toPrice}</span></li>
+        </ul>
+      </div>
+    </body>`
+
+    const mailOptions = {
+      from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
+      to: 'adenijiolajid01@gmail.com',
+      subject: "Quantum Services Request",
+      html: message,
+      attachments: attachments
+    };
+
+    await this.transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        this.sendReceiveMessage(email, hostname)
+        console.error("Error sending email: ", error);
+      } else {
+        this.sendMessageNotReceivedNotification(email, hostname)
+        console.log("Email sent: ", info.response);
+      }
+
+      filePath.forEach(path => {
+        fs.unlinkSync(path);
+      })
+    });
+  }
+
 
   AdminLogin(ip, userAgent) {
-    const data = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quantum Web</title>
-    </head>
+    const data = `
     <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
       <h1 href="beyondimagination.tech">QuantumWeb</h1>
       <pre style="font-style: italic; margin: 20px 0">
@@ -115,12 +185,11 @@ class MailService {
           IP Address: ${ip}
           UserAgent: ${userAgent}
        </pre>
-    </body>
-    </html>`;
+    </body>`;
 
 
     const mailOptions = {
-      from: `Quantum Web Application`,
+      from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
       to: 'adenijiolajid01@gmail.com',
       subject: "Admin Page Login Detected",
       html: data,
@@ -136,13 +205,7 @@ class MailService {
   }
 
   AdminLoginAttempt(ip, userAgent) {
-    const data = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quantum Web</title>
-    </head>
+    const data = `
     <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
       <h1 href="beyondimagination.tech">QuantumWeb</h1>
       <pre style="font-style: italic; margin: 20px 0">
@@ -153,12 +216,11 @@ class MailService {
           IP Address: ${ip}
           UserAgent: ${userAgent}
        </pre>
-    </body>
-    </html>`;
+    </body>`;
 
 
     const mailOptions = {
-      from: `Quantum Web Application`,
+      from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
       to: 'adenijiolajid01@gmail.com',
       subject: "Admin Page Login Attempt Detected",
       html: data,
@@ -173,25 +235,16 @@ class MailService {
     });
   }
 
-  //TODO extract HTML from file
-
   sendError(error) {
-    const data = `<!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quantum Web | Error Message</title>
-    </head>
+    const data = `
     <body style="background-color: red; color: white; padding: 10px;">
       <a href="beyondimagination.tech">Quantum Web | Error Message</a>
       <div style="font-style: italic; margin: 20px 0">${error}</div>
-    </body>
-    </html>`;
+    </body>`;
 
 
     const mailOptions = {
-      from: `Quantum Web Error`,
+      from: `Quantum Web Error <${process.env.MAIL_USERNAME}>`,
       to: 'adenijiolajid01@gmail.com',
       subject: "Quantum Web | Error Message",
       html: data,

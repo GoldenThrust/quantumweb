@@ -11,6 +11,14 @@ export const mailQueue = DEV ? new Queue('mailQueue') : new Queue('mailQueue', {
   }
 });
 
+export const serviceRequestQueue = DEV ? new Queue('serviceRequest') : new Queue('serviceRequestQueue', {
+  redis: {
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+    password: process.env.REDIS_PASSWORD
+  }
+});
+
 mailQueue.process(async (job) => {
   const { name, email, message, host, ip, password, userAgent } = job.data;
   if (!password) {
@@ -24,3 +32,9 @@ mailQueue.process(async (job) => {
     return 'User blocked due to suspicious activity';
   }
 })
+
+serviceRequestQueue.process(async (job) => {
+  mailService.sendServicesDetails(job.data)
+});
+
+console.log('Worker started');

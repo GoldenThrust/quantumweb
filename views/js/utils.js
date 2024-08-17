@@ -1,4 +1,10 @@
-const alert = document.getElementById("alert");
+const foregroundCanvas = document.getElementById('foreground')
+foregroundCanvas.width = window.innerWidth;
+foregroundCanvas.height = window.innerHeight;
+
+const foregroundCtx = foregroundCanvas.getContext('2d');
+foregroundCtx.filStyle = "white";
+foregroundCtx.textAlign = "center";
 
 export function getpercent(num, percent) {
   return (percent / 100) * num;
@@ -38,11 +44,6 @@ export function checkChildOverflow(element) {
   return isOverflowing;
 }
 
-export function showAlert(text) {
-  alert.innerText = text;
-  alert.attributeStyleMap.set("right", CSS.percent(0));
-}
-
 export function getDragAfterElement(container, y) {
   const draggableElements = [
     ...container.querySelectorAll(".project:not(.dragging)"),
@@ -60,6 +61,22 @@ export function getDragAfterElement(container, y) {
     },
     { offset: Number.NEGATIVE_INFINITY }
   ).element;
+}
+
+
+export function showAlert(text, error=true) {
+    foregroundCtx.fillStyle = 'rgb(0,0,0, 0.5)';
+    foregroundCtx.fillRect(innerWidth * 0.2, innerHeight * 0.2, innerWidth * 0.6, innerHeight * 0.6)
+    foregroundCtx.fillStyle = error ? 'red' : 'springgreen';
+    foregroundCtx.font = "bold 16px Monospace";
+    const type = error ? 'error' : 'success';
+    foregroundCtx.fillText(type, innerWidth/2, innerHeight/2 - 20);
+    foregroundCtx.fillStyle = error ? 'brown' : 'white';
+    foregroundCtx.font = "bold 20px serif";
+    foregroundCtx.fillText(text, innerWidth/2, innerHeight/2 + 20);
+    setTimeout(()=>{
+      foregroundCtx.clearRect(0, 0, innerWidth, innerHeight);
+    }, 1000)
 }
 
 // Function to validate if a link is a Github URL

@@ -108,9 +108,10 @@ export default function initProject() {
         return;
       }
     
-      showAlert(`Project ${projectKey} refreshed`);
+      showAlert(`Project ${projectKey} refreshed`, false);
     });
   });
+
 
   // Form submission handling
   forms.forEach((elem) => {
@@ -204,7 +205,7 @@ export default function initProject() {
       return;
     } else {
       project.remove();
-      showAlert(`Project ${projectKey} deleted`);
+      showAlert(`Project ${id} deleted`, false);
       dialog.id = "";
     }
   });
@@ -244,7 +245,7 @@ export default function initProject() {
     if (e.target.classList.contains("project")) {
       e.target.classList.remove("dragging");
       updateKeys();
-      showAlert(`Project key updated successfully`);
+      showAlert(`Project key updated successfully`, false);
     }
   });
 
@@ -273,7 +274,7 @@ export default function initProject() {
       project[key] = value;
 
       if (key == "git-link" && !isGitHubLink(value)) {
-        showAlert("Please enter a valid GitHub link.");
+        showAlert("Please enter a valid GitHub link.", success);
         return;
       }
 

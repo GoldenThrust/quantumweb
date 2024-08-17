@@ -69,8 +69,7 @@ app.use((req, res, next) => {
   next();
 });
 
-
-export const upload = multer({ dest: "views/img/uploads/" });
+const upload = multer({ dest: "views/img/uploads/" });
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));

@@ -1,4 +1,4 @@
-const attachment = document.getElementById("attachment");
+const attachment = document.getElementById("files");
 const attachmentInfo = document.getElementById("attachment-info");
 const request = indexedDB.open("quantumServiceDB", 1);
 

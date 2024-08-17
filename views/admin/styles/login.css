@@ -4,6 +4,10 @@ main {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+a {
+  text-decoration: none !important;;
+}
+
 main,
 form {
   display: flex;
@@ -15,6 +19,8 @@ form {
 
 main img {
   width: 30%;
+  aspect-ratio: 1;
+  object-fit: cover;
   border-radius: 50px 50px 0;
 }
 form {

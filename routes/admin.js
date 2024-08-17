@@ -6,7 +6,7 @@ import isAuthenticated from "../middlewares/validateAdmin.js";
 const admin = new Router();
 
 admin.get('/login', (req, res) => {
-      res.render('admin/login', { errors: '', layout: "admin/layouts/dashboard", })
+      res.render('admin/login', { errors: '', layout: "admin/layouts/general", })
 })
 
 admin.post("/login", validate(loginValidator), adminController.login);
