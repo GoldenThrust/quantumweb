@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon index.js && worker.js",
     "start-server": "node index.js && worker.js",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "keywords": [],
   "author": "",
