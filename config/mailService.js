@@ -112,7 +112,7 @@ class MailService {
     const mailOptions = {
       from: `Quantum Web <${process.env.MAIL_USERNAME}>`,
       to: email,
-      subject: "Your Message Has Been Received",
+      subject: "Apologies for the Inconvenience – Kindly Resend Your Message",
       html: data,
     };
 
@@ -159,10 +159,10 @@ class MailService {
 
     await this.transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        this.sendReceiveMessage(email, hostname)
+        this.sendMessageNotReceivedNotification(email, hostname);
         console.error("Error sending email: ", error);
       } else {
-        this.sendMessageNotReceivedNotification(email, hostname)
+        this.sendReceiveMessage(email, hostname);
         console.log("Email sent: ", info.response);
       }
 
