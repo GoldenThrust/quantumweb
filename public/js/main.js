@@ -80,7 +80,7 @@ mailChirp.addEventListener("submit", async (e) => {
 
   if (resp.ok) {
     const text = await resp.text();
-    showAlert(text);
+    showAlert(text, false);
   } else {
     showAlert("Failed to send message. Please try again later.");
   }

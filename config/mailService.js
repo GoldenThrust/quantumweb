@@ -64,7 +64,7 @@ class MailService {
     <p>Thank you for reaching out to us. We have received your message and will respond as soon as possible.</p>
     <p>
       For a faster response, you can contact us directly on WhatsApp using the following link: 
-      <a href="https://wa.me/message/66RFWQWFNLLHP!" target="_blank" style="color: #00aaff;">+2347084076657</a>.
+      <a href="https://wa.me/+2347084076657?text=Hi%21%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0ACan%20you%20please%20assist%20me%3F" target="_blank" style="color: #00aaff;">+2347084076657</a>.
     </p>
     <p>Best regards,</p>
     <p>The Quantum Team</p>
@@ -100,7 +100,7 @@ class MailService {
     <p>Thank you for reaching out to us. We apologize for the inconvenience, but it seems your message did not reach us. Please resend your message.</p>
     <p>
       For a faster response, you can contact us directly on WhatsApp using the following link: 
-      <a href="https://wa.me/message/66RFWQWFNLLHP!" target="_blank" style="color: #00aaff;">+2347084076657</a>.
+      <a href="https://wa.me/+2347084076657?text=Hi%21%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0ACan%20you%20please%20assist%20me%3F" target="_blank" style="color: #00aaff;">+2347084076657</a>.
     </p>
     <p>Best regards,</p>
     <p>The Quantum Team</p>

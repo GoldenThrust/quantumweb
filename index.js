@@ -73,7 +73,7 @@ const upload = multer({ dest: "views/img/uploads/" });
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "views")));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
 app.use(constructFullURL)
 
@@ -99,7 +99,7 @@ app.get("/", async (req, res) => {
 
 app.get('/shop', async (req, res) => {
   res.render("comingsoon", {
-    layout: 'layouts/general'
+    layout: 'layouts/empty'
   });
 })
 

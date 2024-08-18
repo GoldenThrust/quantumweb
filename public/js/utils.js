@@ -65,18 +65,20 @@ export function getDragAfterElement(container, y) {
 
 
 export function showAlert(text, error=true) {
-    foregroundCtx.fillStyle = 'rgb(0,0,0, 0.5)';
-    foregroundCtx.fillRect(innerWidth * 0.2, innerHeight * 0.2, innerWidth * 0.6, innerHeight * 0.6)
+    const textMetric = foregroundCtx.measureText(text);
+    console.log(textMetric.width * 2);
+    foregroundCtx.fillStyle = 'rgb(0,0,0, 0.8)';
+    foregroundCtx.fillRect(innerWidth * 0.05, innerHeight * 0.4, innerWidth * 0.9, innerHeight * 0.2)
     foregroundCtx.fillStyle = error ? 'red' : 'springgreen';
-    foregroundCtx.font = "bold 16px Monospace";
+    foregroundCtx.font = "bold 20px Monospace";
     const type = error ? 'error' : 'success';
     foregroundCtx.fillText(type, innerWidth/2, innerHeight/2 - 20);
     foregroundCtx.fillStyle = error ? 'brown' : 'white';
-    foregroundCtx.font = "bold 20px serif";
+    foregroundCtx.font = "bold 2vw serif";
     foregroundCtx.fillText(text, innerWidth/2, innerHeight/2 + 20);
     setTimeout(()=>{
       foregroundCtx.clearRect(0, 0, innerWidth, innerHeight);
-    }, 1000)
+    }, textMetric.width < 100 ? textMetric.width * 20 : textMetric.width * 10)
 }
 
 // Function to validate if a link is a Github URL

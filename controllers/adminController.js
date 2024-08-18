@@ -1,7 +1,7 @@
 import Admin from "../models/admin.js";
 import User from "../models/user.js";
 import { compare, hash } from "bcrypt";
-import { toolsTechImage } from "../views/js/constant.js";
+import { toolsTechImage } from "../public/js/constant.js";
 import Project from "../models/project.js";
 import { tokens } from "../index.js";
 import mailService from "../config/mailService.js";

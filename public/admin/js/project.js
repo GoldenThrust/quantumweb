@@ -274,7 +274,7 @@ export default function initProject() {
       project[key] = value;
 
       if (key == "git-link" && !isGitHubLink(value)) {
-        showAlert("Please enter a valid GitHub link.", success);
+        showAlert("Please enter a valid GitHub link.");
         return;
       }
 

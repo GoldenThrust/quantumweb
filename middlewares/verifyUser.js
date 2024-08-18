@@ -30,7 +30,7 @@ class VerifyUser {
 
             ipInfo(ip, IPVIF, async (err, cLoc) => {
                 if (err) {
-                    return res.status(err.code).send(err.message);
+                    return next(err.message);
                 }
 
                 if (!cLoc.bogon) {
