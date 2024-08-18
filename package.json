@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js && worker.js",
-    "start-server": "node index.js && worker.js",
+    "start": "node index.js && worker.js",
+    "start-server": "nodemon index.js && worker.js",
     "test": "jest --passWithNoTests"
   },
   "keywords": [],
