@@ -85,7 +85,7 @@ app.use(verifyUser.verifyIp);
 app.use(repos);
 app.get("/", async (req, res) => {
   const projects = await fetchProjectData();
-  const blogs = await fetchBlogPost();
+  const blogs = await fetchBlogPost() || new Array();
 
   res.render("index", {
     hostname: req.get('host'),

@@ -830,22 +830,29 @@ overrides;
         border-radius: 10px;
       }
 
-      .IntroServices a {
-        display: block;
+      #request-service {
+        display: flex;
+        place-content: center;
+        place-items: center;
+        margin: 50px auto 0;
+        width: 50%;
         height: 50px;
+        font: italic small-caps bold expanded  20px monospace;
+        border: 2px solid white;
         cursor: pointer;
         animation: servicebtn 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite
           alternate-reverse;
+          transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
       @keyframes servicebtn {
         0% {
           border-radius: 10px 0;
-          color: red;
+          color: maroon;
         }
         50% {
           border-radius: 10px 50px;
-          color: indigo;
+          color: pink;
         }
         100% {
           border-radius: 0 30px;
@@ -853,10 +860,13 @@ overrides;
         }
       }
 
-      #services .IntroServices:hover {
-        animation-play-state: paused;
-        box-shadow: 0 0 15px 2px var(--secondary);
+      #request-service:hover {
+        box-shadow: 0 0 15px 2px var(--background);
+        border-color: #000;
         border-radius: 0;
+        background-color: var(--background);
+        text-shadow: 0 0 5px white;
+        animation-play-state: paused;
       }
 
       @media screen and (min-width: 768px) {

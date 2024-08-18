@@ -144,10 +144,12 @@ class MailService {
           <li>Service Required: <span style="color: white;">${serviceRequired}</span></li>
           <li>Project Description: <p style="color: white;">${projectDescription}</p></li>
           <li>Payment Type: <span style="color: white;">${paymentType}</span></li>
-          <li>Budget Range: <span style="color: white;">${fromPrice} to ${toPrice}</span></li>
+          <li>Budget Range: <span style="color: white;">$${fromPrice} to $${toPrice}</span></li>
         </ul>
       </div>
     </body>`
+
+
 
     const mailOptions = {
       from: `Quantum Web Application <${process.env.MAIL_USERNAME}>`,
@@ -157,7 +159,7 @@ class MailService {
       attachments: attachments
     };
 
-    await this.transporter.sendMail(mailOptions, (error, info) => {
+    await this.transporter.sendMail(mailOptions, async (error, info) => {
       if (error) {
         this.sendMessageNotReceivedNotification(email, hostname);
         console.error("Error sending email: ", error);
@@ -166,7 +168,7 @@ class MailService {
         console.log("Email sent: ", info.response);
       }
 
-      filePath.forEach(path => {
+      await filePath.forEach(path => {
         fs.unlinkSync(path);
       })
     });

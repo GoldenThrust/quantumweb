@@ -46,6 +46,7 @@ fromPrice.addEventListener('input', (e) => {
     toPrice.setAttribute('min', Number(fromPrice.value));
 })
 
+
 nextButton.addEventListener('click', (e) => {
     let error = false;
     sections[currentSection].querySelectorAll("label>*").forEach((elem) => {
@@ -63,20 +64,16 @@ nextButton.addEventListener('click', (e) => {
             sections[currentSection].attributeStyleMap.set("left", CSS.percent(-100));
             sections[currentSection + 1].attributeStyleMap.set("left", CSS.percent(0));
             currentSection++;
+            localStorage.setItem('servicesForm', JSON.stringify(formStore));
+        } else {
+            localStorage.removeItem('servicesForm');
         }
-
+        
         if (currentSection === sections.length - 1) {
             nextButton.textContent = 'Submit';
         }
-
-        localStorage.setItem('servicesForm', JSON.stringify(formStore));
     }
 });
-
-nextButton.addEventListener('submit', () => {
-    if (forms)
-    localStorage.removeItem('servicesForm');
-})
 
 backButton.addEventListener('click', (e) => {
     if (currentSection > 0) {

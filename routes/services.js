@@ -35,6 +35,7 @@ service.post('/submit_form', upload.array('files', 10), async (req, res) => {
             path: path.join(__rootDir, file.path),
         }
     })
+    const ip = req.ip
 
 
     await serviceRequestQueue.add({ name, email, phone, projectName, serviceRequired, projectDescription, paymentType, fromPrice, toPrice, attachments, hostname: req.get('host'), filePath });
