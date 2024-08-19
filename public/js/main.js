@@ -52,10 +52,15 @@ setInterval(() => {
 }, delay);
 
 menu.addEventListener("click", (e) => {
-  if (menuOpen)
+  if (menuOpen) {
     NavBar.attributeStyleMap.set("left", CSS.percent(-100));
-  else
+    menu.src = "./img/menu.svg";
+  }
+  else {
     NavBar.attributeStyleMap.set("left", CSS.percent(0));
+    menu.src = "./img/menucnc.svg";
+  }
+
   menuOpen = !menuOpen;
 })
 

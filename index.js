@@ -21,8 +21,8 @@ import cookieParser from "cookie-parser";
 import verifyUser from "./middlewares/verifyUser.js";
 import service from "./routes/services.js";
 import constructFullURL from "./middlewares/middlewares.js";
-// import { hash } from "bcrypt";
-// import Admin from "./models/admin.js";
+import { Server } from "socket.io";
+import websocket from "./config/websocket.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -37,13 +37,13 @@ const limiter = rateLimit({
 const app = express();
 const server = createServer(app);
 
+export const io = new Server(server);
 
 app.set("trust proxy", 3)
 
 app.use(cors());
 
 // app.use(limiter);
-
 app.use(cookieParser());
 
 export const tokens = new csrf();
@@ -142,6 +142,8 @@ app.use("/service", service);
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"));
 });
+
+websocket.getConnection(io);
 
 server.listen(PORT, () => {
   if (process.env.DEV === "true") {

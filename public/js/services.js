@@ -50,7 +50,7 @@ fromPrice.addEventListener('input', (e) => {
 nextButton.addEventListener('click', (e) => {
     let error = false;
     sections[currentSection].querySelectorAll("label>*").forEach((elem) => {
-        if (elem.value !== undefined && !elem.value) {
+        if (elem.value !== undefined && !elem.value && elem.name !== 'phone-number') {
             elem.style.border = "1px solid red";
             error = true;
         } else {
