@@ -172,14 +172,14 @@ class ProjectController {
       const data = await fetchProject(url);
 
       const hasVideo = await this._findVideo(project.preview);
-
+      
       const result = await Project.findByIdAndUpdate(
         id,
         {
           description: data.description,
           homepage: data.homepageUrl,
           private: data.isPrivate,
-          stargazers: data.stargazers,
+          stars: data.stargazers,
           hasvideo: hasVideo
         },
         { new: true }
