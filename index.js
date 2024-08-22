@@ -151,21 +151,20 @@ app.use((req, res) => {
 });
 
 
-
 server.listen(PORT, () => {
   if (process.env.DEV === "true") {
     console.log("Running on Development");
   }
 
+  
   redis.run().catch(console.dir);
   mongodb.run().catch(console.dir);
-
-
+  
   const io = new Server(server, {
     adapter: createAdapter(redis.client, redis.subClient)
   });
 
-  // websocket.getConnection(io);
+  websocket.getConnection(io);
 
   console.log(`Server is running on http://localhost:${PORT}`);
 });

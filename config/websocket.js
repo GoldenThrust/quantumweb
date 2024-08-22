@@ -28,11 +28,11 @@ class WebSocket {
                 });
             });
 
-            setTimeout(() => {
-                if (!this.socket) {
-                    reject(new Error("WebSocket connection failed"));
-                }
-            }, 5000);
+            // setTimeout(() => {
+            //     if (!this.socket) {
+            //         reject(new Error("WebSocket connection failed"));
+            //     }
+            // }, 5000);
         });
 
         return this.connectionPromise;

@@ -10,6 +10,7 @@ const service = new Router();
 service.get('/request', (req, res) => {
     res.render("services-request", {
         layout: 'layouts/general',
+        customJS: ['services.bundle.js'],
         pageTitle: 'Request Service',
         hostname: req.get('host'),
         url: req.fulUrl,

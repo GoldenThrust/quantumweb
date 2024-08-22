@@ -1096,7 +1096,7 @@ overrides;
 
     @media screen and (max-width: 918px) {
       #certificates .certificates div {
-        width: clamp(400px, 98%, 800px);
+        width: 100%;
       }
     }
 
@@ -1293,32 +1293,51 @@ overrides;
       #48dbfb,
       #1dd1a1,
       #ff6b6b
-    );
+    ) no-repeat;
     background-size: 400% 400%;
-    animation: gradient 10s infinite ease-in-out;
-    box-shadow: 0px 8px 15px #ff6b6b, #feca57, #48dbfb, #1dd1a1, #ff6b6b;
-    transition: transform 0.3s ease;
+    animation: gradient 10s infinite alternate-reverse ease-in-out;
+    box-shadow: 0px 8px 15px #ff6b6b;
+    border-radius: 40% 1vw;
+    margin-bottom: 20px;
+    transition: transform 1s ease;
   }
 
   .gradient-button:hover {
+    background: conic-gradient(
+      from 180deg at center,
+      #68417285,
+      #ff6b6b
+    );
+    box-shadow: 0px 8px 15px #ff6b6b;
     transform: scale(1.1);
+  }
+
+  @media screen and (max-width: 768px) {
+  .gradient-button {
+    width: 100%;
+  }
   }
 
   @keyframes gradient {
     0% {
-      background-position: 0% 0%;
+      background-position: 30% 30%;
+      box-shadow: 2px 4px 8px #ff6b6b2e;
     }
     25% {
       background-position: 50% 50%;
+      box-shadow: 2px 4px 7px #feca5721;
     }
     50% {
-      background-position: 100% 100%;
+      box-shadow: -8px 0px 9px #48dbfb3b;
+      background-position: 80% 80%;
     }
     75% {
+      box-shadow: 4px -6px 15px #1dd1a121;
       background-position: 50% 50%;
     }
     100% {
-      background-position: 0% 0%;
+      box-shadow: 2px 3px 10px #ff6b6b21;
+      background-position: 30% 80%;
     }
   }
 }
