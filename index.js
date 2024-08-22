@@ -9,7 +9,7 @@ import mongodb, { redis } from "./config/db.js";
 import admin from "./routes/admin.js";
 import session from "express-session";
 import RedisStore from "connect-redis";
-import { fetchBlogPost, fetchProjectData } from "./utils/fetchData.js";
+import { fetchBlogPosts, fetchProjectData } from "./utils/fetchData.js";
 import { DEV } from "./utils/constant.js";
 import { mailQueue } from "./worker.js";
 import multer from "multer";
@@ -23,6 +23,7 @@ import service from "./routes/services.js";
 import constructFullURL from "./middlewares/middlewares.js";
 import { Server } from "socket.io";
 import websocket from "./config/websocket.js";
+import { createAdapter } from "@socket.io/redis-streams-adapter";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -36,8 +37,6 @@ const limiter = rateLimit({
 
 const app = express();
 const server = createServer(app);
-
-export const io = new Server(server);
 
 app.set("trust proxy", 3)
 
@@ -63,7 +62,7 @@ app.use((req, res, next) => {
   if (!req.session.csrfSecret) {
     req.session.csrfSecret = tokens.secretSync();
   }
-  
+
   const token = tokens.create(req.session.csrfSecret);
   res.locals.csrfToken = token;
   next();
@@ -85,13 +84,13 @@ app.use(verifyUser.verifyIp);
 app.use(repos);
 app.get("/", async (req, res) => {
   const projects = await fetchProjectData();
-  const blogs = await fetchBlogPost() || new Array();
+  const blogs = await fetchBlogPosts() || [];
 
   res.render("index", {
     hostname: req.get('host'),
     url: req.fulUrl,
     pageTitle: "",
-    blogs,
+    blogs: blogs.posts,
     projects,
     csrfToken: res.locals.csrfToken
   });
@@ -124,13 +123,21 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
   if (tokens.verify(secret, token)) {
     const ip = req.ip;
     const userAgent = req.headers['user-agent'];
-    await mailQueue.add({ name, email, message, host, ip, password, userAgent });
+    mailQueue.add({ name, email, message, host, ip, password, userAgent });
     res.status(200).send("Chirpmail sent successfully.");
   } else {
     console.log(`Invalid csrf from ${req.ip}`)
     res.status(403).send(`Invalid CSRF token`);
   }
 });
+
+app.get('/getblog/:key([0-9]+)', async (req, res) => {
+  const { key } = req.params;
+
+  const blogPost = await fetchBlogPosts(key) || new Array();
+
+  res.json(blogPost);
+})
 
 app.set('layout', 'layouts/layout');
 
@@ -143,7 +150,7 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"));
 });
 
-websocket.getConnection(io);
+
 
 server.listen(PORT, () => {
   if (process.env.DEV === "true") {
@@ -152,6 +159,13 @@ server.listen(PORT, () => {
 
   redis.run().catch(console.dir);
   mongodb.run().catch(console.dir);
+
+
+  const io = new Server(server, {
+    adapter: createAdapter(redis.client, redis.subClient)
+  });
+
+  // websocket.getConnection(io);
 
   console.log(`Server is running on http://localhost:${PORT}`);
 });

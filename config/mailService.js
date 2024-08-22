@@ -1,6 +1,7 @@
 import { createTransport } from "nodemailer";
 import { DEV } from "../utils/constant.js";
 import fs from "fs"
+import websocket from "./websocket.js";
 
 class MailService {
   transporter;
@@ -45,8 +46,10 @@ class MailService {
 
     this.transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        websocket.mailNotification(false)
         console.error("Error sending email: ", error);
       } else {
+        websocket.mailNotification()
         console.log("Email sent: ", info.response);
       }
     });
@@ -161,9 +164,11 @@ class MailService {
 
     await this.transporter.sendMail(mailOptions, async (error, info) => {
       if (error) {
+        websocket.mailNotification(false)
         this.sendMessageNotReceivedNotification(email, hostname);
         console.error("Error sending email: ", error);
       } else {
+        websocket.mailNotification()
         this.sendReceiveMessage(email, hostname);
         console.log("Email sent: ", info.response);
       }

@@ -13,6 +13,7 @@
         >
       </div>
       <div class="specialization">Full-Stack Web Developer</div>
+      <a href="/service/request" class="gradient-button">Hire Me</a>
     </div>
     <div class="introbrief">
       Welcome to Adeniji Olajide's Portfolio! Hello and welcome! I'm thrilled to
@@ -161,10 +162,16 @@
               </p>
             </li>
           </ul>
-          Ready to take your business to the next level? Click the button below
-          to request a service and let's get started on your project today.
           <br />
-          <a href="/service/request" id="request-service">Request Services</a>
+          <p style="text-align: justify; color: azure">
+            I am here to help you achieve your goals and create a successful
+            business. Let's collaborate and develop a solution that meets your
+            needs. Ready to take your business to the next level? Click the
+            button below to request a service and let's get started on your
+            project today.
+          </p>
+          <br />
+          <a href="/service/request" id="request-service">Hire Me</a>
         </div>
       </div>
       <div class="segment">
@@ -181,7 +188,7 @@
             appealing but also highly functional, providing a seamless user
             experience across all devices.
           </p>
-          <a href="/services/web"
+          <a href="/service/request"
             ><img src="img/order.svg" alt="get service" class="placeorder"
           /></a>
         </div>
@@ -198,7 +205,7 @@
             enhance the functionality of your systems and provide a smooth
             experience for developers and end-users alike.
           </p>
-          <a href="/services/api"
+          <a href="/service/request"
             ><img src="img/order.svg" alt="get service" class="placeorder"
           /></a>
         </div>
@@ -217,7 +224,7 @@
             deliver apps that provide a seamless user experience and meet your
             business objectives.
           </p>
-          <a href="/services/mobile"
+          <a href="/service/request"
             ><img src="img/order.svg" alt="get service" class="placeorder"
           /></a>
         </div>
@@ -232,7 +239,7 @@
             on best practices, automated testing, and continuous integration
             helps deliver reliable, maintainable, and bug-free software.
           </p>
-          <a href=".services/qa"
+          <a href="/service/request"
             ><img src="img/order.svg" alt="get service" class="placeorder"
           /></a>
         </div>
@@ -246,7 +253,7 @@
     <div class="blogs">
       <% blogs.forEach((blog)=> { %>
       <div class="blog">
-        <a href="http://" target="_blank" rel="noopener noreferrer"
+        <a href="<%= blog.url %>" target="_blank" rel="noopener"
           ><img src="<%= blog.cover_image %>" alt="Personal Portfolio"
         /></a>
         <div class="title"><%= blog.title %></div>
@@ -254,27 +261,27 @@
         <a
           href="<%= blog.url %>"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="blogIcon"
           ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
         /></a>
       </div>
       <% }) %>
     </div>
-    <span class="show-more">Show More</span>
-    <div class="join">
+    <span class="show-more" data-key="1">Show More</span>
+    <div class="join" style="margin-top: 20px">
       <span class="left">
         <a
-          href="http://"
+          href="https://dev.to/goldenthrust"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="blogIcon"
           ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
         /></a>
         <a
-          href="http://"
+          href="https://dev.to/goldenthrust"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="blogIcon"
           ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
         /></a>
@@ -282,16 +289,16 @@
       <span class="text">Join Me</span>
       <span class="right">
         <a
-          href="http://"
+          href="https://medium.com/@adenijiolajid01"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="blogIcon"
           ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
         /></a>
         <a
-          href="http://"
+          href="https://medium.com/@adenijiolajid01"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           class="blogIcon"
           ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
         /></a>
@@ -355,44 +362,26 @@
         <input type="submit" value="Send" />
       </form>
       <div class="simplecontact">
-        <a href="mailto:adenijiolajid01@gmail.com">adenijiolajid01@gmail.com</a>
-        <a href="tel:+23407084076657">+2347084076657</a>
+        <a href="mailto:adenijiolajid01@gmail.com" class="blogIcon"><img src="img/email.svg" alt="Email Logo" class="icon"
+          /></a>
+        <a href="https://wa.me/+2347084076657?text=Hi%21%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0ACan%20you%20please%20assist%20me%3F" class="blogIcon"><img src="img/whatsapp.svg" alt="Email Logo" class="icon"
+          /></a>
       </div>
       <div class="icons">
-        <a
-          href="http://"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="blogIcon"
-          ><img src="img/blog/instagram.svg" alt="Instagram Logo" class="icon"
+        <a href="https://dev.to/goldenthrust" target="_blank" rel="noopener" class="blogIcon"
+          ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
         /></a>
-        <a
-          href="http://"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="blogIcon"
-          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
+        <a href="http://github.com/GoldenThrust" target="_blank" rel="noopener" class="blogIcon"
+          ><img src="img/github.svg" alt="Github Logo" class="icon"
         /></a>
-        <a
-          href="http://"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="blogIcon"
-          ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
+        <a href="https://www.linkedin.com/in/olajide-adeniji-0286a32a2/" target="_blank" rel="noopener" class="blogIcon"
+          ><img src="img/linkedin.svg" alt="LinkedIn Logo" class="icon"
         /></a>
-        <a
-          href="http://"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="blogIcon"
-          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
+        <a href="https://x.com/Goldenthrust3" target="_blank" rel="noopener" class="blogIcon"
+          ><img src="img/x.svg" alt="X/Twiter Logo" class="icon"
         /></a>
-        <a
-          href="http://"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="blogIcon"
-          ><img src="img/blog/instagram.svg" alt="Instgram Logo" class="icon"
+        <a href="https://medium.com/@adenijiolajid01" target="_blank" rel="noopener" class="blogIcon"
+          ><img src="img/blog/medium.svg" alt="Meduim Logo" class="icon"
         /></a>
       </div>
     </div>

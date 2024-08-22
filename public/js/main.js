@@ -1,4 +1,4 @@
-import { showAlert } from "./utils.js";
+import createElement, { fetchJson, showAlert } from "./utils.js";
 import { AnimateSlide } from "./canvas.js";
 import InitWork from "./work.js";
 const NavBar = document.querySelector(".headerNav");
@@ -6,8 +6,9 @@ const alert = document.getElementById("alert");
 const menu = document.getElementById("menu");
 const bgcover = document.getElementById("bgcover");
 const workpopup = document.getElementById("workpopup");
-
 const mailChirp = document.getElementById("mailchirp");
+const blogShowMore = document.querySelector("#blog  .show-more");
+const blogs = document.querySelector("#blog .blogs");
 
 requestAnimationFrame(AnimateSlide);
 
@@ -83,12 +84,7 @@ mailChirp.addEventListener("submit", async (e) => {
     body: form,
   });
 
-  if (resp.ok) {
-    const text = await resp.text();
-    showAlert(text, false);
-  } else {
-    showAlert("Failed to send message. Please try again later.");
-  }
+  const text = await resp.text();
 });
 
 bgcover.addEventListener("click", () => {
@@ -100,6 +96,27 @@ alert.addEventListener("transitionend", () => {
   setTimeout(() => {
     alert.attributeStyleMap.set("right", CSS.percent(-100));
   }, 2000);
+});
+
+blogShowMore.addEventListener("click", async () => {
+  blogShowMore.dataset.key = Number(blogShowMore.dataset.key) + 1;
+  console.log(blogShowMore.dataset.key);
+  const data = await fetchJson(`/getblog/${blogShowMore.dataset.key}`);
+  
+  data.posts.forEach((post) => {
+    const blog = createElement(blogs, 'div', { class: 'blog' });
+    const a = createElement(blog, 'a', { href: post.url, target: "_blank", rel: "noopener" });
+    const img = createElement(a, 'img', { src: post.cover_image, alt: post.title });
+    const title = createElement(blog, 'div', { class: 'title' }, post.title);
+    const summary = createElement(blog, 'div', { class: 'summary' }, post.description);
+    const icon = createElement(blog, 'a', { href: post.url, target: "_blank", rel: "noopener", class: 'blogIcon' });
+    createElement(icon, 'img', { src: "img/blog/devto.svg", alt: "Devnode Logo", class: "icon" })
+  })
+
+
+  if (!data.hasMore) {
+    blogShowMore.style.display = "none";
+  }
 });
 
 InitWork()

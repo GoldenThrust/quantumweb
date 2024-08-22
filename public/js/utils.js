@@ -93,3 +93,12 @@ export function isFigmaLink(url) {
   const figmaRegex = /^(https?:\/\/)?(www\.)?figma\.com\/design\/[A-Za-z0-9]+\/[A-Za-z0-9_-]+(\?.*)?$/;
   return figmaRegex.test(url);
 }
+
+
+export async function fetchJson(url) {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Network response was not ok");
+  }
+  return response.json();
+}

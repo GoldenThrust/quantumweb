@@ -52,7 +52,7 @@ export async function fetchProject(gitUrl) {
   }
 }
 
-export async function fetchProjectData(page=1) {
+export async function fetchProjectData(page = 1) {
   const limit = 6;
   try {
     const project = await Project.find().sort({ key: 1 })
@@ -74,12 +74,22 @@ export async function fetchProjectData(page=1) {
   }
 }
 
-export async function fetchBlogPost(page=1) {
+
+export async function fetchBlogPosts(page = 1) {
   try {
-    let data = JSON.parse(await redis.get('blog'));
-  
-    if (!data || data.length < 1) {
-      const response = await axios.get(`https://dev.to/api/articles/me/published?page=${page}&per_page=6`, {
+    const postsPerPage = 6;
+    const startPosition = (page - 1) * postsPerPage;
+    
+    let cachedBlogs = await redis.get('blog');
+    let blogPosts = cachedBlogs ? JSON.parse(cachedBlogs).slice(startPosition, startPosition + postsPerPage + 1) : null;
+
+    let result = {
+      posts: blogPosts,
+      hasMore: false,
+    };
+
+    if (!result.posts || result.posts.length === 0) {
+      const response = await axios.get(`https://dev.to/api/articles/me/published?page=${page}&per_page=7`, {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/vnd.forem.api-v1+json",
@@ -87,13 +97,28 @@ export async function fetchBlogPost(page=1) {
         },
       });
 
-      await redis.set('blog', JSON.stringify(response.data), 64000);
+      const fetchedPosts = response.data;
 
-      data = response.data;
+      if (cachedBlogs) {
+        let updatedBlogs = JSON.parse(cachedBlogs);
+        updatedBlogs.push(...fetchedPosts);
+        await redis.set('blog', JSON.stringify(updatedBlogs), 64000);
+      } else {
+        await redis.set('blog', JSON.stringify(fetchedPosts), 64000);
+      }
+
+      result.posts = fetchedPosts;
     }
 
-    return data;
+    if (result.posts.length > postsPerPage) {
+      result.posts = result.posts.slice(0, postsPerPage);
+      result.hasMore = true;
+    }
+
+    return result;
+
   } catch (error) {
-    console.error(error);
+    console.error('Error fetching blog posts:', error);
+    throw new Error('Failed to fetch blog posts.');
   }
 }

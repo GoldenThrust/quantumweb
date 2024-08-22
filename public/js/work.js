@@ -1,19 +1,11 @@
 import { toolsTechImage } from "./constant.js";
-import createElement, { checkChildOverflow } from "./utils.js";
+import createElement, { checkChildOverflow, fetchJson } from "./utils.js";
 
 const workShowMore = document.querySelector("#works>.show-more");
 let works = document.querySelector("#works>.works");
 const worksContainer = document.querySelector("#workpopup");
 const bgcover = document.getElementById("bgcover");
 const workpopup = document.getElementById("workpopup");
-
-async function fetchJson(url) {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-}
 
 function createProjectElement(container, tag, attributes = {}, textContent = '') {
   const element = createElement(container, tag, attributes, textContent);
@@ -101,6 +93,7 @@ export async function getWork(id) {
         const url = createProjectElement(link, "a", {
           href: data.url,
           target: "_blank",
+          rel: "noopener"
         });
         createProjectElement(url, "img", { src: "./img/github.png" });
       }
