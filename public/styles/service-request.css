@@ -74,7 +74,7 @@ body {
   }
   
   form input:invalid {
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
   
   #services-page :is(input, select, textarea), label[for="files"] > span {
