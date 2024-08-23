@@ -4,25 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
-    <main style="background-color: #181616; color: #9d9d9d; padding: 10px">
-      <a href="beyondimagination.tech"
-        ><img src="${imageUrl}" width="200px" alt="Quantum Logo"
-      /></a>
-      <div style="font-style: italic; margin: 20px 0">
-        <h1>Project Details</h1>
-        <ul>
-          <li>Name: <span style="color: white;">${name}</span></li>
-          <li>Email: <span style="color: white;">${email}</span></li>
-          <li>Phone Number: <span style="color: white;">${phone}</span></li>
-          <li>Project Name: <span style="color: white;">${projectName}</span></li>
-          <li>Service Required: <span style="color: white;">${serviceRequired}</span></li>
-          <li>Project Description: <p style="color: white;">${projectDescription}</p></li>
-          <li>Payment Type: <span style="color: white;">${serviceRequired}</span></li>
-          <li>Budget Range: <span style="color: white;">${fromPrice} to ${toPrice}</span></li>
-        </ul>
-      </div>
+    <main>
+      <canvas></canvas>
     </main>
+
+    <script>
+      const canvas = document.querySelector("canvas");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.imageSmoothingQuality = "high";
+      console.log(ctx);
+
+
+
+      ctx.globalCompositeOperation = "destination-over";
+      donut(2, "yellow");
+      donut(5, "red");
+      ctx.globalCompositeOperation = "source-over";
+    </script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-import createElement, { fetchJson, showAlert } from "./utils.js";
+import createElement, { fetchJson, showAlert, Test } from "./utils.js";
 import { AnimateSlide } from "./canvas.js";
 import InitWork from "./work.js";
 const NavBar = document.querySelector(".headerNav");
@@ -70,11 +70,12 @@ mailChirp.addEventListener("submit", async (e) => {
   const form = new FormData(e.target);
 
   for (const child of e.target.children) {
-    if (child.value === "" && child.id !== "password") {
+    if (child.value === "" && child.id !== "password" && child.name !== "_csrf") {
+      console.log(child);
       showAlert("All fields must be filled out");
       return;
     }
-    if (child.type != "submit") {
+    if (child.type != "submit" && child.id !== "password" && child.name !== "_csrf") {
       child.value = "";
     }
   }
@@ -102,7 +103,7 @@ blogShowMore.addEventListener("click", async () => {
   blogShowMore.dataset.key = Number(blogShowMore.dataset.key) + 1;
   console.log(blogShowMore.dataset.key);
   const data = await fetchJson(`/getblog/${blogShowMore.dataset.key}`);
-  
+
   data.posts.forEach((post) => {
     const blog = createElement(blogs, 'div', { class: 'blog' });
     const a = createElement(blog, 'a', { href: post.url, target: "_blank", rel: "noopener" });

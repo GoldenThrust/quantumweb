@@ -1,3 +1,5 @@
+import { uploadFile } from "./utils.js";
+
 const attachment = document.getElementById("files");
 const attachmentInfo = document.getElementById("attachment-info");
 const request = indexedDB.open("quantumServiceDB", 1);
@@ -48,6 +50,7 @@ fromPrice.addEventListener('input', (e) => {
 
 
 nextButton.addEventListener('click', (e) => {
+    e.preventDefault();
     let error = false;
     sections[currentSection].querySelectorAll("label>*").forEach((elem) => {
         if (elem.value !== undefined && !elem.value && elem.name !== 'phone-number') {
@@ -60,15 +63,15 @@ nextButton.addEventListener('click', (e) => {
 
     if (!error) {
         if (currentSection < sections.length - 1) {
-            e.preventDefault();
             sections[currentSection].attributeStyleMap.set("left", CSS.percent(-100));
             sections[currentSection + 1].attributeStyleMap.set("left", CSS.percent(0));
             currentSection++;
             localStorage.setItem('servicesForm', JSON.stringify(formStore));
         } else {
+            uploadFile(e.target.closest('form'));
             localStorage.removeItem('servicesForm');
         }
-        
+
         if (currentSection === sections.length - 1) {
             nextButton.textContent = 'Submit';
         }

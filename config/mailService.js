@@ -44,6 +44,7 @@ class MailService {
       html: data,
     };
 
+
     this.transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         websocket.mailNotification(false)
