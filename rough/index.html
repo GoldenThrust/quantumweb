@@ -27,12 +27,47 @@
       ctx.imageSmoothingQuality = "high";
       console.log(ctx);
 
+      function donut(width, color, radian = Math.PI * 2) {
+        ctx.save();
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(
+          window.innerWidth / 2,
+          window.innerHeight / 2,
+          107 + width,
+          0,
+          radian
+        );
+        ctx.fill();
 
+        ctx.globalCompositeOperation = "destination-out";
 
-      ctx.globalCompositeOperation = "destination-over";
-      donut(2, "yellow");
-      donut(5, "red");
-      ctx.globalCompositeOperation = "source-over";
+        ctx.beginPath();
+        ctx.arc(
+          window.innerWidth / 2,
+          window.innerHeight / 2,
+          100 - width,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+        ctx.restore();
+      }
+
+      let radianP = 0;
+
+      setInterval(() => {
+        if (radianP < 1) {
+          radianP += 0.01;
+          console.log(radianP);
+        }
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        ctx.globalCompositeOperation = "destination-over";
+        donut(2, "yellow", radianP * (Math.PI * 2));
+        donut(5, "red");
+        ctx.globalCompositeOperation = "source-over";
+      }, 200);
     </script>
   </body>
 </html>

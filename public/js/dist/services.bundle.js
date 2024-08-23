@@ -148,6 +148,7 @@ function _uploadFile() {
           xhr.upload.addEventListener("progress", function (e) {
             if (e.lengthComputable) {
               var radianComplete = e.loaded / e.total * (Math.PI * 2);
+              ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
               foregroundCtx.globalCompositeOperation = "destination-over";
               donut(2, "springgreen", radianComplete);
               donut(5, "#ad00ff");
@@ -174,7 +175,7 @@ function donut(width, color) {
   foregroundCtx.save();
   foregroundCtx.fillStyle = color;
   foregroundCtx.beginPath();
-  foregroundCtx.arc(window.innerWidth / 2, window.innerHeight / 2, 107 + width, 0, Math.PI * 2);
+  foregroundCtx.arc(window.innerWidth / 2, window.innerHeight / 2, 107 + width, 0, radian);
   foregroundCtx.fill();
   foregroundCtx.globalCompositeOperation = "destination-out";
   foregroundCtx.beginPath();

@@ -110,6 +110,7 @@ export async function uploadFile(form) {
   xhr.upload.addEventListener("progress", (e) => {
     if (e.lengthComputable) {
       const radianComplete = (e.loaded / e.total) * (Math.PI * 2);
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       foregroundCtx.globalCompositeOperation = "destination-over";
       donut(2, "springgreen", radianComplete);
@@ -137,7 +138,7 @@ function donut(width, color, radian = Math.PI * 2) {
     window.innerHeight / 2,
     107 + width,
     0,
-    Math.PI * 2
+    radian
   );
   foregroundCtx.fill();
 
