@@ -150,16 +150,19 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"));
 });
 
+app.use((req, res) => {
+  res.status(500).sendFile(path.join(__dirname, "500.html"));
+});
 
 server.listen(PORT, () => {
   if (process.env.DEV === "true") {
     console.log("Running on Development");
   }
 
-  
+
   redis.run().catch(console.dir);
   mongodb.run().catch(console.dir);
-  
+
   const io = new Server(server, {
     adapter: createAdapter(redis.client, redis.subClient)
   });

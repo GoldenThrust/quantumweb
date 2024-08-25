@@ -8,11 +8,13 @@ import { isLocalhost } from "../utils/utils.js";
 class VerifyUser {
     async verifyIp(req, res, next) {
         let ip = req.ip;
+
         if (ip.startsWith('::ffff:')) {
             ip = ip.replace('::ffff:', '').split(":")[0];
         } else {
-            ip = ip.split(":")[0]
+            ip = req.ip.startsWith(":") ? ip : ip.split(":")[0]
         }
+
 
         const user = await User.findOne({ ip_address: ip });
 

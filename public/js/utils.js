@@ -1,6 +1,10 @@
 const foregroundCanvas = document.getElementById('foreground')
 foregroundCanvas.width = window.innerWidth;
 foregroundCanvas.height = window.innerHeight;
+window.addEventListener('resize', (e) => {
+  foregroundCanvas.width = window.innerWidth;
+  foregroundCanvas.height = window.innerHeight;
+})
 
 const foregroundCtx = foregroundCanvas.getContext('2d');
 
@@ -110,7 +114,7 @@ export async function uploadFile(form) {
   xhr.upload.addEventListener("progress", (e) => {
     if (e.lengthComputable) {
       const radianComplete = (e.loaded / e.total) * (Math.PI * 2);
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      foregroundCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       foregroundCtx.globalCompositeOperation = "destination-over";
       donut(2, "springgreen", radianComplete);
