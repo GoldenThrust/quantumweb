@@ -30,7 +30,7 @@ class MailService {
 
     const data = `
       <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
-         <a href="beyondimagination.tech"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
+         <a href="https://www.quantumweb.me"><img src="${imageUrl}" width="200px" alt="Quantum Logo"></a>
          <div style="margin: 20px 0; color: brown; font-weight: bolder; font-variant: small-caps;">Name: ${name} - Email: ${email} - IP Address: ${ip}</div>
          <div style="font-style: italic;">
          ${message}</div>
@@ -61,7 +61,7 @@ class MailService {
 
     const data = `
 <body style="background-color: #181616; color: #9d9d9d; padding: 10px; font-family: Arial, sans-serif;">
-  <a href="https://beyondimagination.tech" target="_blank" style="text-decoration: none;">
+  <a href="https://www.quantumweb.me" target="_blank" style="text-decoration: none;">
     <img src="${imageUrl}" width="200px" alt="Quantum Logo" style="display: block; margin: 0 auto;">
   </a>
   <div style="font-style: italic; margin: 20px 0;">
@@ -97,7 +97,7 @@ class MailService {
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
     const data = `<body style="background-color: #181616; color: #9d9d9d; padding: 10px; font-family: Arial, sans-serif;">
-  <a href="https://beyondimagination.tech" target="_blank" style="text-decoration: none;">
+  <a href="https://www.quantumweb.me" target="_blank" style="text-decoration: none;">
     <img src="${imageUrl}" width="200px" alt="Quantum Logo" style="display: block; margin: 0 auto;">
   </a>
   <div style="font-style: italic; margin: 20px 0;">
@@ -135,7 +135,7 @@ class MailService {
     const imageUrl = `https://${hostname}/img/quantumlogo.png`;
 
     const message = `<body style="background-color: #181616; color: #9d9d9d; padding: 10px">
-      <a href="beyondimagination.tech"
+      <a href="https://www.quantumweb.me"
         ><img src="${imageUrl}" width="200px" alt="Quantum Logo"
       /></a>
       <div style="font-style: italic; margin: 20px 0">
@@ -184,7 +184,7 @@ class MailService {
   AdminLogin(ip, userAgent) {
     const data = `
     <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
-      <h1 href="beyondimagination.tech">QuantumWeb</h1>
+      <h1 href="https://www.quantumweb.me">QuantumWeb</h1>
       <pre style="font-style: italic; margin: 20px 0">
       We wanted to inform you that a login to the admin page of QuantumWeb was detected.
 
@@ -215,7 +215,7 @@ class MailService {
   AdminLoginAttempt(ip, userAgent) {
     const data = `
     <body style="background-color: #181616; color: #9d9d9d; padding: 10px;">
-      <h1 href="beyondimagination.tech">QuantumWeb</h1>
+      <h1 href="https://www.quantumweb.me">QuantumWeb</h1>
       <pre style="font-style: italic; margin: 20px 0">
       We wanted to inform you that an attempt to log in to the admin page of QuantumWeb was detected.
 
@@ -246,7 +246,7 @@ class MailService {
   sendError(error) {
     const data = `
     <body style="background-color: red; color: white; padding: 10px;">
-      <a href="beyondimagination.tech">Quantum Web | Error Message</a>
+      <a href="https://www.quantumweb.me">Quantum Web | Error Message</a>
       <div style="font-style: italic; margin: 20px 0">${error}</div>
     </body>`;
 
