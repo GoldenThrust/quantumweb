@@ -2,7 +2,6 @@ import express from "express";
 import { createServer } from "http";
 import path from "path";
 import { fileURLToPath } from "url";
-import repos from "./routes/repos.js";
 import cors from "cors";
 import "dotenv/config";
 import mongodb, { redis } from "./config/db.js";
@@ -81,10 +80,9 @@ app.use(express.json());
 
 app.use(verifyUser.verifyIp);
 
-app.use(repos);
 app.get("/", async (req, res) => {
   const projects = await fetchProjectData();
-  const blogs = await fetchBlogPosts() || [];
+  const blogs = await fetchBlogPosts();
 
   res.render("index", {
     hostname: req.get('host'),
@@ -130,7 +128,6 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
     res.status(403).send(`Invalid CSRF token`);
   }
 });
-
 app.get('/getblog/:key([0-9]+)', async (req, res) => {
   const { key } = req.params;
 

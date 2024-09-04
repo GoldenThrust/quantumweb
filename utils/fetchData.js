@@ -119,6 +119,10 @@ export async function fetchBlogPosts(page = 1) {
 
   } catch (error) {
     console.error('Error fetching blog posts:', error);
-    throw new Error('Failed to fetch blog posts.');
+    return {
+      posts: [],
+      hasMore: false,
+    };
+    // throw new Error('Failed to fetch blog posts.');
   }
 }
