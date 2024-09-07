@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema({
     country: String,
     city: String,
     loc: String,
+    accepted: String,
     visit: {
         type: Number,
         default: 1,

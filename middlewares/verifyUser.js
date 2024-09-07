@@ -12,7 +12,7 @@ class VerifyUser {
         if (ip.startsWith('::ffff:')) {
             ip = ip.replace('::ffff:', '').split(":")[0];
         } else {
-            ip = req.ip.startsWith(":") ? ip : ip.split(":")[0]
+            ip = ip.split(":")[0]
         }
 
 

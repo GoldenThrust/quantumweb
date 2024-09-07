@@ -1,7 +1,6 @@
 import express from "express";
 import { createServer } from "http";
 import path from "path";
-import { fileURLToPath } from "url";
 import cors from "cors";
 import "dotenv/config";
 import mongodb, { redis } from "./config/db.js";
@@ -23,6 +22,7 @@ import constructFullURL from "./middlewares/middlewares.js";
 import { Server } from "socket.io";
 import websocket from "./config/websocket.js";
 import { createAdapter } from "@socket.io/redis-streams-adapter";
+import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
