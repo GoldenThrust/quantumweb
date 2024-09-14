@@ -17,7 +17,6 @@ class WebSocket {
                 socket.join(clientIp);
 
                 this.room = io.to(clientIp);
-                console.log("Successfully connected to WebSocket!");
 
                 socket.emit("connected");
 
@@ -27,12 +26,6 @@ class WebSocket {
                     console.log(`Client with IP ${await this.getSocketIp()} disconnected`);
                 });
             });
-
-            // setTimeout(() => {
-            //     if (!this.socket) {
-            //         reject(new Error("WebSocket connection failed"));
-            //     }
-            // }, 5000);
         });
 
         return this.connectionPromise;

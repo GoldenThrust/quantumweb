@@ -14,7 +14,7 @@ class ProjectController {
 
   async _findVideo(videoPath) {
     return await new Promise((resolve, reject) => {
-      const fullPath = path.join(__rootDir, `/views/portfoliovideo/${videoPath}.mp4`);
+      const fullPath = path.join(__rootDir, `/public/portfoliovideo/${videoPath}.mp4`);
       (fullPath);
       fs.access(fullPath, fs.constants.F_OK, (err) => {
         if (err) {
@@ -172,6 +172,7 @@ class ProjectController {
       const data = await fetchProject(url);
 
       const hasVideo = await this._findVideo(project.preview);
+      console.log(hasVideo);
       
       const result = await Project.findByIdAndUpdate(
         id,
