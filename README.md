@@ -1,6 +1,5 @@
 ﻿# Personal Portfolio
-
-Welcome to my personal portfolio repository! This repository showcases my projects, skills, and experiences in web development and other areas. Below, you'll find details about the various sections and how to navigate through my work.
+QuantumWeb is my personal portfolio website, where I showcase a diverse range of projects, skills, and experiences in web development and various other fields. Through this platform, I highlight my journey, demonstrating my expertise, creativity, and passion for continuous learning and innovation.
 
 ## Table of Contents
 - [Personal Portfolio](#personal-portfolio)
