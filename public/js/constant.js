@@ -33,5 +33,6 @@ export const toolsTechImage = {
     ubuntu: "ubuntu.svg",
     ejs: "ejs.svg",
     puppet: "puppet.svg",
-    ruby: "ruby.svg"
+    ruby: "ruby.svg",
+    tailwind: "tailwind.svg",
 }
