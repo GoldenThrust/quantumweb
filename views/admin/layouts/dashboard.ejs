@@ -21,6 +21,9 @@
       <input type="search" name="search" id="search" placeholder="Search" >
     </header>
     <main>
+      <div id="visit-services">
+        <%- visitService %>
+      </div>
       <div id="alert"></div>
       <aside>
         <a href="/admin/dashboard/projects" <% if (path === "projects") { %>  class="<%= 'active' %>"" <%  } %> ><img src="../../img/projects.png" alt="Projects link" ></a>

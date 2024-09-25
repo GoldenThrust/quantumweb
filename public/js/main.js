@@ -101,7 +101,6 @@ alert.addEventListener("transitionend", () => {
 
 blogShowMore.addEventListener("click", async () => {
   blogShowMore.dataset.key = Number(blogShowMore.dataset.key) + 1;
-  console.log(blogShowMore.dataset.key);
   const data = await fetchJson(`/getblog/${blogShowMore.dataset.key}`);
 
   data.posts.forEach((post) => {
@@ -121,6 +120,15 @@ blogShowMore.addEventListener("click", async () => {
 });
 
 InitWork()
+
+const images = document.querySelectorAll('img');
+  
+images.forEach((img) => {
+  img.onerror = function() {
+    this.onerror = null;
+    this.src = './img/quantums.png';
+  };
+});
 
 
 console.log(`            :*#*:                

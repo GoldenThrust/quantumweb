@@ -2,12 +2,17 @@ import { Router } from "express";
 import { __rootDir, upload } from "../utils/constant.js";
 import { serviceRequestQueue } from "../worker.js";
 import path from "path";
+import { redis } from "../config/db.js";
 
 
 const service = new Router();
 
 
-service.get('/request', (req, res) => {
+service.get('/request', async (req, res) => {
+    let visits = await redis.get('visit-service') || 0;
+    visits = Number(visits) + 1;
+    await redis.set('visit-service', `${visits}`, 604800);
+
     res.render("services-request", {
         layout: 'layouts/general',
         customJS: ['services.bundle.js'],

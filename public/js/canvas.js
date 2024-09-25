@@ -65,7 +65,7 @@ class ToolAndTechnologySlide {
     toolctx.drawImage(img, this.imgx, this.ny, this.imagesize, this.imagesize);
   }
 
-  update(img) {
+  update() {
     imageElem.forEach((img, idx) => {
       if (idx < 6) {
         this.nx = idx * (this.x - getpercent(toolW, 5)) + getpercent(toolW, 5);

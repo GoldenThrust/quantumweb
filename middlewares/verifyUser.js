@@ -8,17 +8,20 @@ import { isLocalhost } from "../utils/utils.js";
 class VerifyUser {
     async verifyIp(req, res, next) {
         let ip = req.ip;
-
-        if (ip.startsWith('::ffff:')) {
-            ip = ip.replace('::ffff:', '').split(":")[0];
-        } else {
-            ip = ip.split(":")[0]
+        if (isLocalhost(ip)) {
+            return next();
         }
 
 
+        if (ip.startsWith('::ffff:')) {
+            ip = ip.replace('::ffff:', '').split(":")[0] || '';
+        } else {
+            ip = ip.split(":")[0] || ''
+        }
+
         const user = await User.findOne({ ip_address: ip });
 
-        if (user) {            
+        if (user) {
             if (user.blocked) {
                 return res.redirect('https://google.com/');
             }
@@ -28,17 +31,13 @@ class VerifyUser {
 
             await user.save();
         } else {
-            if (isLocalhost(ip)) {
-                return next();
-            }
-
             ipInfo(ip, IPVIF, async (err, cLoc) => {
                 if (err) {
-                    return next(err.message);
+                    console.error(err.message)
+                    return next();
                 }
 
                 if (!cLoc.bogon) {
-                    console.log('saving user');
                     const { city, country, loc } = cLoc;
 
                     const user = new User({ ip_address: ip, city, country, loc });

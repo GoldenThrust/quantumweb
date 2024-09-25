@@ -74,14 +74,14 @@ export async function fetchProjectData(page = 1) {
   }
 }
 
-
-export async function fetchBlogPosts(page = 1) {
+export async function fetchBlogPosts(page = 1, showmore=false) {
   try {
     const postsPerPage = 6;
     const startPosition = (page - 1) * postsPerPage;
-    
+
     let cachedBlogs = await redis.get('blog');
-    let blogPosts = cachedBlogs ? JSON.parse(cachedBlogs).slice(startPosition, startPosition + postsPerPage + 1) : null;
+    let blogPosts = cachedBlogs ? JSON.parse(cachedBlogs).slice(startPosition, startPosition + postsPerPage) : null;
+    // let blogPosts = cachedBlogs ? JSON.parse(cachedBlogs).slice(startPosition, startPosition + postsPerPage) : null;
 
     let result = {
       posts: blogPosts,
@@ -89,7 +89,7 @@ export async function fetchBlogPosts(page = 1) {
     };
 
     if (!result.posts || result.posts.length === 0) {
-      const response = await axios.get(`https://dev.to/api/articles/me/published?page=${page}&per_page=7`, {
+      const response = await axios.get(`https://dev.to/api/articles/me/published?page=${page}&per_page=${postsPerPage + 1}`, {
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/vnd.forem.api-v1+json",
@@ -99,20 +99,21 @@ export async function fetchBlogPosts(page = 1) {
 
       const fetchedPosts = response.data;
 
-      if (cachedBlogs) {
-        let updatedBlogs = JSON.parse(cachedBlogs);
-        updatedBlogs.push(...fetchedPosts);
-        await redis.set('blog', JSON.stringify(updatedBlogs), 64000);
-      } else {
-        await redis.set('blog', JSON.stringify(fetchedPosts), 64000);
+      if (fetchedPosts.length > 0) {
+        if (cachedBlogs) {
+          let updatedBlogs = JSON.parse(cachedBlogs);
+          updatedBlogs.push(...fetchedPosts);
+          if (showmore) await redis.set('blog', JSON.stringify(updatedBlogs), 604800); else await redis.set('blog', JSON.stringify(fetchedPosts), 604800);
+        } else {
+          await redis.set('blog', JSON.stringify(fetchedPosts), 604800);
+        }
+
+        result.posts = fetchedPosts;
+        result.posts = fetchedPosts.slice(0, postsPerPage);
+        result.hasMore = fetchedPosts.length > postsPerPage;
       }
-
-      result.posts = fetchedPosts;
-    }
-
-    if (result.posts.length > postsPerPage) {
-      result.posts = result.posts.slice(0, postsPerPage);
-      result.hasMore = true;
+    } else {
+      result.hasMore = blogPosts.length === postsPerPage;
     }
 
     return result;
@@ -123,6 +124,5 @@ export async function fetchBlogPosts(page = 1) {
       posts: [],
       hasMore: false,
     };
-    // throw new Error('Failed to fetch blog posts.');
   }
 }

@@ -3,9 +3,19 @@ import createElement, { checkChildOverflow, fetchJson } from "./utils.js";
 
 const workShowMore = document.querySelector("#works>.show-more");
 let works = document.querySelector("#works>.works");
+let worksOverlay = document.querySelector("#works>.works>.overlay");
 const worksContainer = document.querySelector("#workpopup");
 const bgcover = document.getElementById("bgcover");
 const workpopup = document.getElementById("workpopup");
+
+
+function displayWork(e) {
+    if (e.target.className === "overlay") {
+      getWork(e.target.dataset.key);
+      bgcover.style.display = "block";
+      workpopup.style.display = "block";
+    }
+}
 
 function createProjectElement(container, tag, attributes = {}, textContent = '') {
   const element = createElement(container, tag, attributes, textContent);
@@ -110,7 +120,7 @@ export default function InitWork() {
     const project = data.project;
 
     project.forEach(data => {
-      const span = createProjectElement(works, "span", { "data-key": data.key });
+      const span = createProjectElement(works, "span", { class: "highlight" });
       if (data.hasvideo) {
         createProjectElement(span, "video", {
           src: `portfoliovideo/${data.preview}.mp4`,
@@ -124,6 +134,9 @@ export default function InitWork() {
         });
       }
       createProjectElement(span, "div", { class: "workname" }, data.name);
+
+      const overlay = createElement(span, "div", { class: "overlay", "data-key": data.key })
+      createElement(overlay, "p", {}, "Click to View Project")
     });
 
     if (!data.hasMore) {
@@ -131,11 +144,5 @@ export default function InitWork() {
     }
   });
 
-  works.addEventListener("click", (e) => {
-    if (["VIDEO", "IMG"].includes(e.target.nodeName)) {
-      getWork(e.target.closest("span").dataset.key);
-      bgcover.style.display = "block";
-      workpopup.style.display = "block";
-    }
-  });
+  works.addEventListener("click", displayWork);
 }

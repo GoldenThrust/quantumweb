@@ -7,10 +7,8 @@
     <div class="introPiece">
       <div class="greeting">Hello World!</div>
       <div class="nameIntro">
-        I am &nbsp;<span class="myName"
-          >Adeniji &natur; <br />
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Olajide</span
-        >
+        I am &nbsp;<span class="myName">Adeniji &natur; <br />
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Olajide</span>
       </div>
       <div class="specialization">Full-Stack Web Developer</div>
       <a href="/service/request" class="gradient-button">Hire Me</a>
@@ -47,24 +45,25 @@
         <div>
           <div class="pro">Software Engineeer</div>
           <div class="frame">
-            <img
-              src="img/softwareabout.png"
-              alt="software engineering"
-              class="frameBackground"
-            />
-            As a Software Engineer at ALX, I thrived in a dynamic, collaborative environment that encouraged innovation and personal growth. I worked on a wide range of projects, gaining hands-on experience with multiple programming languages, frameworks, and cutting-edge technologies. This role honed my skills in breaking down complex problems, delivering scalable solutions, and ensuring high-quality results, which I now apply to create customized, efficient software solutions for my clients.
+            <img src="img/softwareabout.png" alt="software engineering" class="frameBackground" />
+            As a Software Engineer at ALX, I thrived in a dynamic, collaborative environment that encouraged innovation
+            and personal growth. I worked on a wide range of projects, gaining hands-on experience with multiple
+            programming languages, frameworks, and cutting-edge technologies. This role honed my skills in breaking down
+            complex problems, delivering scalable solutions, and ensuring high-quality results, which I now apply to
+            create customized, efficient software solutions for my clients.
           </div>
         </div>
         <div class="rule"></div>
         <div>
           <div class="pro">Full-Stack Web Developer</div>
           <div class="frame">
-            <img
-              src="img/fullstackabout.png"
-              alt="full stack developer"
-              class="frameBackground"
-            />
-            At New Horizon, I developed expertise as a Full Stack Web Developer. I specialize in creating visually appealing, responsive designs using Pure CSS, Sass, and Bootstrap, and building robust frontend solutions with vanilla JavaScript, Vue.js, or jQuery. On the backend, I mastered schema design, API development, and database management with PHP/Laravel and MySQL. I am skilled in using tools like POSTMAN to streamline workflows and ensure seamless integration, delivering full stack solutions that are tailored to meet clients’ needs.
+            <img src="img/fullstackabout.png" alt="full stack developer" class="frameBackground" />
+            At New Horizon, I developed expertise as a Full Stack Web Developer. I specialize in creating visually
+            appealing, responsive designs using Pure CSS, Sass, and Bootstrap, and building robust frontend solutions
+            with vanilla JavaScript, Vue.js, or jQuery. On the backend, I mastered schema design, API development, and
+            database management with PHP/Laravel and MySQL. I am skilled in using tools like POSTMAN to streamline
+            workflows and ensure seamless integration, delivering full stack solutions that are tailored to meet
+            clients’ needs.
           </div>
         </div>
       </div>
@@ -80,25 +79,26 @@
   <div id="works">
     <h2>WORKS</h2>
     <div class="works">
-      <% projects.project.forEach((project) => { %>
-      <span data-key="<%= project.key %>">
-        <img
-          src="portfolioimage/<%= project.preview %>.jpg"
-          alt="<%= project.name %>"
-          loading="lazy"
-        />
-        <div class="workname"><%= project.name %></div>
-      </span>
-      <% }) %>
+      <% projects.project.forEach((project)=> { %>
+        <span class="highlight">
+          <img src="portfolioimage/<%= project.preview %>.jpg" alt="<%= project.name %>" />
+          <div class="workname">
+            <%= project.name %>
+          </div>
+          <div class="overlay" data-key="<%= project.key %>">
+            <p>Click to View Project</p>
+          </div>
+        </span>
+        <% }) %>
     </div>
     <% if (projects.hasMore) { %>
-    <span class="show-more" data-key="1">Show More</span>
-    <% } %>
+      <span class="show-more" data-key="1">Show More</span>
+      <% } %>
 
-    <!-- workpop up -->
-    <aside id="workpopup">
-      <!-- dynamic data -->
-    </aside>
+        <!-- workpop up -->
+        <aside id="workpopup">
+          <!-- dynamic data -->
+        </aside>
   </div>
 
   <div id="services">
@@ -177,9 +177,7 @@
             appealing but also highly functional, providing a seamless user
             experience across all devices.
           </p>
-          <a href="/service/request"
-            ><img src="img/order.svg" alt="get service" class="placeorder"
-          /></a>
+          <a href="/service/request"><img src="img/order.svg" alt="get service" class="placeorder" /></a>
         </div>
         <div class="service frame">
           <img src="img/Api_development.svg" alt="" class="frameBackground" />
@@ -194,16 +192,10 @@
             enhance the functionality of your systems and provide a smooth
             experience for developers and end-users alike.
           </p>
-          <a href="/service/request"
-            ><img src="img/order.svg" alt="get service" class="placeorder"
-          /></a>
+          <a href="/service/request"><img src="img/order.svg" alt="get service" class="placeorder" /></a>
         </div>
         <div class="service frame">
-          <img
-            src="img/webgraphics.svg"
-            alt="Web Graphics"
-            class="frameBackground"
-          />
+          <img src="img/webgraphics.svg" alt="Web Graphics" class="frameBackground" />
           <h3>Mobile Application Development</h3>
           <p>
             Bring your business to the fingertips of your customers with our
@@ -213,9 +205,7 @@
             deliver apps that provide a seamless user experience and meet your
             business objectives.
           </p>
-          <a href="/service/request"
-            ><img src="img/order.svg" alt="get service" class="placeorder"
-          /></a>
+          <a href="/service/request"><img src="img/order.svg" alt="get service" class="placeorder" /></a>
         </div>
         <div class="service frame">
           <img src="img/quality_assurance.svg" alt="" class="frameBackground" />
@@ -228,11 +218,93 @@
             on best practices, automated testing, and continuous integration
             helps deliver reliable, maintainable, and bug-free software.
           </p>
-          <a href="/service/request"
-            ><img src="img/order.svg" alt="get service" class="placeorder"
-          /></a>
+          <a href="/service/request"><img src="img/order.svg" alt="get service" class="placeorder" /></a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Gig -->
+  <div id="gigs">
+    <h2>Gigs</h2>
+    <div class="gigs">
+      <a href="https://www.upwork.com/services/product/development-it-backend-developer-express-node-django-python-php-laravel-1835622725781224363"
+        class="highlight" target="_blank" rel="noopener">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1726523662/catalog/1835622725781224363/uv1rlbyffw5spwiav3hg.jpg"
+          alt="Upwork Project: You will get Backend Developer || Express | Node | Django | Python | PHP | Laravel" />
+        <div class="gigname">
+          You will get Backend Developer || Express | Node | Django | Python | PHP | Laravel
+        </div>
+        <div class="overlay">
+          <p>View Gig on Upwork</p>
+        </div>
+      </a>
+
+      <a href="https://www.upwork.com/services/product/development-it-full-stack-development-of-authentication-system-backend-frontend-1835453176013967598"
+        class="highlight" target="_blank" rel="noopener">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1726901137/catalog/1835453176013967598/d6dqbjdgwlyfiv8sd9px.jpg"
+          alt="Upwork Project: You will get Full-Stack Development of Authentication System (Backend & Frontend)" />
+        <div class="gigname">
+          You will get Full-Stack Development of Authentication System (Backend & Frontend)
+        </div>
+        <div class="overlay">
+          <p>View Gig on Upwork</p>
+        </div>
+      </a>
+
+      <a href="https://www.upwork.com/services/product/development-it-api-integration-expert-api-development-api-automation-api-services-1835617392570805403"
+        class="highlight" target="_blank" rel="noopener">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1726521908/catalog/1835617392570805403/w3ip6pkqhrz7krlj4ikg.jpg"
+          alt="Upwork Project: You will get API Integration Expert | API Development | API Automation | API Services" />
+        <div class="gigname">
+          You will get API Integration Expert | API Development | API Automation | API Services
+        </div>
+        <div class="overlay">
+          <p>View Gig on Upwork</p>
+        </div>
+      </a>
+
+      <a href="https://www.upwork.com/services/product/development-it-design-to-html-xd-to-html-figma-to-html-psd-to-html-design-to-website-1835615696967072741"
+        class="highlight" target="_blank" rel="noopener">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1726528258/catalog/1835615696967072741/vnudsnrhdxjseecrbzdn.jpg"
+          alt="Upwork Project: You will get Design to HTML, XD to HTML, Figma to HTML, PSD to HTML, Design to Website" />
+        <div class="gigname">
+          You will get Design to HTML, XD to HTML, Figma to HTML, PSD to HTML, Design to Website
+        </div>
+        <div class="overlay">
+          <p>View Gig on Upwork</p>
+        </div>
+      </a>
+
+      <a href="https://www.upwork.com/services/product/development-it-a-fully-customizable-and-dynamic-portfolio-website-javascript-php-1838727510244320901?ref=fl_profile"
+        class="highlight" target="_blank" rel="noopener">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1727222670/catalog/1838727510244320901/gajeztrmiloekw89jqvk.jpg"
+          alt="Upwork Project: You will get A Fully Customizable and Dynamic Portfolio Website || JavaScript | PHP" />
+        <div class="gigname">
+          You will get A Fully Customizable and Dynamic Portfolio Website || JavaScript | PHP
+        </div>
+        <div class="overlay">
+          <p>View Gig on Upwork</p>
+        </div>
+      </a>
+  
+      <a href="https://www.upwork.com/services/product/development-it-full-stack-web-development-mern-node-js-react-js-mongodb-python-1835197193726244447"
+        class="highlight" target="_blank" rel="noopener">
+        <img
+          src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1726437447/catalog/1835197193726244447/jefzhmosbmj9jtvhen5t.jpg"
+          alt="Upwork Project: You will get Full-Stack Web Development || MERN | Node JS | React JS | MongoDB | Python" />
+        <div class="gigname">
+          You will get Full-Stack Web Development || MERN | Node JS | React JS | MongoDB | Python
+        </div>
+        <div class="overlay">
+          <p>View Gig on Upwork</p>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -241,56 +313,34 @@
 
     <div class="blogs">
       <% blogs.forEach((blog)=> { %>
-      <div class="blog">
-        <a href="<%= blog.url %>" target="_blank" rel="noopener"
-          ><img src="<%= blog.cover_image %>" alt="Personal Portfolio"
-        /></a>
-        <div class="title"><%= blog.title %></div>
-        <div class="summary"><%= blog.description %></div>
-        <a
-          href="<%= blog.url %>"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
-        /></a>
-      </div>
-      <% }) %>
+        <div class="blog">
+          <a href="<%= blog.url %>" target="_blank" rel="noopener"><img src="<%= blog.cover_image %>"
+              alt="Personal Portfolio" /></a>
+          <div class="title">
+            <%= blog.title %>
+          </div>
+          <div class="summary">
+            <%= blog.description %>
+          </div>
+          <a href="<%= blog.url %>" target="_blank" rel="noopener" class="blogIcon"><img src="img/blog/devto.svg"
+              alt="Devnode Logo" class="icon" /></a>
+        </div>
+        <% }) %>
     </div>
     <span class="show-more" data-key="1">Show More</span>
     <div class="join" style="margin-top: 20px">
       <span class="left">
-        <a
-          href="https://dev.to/goldenthrust"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-        /></a>
-        <a
-          href="https://dev.to/goldenthrust"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/devnode.svg" alt="Devnode Logo" class="icon"
-        /></a>
+        <a href="https://dev.to/goldenthrust" target="_blank" rel="noopener" class="blogIcon"><img
+            src="img/blog/devnode.svg" alt="Devnode Logo" class="icon" /></a>
+        <a href="https://dev.to/goldenthrust" target="_blank" rel="noopener" class="blogIcon"><img
+            src="img/blog/devnode.svg" alt="Devnode Logo" class="icon" /></a>
       </span>
       <span class="text">Join Me</span>
       <span class="right">
-        <a
-          href="https://medium.com/@adenijiolajid01"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
-        /></a>
-        <a
-          href="https://medium.com/@adenijiolajid01"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/medium.svg" alt="Medium Logo" class="icon"
-        /></a>
+        <a href="https://medium.com/@adenijiolajid01" target="_blank" rel="noopener" class="blogIcon"><img
+            src="img/blog/medium.svg" alt="Medium Logo" class="icon" /></a>
+        <a href="https://medium.com/@adenijiolajid01" target="_blank" rel="noopener" class="blogIcon"><img
+            src="img/blog/medium.svg" alt="Medium Logo" class="icon" /></a>
       </span>
     </div>
   </div>
@@ -300,22 +350,13 @@
 
     <div class="certificates">
       <div title="ALX software engineering certificate">
-        <img
-          src="./img/certificate/alx.png"
-          alt="ALX software engineering certificate"
-        />
+        <img src="./img/certificate/alx.png" alt="ALX software engineering certificate" />
       </div>
       <div title="New Horizon Full Stack Web Developer Certificate">
-        <img
-          src="./img/certificate/newhorizon.png"
-          alt="New Horizon Full Stack Web Developer Certificate"
-        />
+        <img src="./img/certificate/newhorizon.png" alt="New Horizon Full Stack Web Developer Certificate" />
       </div>
       <div title="JP Morgan Software Engineering Job Simulation Certificate">
-        <img
-          src="./img/certificate/jpmorgan.png"
-          alt="JP Morgan Software Engineering Job Simulation Certificate"
-        />
+        <img src="./img/certificate/jpmorgan.png" alt="JP Morgan Software Engineering Job Simulation Certificate" />
       </div>
     </div>
   </div>
@@ -327,79 +368,28 @@
       <form action="/chirpmail" id="mailchirp" method="post">
         <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <input type="text" name="password" id="password" class="d-none" />
-        <textarea
-          name="message"
-          id="message"
-          cols="30"
-          rows="20"
-          placeholder="Enter your message here..."
-        ></textarea>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Enter your full name"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="Enter your email address"
-          required
-        />
+        <textarea name="message" id="message" cols="30" rows="20" placeholder="Enter your message here..."></textarea>
+        <input type="text" name="name" id="name" placeholder="Enter your full name" required />
+        <input type="email" name="email" id="email" placeholder="Enter your email address" required />
         <input type="submit" value="Send" />
       </form>
       <div class="simplecontact">
-        <a
-          href="mailto:adenijiolajid01@gmail.com"
-          target="_blank"
-          class="blogIcon"
-          ><img src="img/email.svg" alt="Email Logo" class="icon"
-        /></a>
-        <a
-          href="https://wa.me/+2347084076657?text=Hi%21%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0ACan%20you%20please%20assist%20me%3F"
-          class="blogIcon"
-          target="_blank"
-          ><img src="img/whatsapp.svg" alt="Email Logo" class="icon"
-        /></a>
+        <a href="mailto:adenijiolajid01@gmail.com" target="_blank" class="blogIcon"><img src="img/email.svg"
+            alt="Email Logo" class="icon" /></a>
+        <a href="https://wa.me/+2347084076657?text=Hi%21%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0ACan%20you%20please%20assist%20me%3F"
+          class="blogIcon" target="_blank"><img src="img/whatsapp.svg" alt="Email Logo" class="icon" /></a>
       </div>
       <div class="icons">
-        <a
-          href="https://dev.to/goldenthrust"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/devto.svg" alt="Devnode Logo" class="icon"
-        /></a>
-        <a
-          href="http://github.com/GoldenThrust"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/github.svg" alt="Github Logo" class="icon"
-        /></a>
-        <a
-          href="https://www.linkedin.com/in/olajide-adeniji-0286a32a2/"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/linkedin.svg" alt="LinkedIn Logo" class="icon"
-        /></a>
-        <a
-          href="https://x.com/Goldenthrust3"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/x.svg" alt="X/Twiter Logo" class="icon"
-        /></a>
-        <a
-          href="https://medium.com/@adenijiolajid01"
-          target="_blank"
-          rel="noopener"
-          class="blogIcon"
-          ><img src="img/blog/medium.svg" alt="Meduim Logo" class="icon"
-        /></a>
+        <a href="https://dev.to/goldenthrust" target="_blank" rel="noopener" class="blogIcon"><img
+            src="img/blog/devto.svg" alt="My Devnode Page" class="icon" /></a>
+        <a href="http://github.com/GoldenThrust" target="_blank" rel="noopener" class="blogIcon"><img
+            src="img/github.svg" alt="My Github Page" class="icon" /></a>
+        <a href="https://www.upwork.com/freelancers/~0192d08ba16faf02fc" target="_blank" rel="noopener"
+          class="blogIcon"><img src="img/upwork.svg" alt="My Upwork Page" class="icon" /></a>
+        <a href="https://www.linkedin.com/in/olajide-adeniji-0286a32a2/" target="_blank" rel="noopener"
+          class="blogIcon"><img src="img/linkedin.svg" alt="My LinkedIn Page" class="icon" /></a>
+        <a href="https://x.com/Goldenthrust3" target="_blank" rel="noopener" class="blogIcon"><img src="img/x.svg"
+            alt="My X/Twiter Page" class="icon" /></a>
       </div>
     </div>
   </div>

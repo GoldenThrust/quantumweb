@@ -5,6 +5,7 @@ import { toolsTechImage } from "../public/js/constant.js";
 import Project from "../models/project.js";
 import { tokens } from "../index.js";
 import mailService from "../config/mailService.js";
+import { redis } from "../config/db.js";
 
 class AdminController {
   async login(req, res) {
@@ -16,7 +17,7 @@ class AdminController {
 
     if (username) {
       await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
-      console.log('Red alert: Bot sent message', ip, userAgent);
+      console.log('Red alert: Bot Attempt login', ip, userAgent);
       return res.redirect('https://google.com/');
     }
 
@@ -78,20 +79,46 @@ class AdminController {
     }
   }
 
-  dashboard(req, res) {
-    return res.redirect("/admin/dashboard/users");
+  async dashboard(req, res) {
+    const { path } = req.params;
+    const layout = "admin/layouts/dashboard";
+    const visitService = await redis.get('visit-service') || 0;
+
+    if (path === 'emails') {
+      return res.render("admin/dashboard/emails", {
+        layout,
+        path,
+        visitService
+      });
+    } else if (path === 'users') {
+      return res.render("admin/dashboard/users", {
+        layout,
+        path,
+        visitService
+      });
+    }
+  
+    const projects = await Project.find().sort({ key: 1 });
+
+    return res.render("admin/dashboard/projects", {
+      projects,
+      layout,
+      path,
+      visitService,
+      tools: Object.keys(toolsTechImage)
+    });
   }
 
   dashboardEmails(req, res) {
     return res.render("admin/dashboard/emails", {
-      layout: "admin/layouts/dashboard",
+      layout,
       path: "emails"
     });
   }
 
   dashboardUsers(req, res) {
     return res.render("admin/dashboard/users", {
-      layout: "admin/layouts/dashboard",
+      layout,
       path: "users"
     });
   }
@@ -101,12 +128,13 @@ class AdminController {
 
     return res.render("admin/dashboard/projects", {
       projects,
-      layout: "admin/layouts/dashboard",
+      layout,
       path: "projects",
       tools: Object.keys(toolsTechImage)
     });
   }
 }
+
 const adminController = new AdminController();
 
 export default adminController;

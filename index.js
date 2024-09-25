@@ -131,7 +131,7 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
 app.get('/getblog/:key([0-9]+)', async (req, res) => {
   const { key } = req.params;
 
-  const blogPost = await fetchBlogPosts(key) || new Array();
+  const blogPost = await fetchBlogPosts(key, true) || new Array();
 
   res.json(blogPost);
 })
