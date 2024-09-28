@@ -91,6 +91,11 @@ mailChirp.addEventListener("submit", async (e) => {
 bgcover.addEventListener("click", () => {
   bgcover.style.display = "none";
   workpopup.style.display = "none";
+  const video = workpopup.querySelector('video');
+  if (video) {
+    video.pause();
+    console.log(video)
+  }
 });
 
 alert.addEventListener("transitionend", () => {

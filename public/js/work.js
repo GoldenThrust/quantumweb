@@ -3,7 +3,7 @@ import createElement, { checkChildOverflow, fetchJson } from "./utils.js";
 
 const workShowMore = document.querySelector("#works>.show-more");
 let works = document.querySelector("#works>.works");
-let worksOverlay = document.querySelector("#works>.works>.overlay");
+// let worksOverlay = document.querySelector("#works>.works>.overlay");
 const worksContainer = document.querySelector("#workpopup");
 const bgcover = document.getElementById("bgcover");
 const workpopup = document.getElementById("workpopup");
@@ -16,6 +16,8 @@ function displayWork(e) {
       workpopup.style.display = "block";
     }
 }
+
+
 
 function createProjectElement(container, tag, attributes = {}, textContent = '') {
   const element = createElement(container, tag, attributes, textContent);
