@@ -18,7 +18,7 @@ export default {
         publicPath: '/js/dist/',
     },
     mode: 'production',
-    watch: true,
+    watch: false,
     module: {
         rules: [
             {
