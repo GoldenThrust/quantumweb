@@ -274,6 +274,8 @@ overrides;
 
     .resume.mobile a {
       background: linear-gradient(141deg, #ad5cc2 0%, hwb(295 7% 48%) 100%);
+      font-size: medium;
+      font-family: 'Courier New', Courier, monospace;
     }
 
     .resume a {
@@ -288,6 +290,7 @@ overrides;
       font-family: "Twinkle Star", sans-serif;
       box-shadow: 1px 2px 10px #ff91e717;
       transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-radius: 0 30%;
     }
 
     .resume a:hover {
@@ -1049,6 +1052,8 @@ overrides;
       #contact .contact form textarea {
         resize: none;
         grid-column: 1 / 3;
+        border-radius: 10% 10% 0 0;
+        padding: 20px;
       }
 
       #contact .contact form input {
@@ -1060,7 +1065,7 @@ overrides;
         background-color: #ad00ff;
         grid-column: 1 / 3;
         grid-row: 3;
-        border-radius: 0 0 20px 20px;
+        border-radius: 0 0 20% 20%;
         color: white;
         font-size: 16px;
       }
@@ -1260,15 +1265,15 @@ overrides;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #0000007b;
+    background-color: #000000d4;
     transition: all 2s ease-in-out;
     display: none;
     z-index: 2;
-    background: url("./img/cancel.png") no-repeat top right;
+    /* background: url("./img/cancel.png") no-repeat top right; */
   }
 
   #bgcover:hover {
-    background-color: #d3319508;
+    background-color: #2b1034be;
   }
 
   #alert {
@@ -1414,6 +1419,44 @@ overrides;
     100% {
       box-shadow: 2px 3px 10px #ff6b6b21;
       background-position: 30% 80%;
+    }
+  }
+
+  #loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 5;
+    grid-template-columns: 50px 50px;
+    gap: 20px;
+    place-content: center;
+    place-items: center;
+  }
+
+  #loader span {
+    width: 50px;
+    aspect-ratio: 3/2;
+    background-color: var(--primary);
+    z-index: 1;
+    animation: spin-roll 2s cubic-bezier(1, 0.1, 0.3, 1) infinite
+      alternate-reverse;
+  }
+
+  @keyframes spin-roll {
+    from {
+      transform: translate(calc(8px * var(--p)), calc(8px * var(--p)))
+        rotate(calc(0deg * var(--p)));
+      box-shadow: calc(var(--p) * 1px) calc(var(--p) * 1px) calc(var(--p) * 3px)
+        var(--primary);
+      /* filter: opacity(0.9) blur(2px); */
+    }
+
+    to {
+      /* filter: opacity(0.9); */
+      transform: translate(0px, 0px) rotate(calc(360deg * var(--p)));
     }
   }
 }

@@ -9,12 +9,12 @@ img {
 }
 
 :root {
-  --link: #fd62a3;
+  --primary: #fd62a3;
+  --secondary: #ad00ff;
   --focused-link: #fcfcfc;
   --background: #181616;
   --text-color: #9d9d9d;
 }
-
 ::-webkit-scrollbar {
   width: 2px;
   height: 0;
@@ -162,7 +162,6 @@ aside a:hover {
   border-color: red;
 }
 
-
 footer {
   position: absolute;
   right: 50%;
@@ -216,7 +215,8 @@ main {
   cursor: grabbing;
 }
 
-.project > *, .project-create {
+.project > *,
+.project-create {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -273,7 +273,7 @@ main {
 
 :is(.project-edit, .project-create) > div div span {
   font-size: 10px;
-  background-color: #1F1327;
+  background-color: #1f1327;
   padding: 5px 10px;
   border-radius: 20px;
   height: 20px;
@@ -306,7 +306,7 @@ main {
 
   :is(.project-edit, .project-create) > div div {
     max-width: 30%;
-  } 
+  }
 }
 
 /* Add styles for the drag feedback */

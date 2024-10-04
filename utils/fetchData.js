@@ -81,7 +81,6 @@ export async function fetchBlogPosts(page = 1, showmore=false) {
 
     let cachedBlogs = await redis.get('blog');
     let blogPosts = cachedBlogs ? JSON.parse(cachedBlogs).slice(startPosition, startPosition + postsPerPage) : null;
-    // let blogPosts = cachedBlogs ? JSON.parse(cachedBlogs).slice(startPosition, startPosition + postsPerPage) : null;
 
     let result = {
       posts: blogPosts,
@@ -108,7 +107,6 @@ export async function fetchBlogPosts(page = 1, showmore=false) {
           await redis.set('blog', JSON.stringify(fetchedPosts), 604800);
         }
 
-        result.posts = fetchedPosts;
         result.posts = fetchedPosts.slice(0, postsPerPage);
         result.hasMore = fetchedPosts.length > postsPerPage;
       }

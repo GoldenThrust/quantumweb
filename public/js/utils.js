@@ -114,12 +114,19 @@ export async function uploadFile(form) {
   xhr.upload.addEventListener("progress", (e) => {
     if (e.lengthComputable) {
       const radianComplete = (e.loaded / e.total) * (Math.PI * 2);
+      const percentComplete = (e.loaded / e.total) * 100;
+
+
       foregroundCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
       foregroundCtx.globalCompositeOperation = "destination-over";
+      foregroundCtx.fillStyle = 'springgreen';
       donut(2, "springgreen", radianComplete);
       donut(5, "#ad00ff");
       foregroundCtx.globalCompositeOperation = "source-over";
+
+
+      foregroundCtx.fillText(`${percentComplete}%`, innerWidth / 2, innerHeight / 2 + 20)
 
       if (radianComplete == Math.PI * 2) {
         setTimeout(() => {

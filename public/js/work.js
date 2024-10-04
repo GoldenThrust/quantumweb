@@ -7,14 +7,14 @@ let works = document.querySelector("#works>.works");
 const worksContainer = document.querySelector("#workpopup");
 const bgcover = document.getElementById("bgcover");
 const workpopup = document.getElementById("workpopup");
-
+const loader = document.getElementById("loader");
 
 function displayWork(e) {
-    if (e.target.className === "overlay") {
-      getWork(e.target.dataset.key);
-      bgcover.style.display = "block";
-      workpopup.style.display = "block";
-    }
+  if (e.target.className === "overlay") {
+    getWork(e.target.dataset.key);
+    loader.style.display = 'grid';
+    bgcover.style.display = "block";
+  }
 }
 
 
@@ -50,10 +50,9 @@ function createToolsAndTechnologiesSection(container, tools) {
 }
 
 export async function getWork(id) {
-  worksContainer.innerText = "";
-
   try {
     const data = await fetchJson(`/project/getproject/${id}`);
+    worksContainer.innerText = "";
 
     if (data.hasvideo) {
       const video = createProjectElement(worksContainer, "video", {
@@ -110,9 +109,15 @@ export async function getWork(id) {
         createProjectElement(url, "img", { src: "./img/github.png" });
       }
     }
+
+    bgcover.style.display = "block";
+    workpopup.style.display = "block";
   } catch (error) {
     console.error("There was a problem with the fetch operation:", error);
+    bgcover.style.display = "none";
   }
+
+  loader.style.display = 'none';
 }
 
 export default function InitWork() {

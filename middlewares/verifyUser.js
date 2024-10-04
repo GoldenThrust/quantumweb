@@ -1,7 +1,7 @@
 import mailService from "../config/mailService.js";
 import User from "../models/user.js";
 import ipInfo from "ipinfo";
-import { IPVIF } from "../utils/constant.js";
+import { countryCode, IPVIF } from "../utils/constant.js";
 import { isLocalhost } from "../utils/utils.js";
 
 
@@ -40,13 +40,12 @@ class VerifyUser {
                 if (!cLoc.bogon) {
                     const { city, country, loc } = cLoc;
 
-                    const user = new User({ ip_address: ip, city, country, loc });
+                    const user = new User({ ip_address: ip, city, country: countryCode[country], loc });
 
                     await user.save()
                 }
             })
         }
-
 
         next();
     }

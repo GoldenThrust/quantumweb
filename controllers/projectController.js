@@ -173,7 +173,7 @@ class ProjectController {
 
       const hasVideo = await this._findVideo(project.preview);
       console.log(hasVideo);
-      
+
       const result = await Project.findByIdAndUpdate(
         id,
         {

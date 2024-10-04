@@ -71,7 +71,6 @@ mailChirp.addEventListener("submit", async (e) => {
 
   for (const child of e.target.children) {
     if (child.value === "" && child.id !== "password" && child.name !== "_csrf") {
-      console.log(child);
       showAlert("All fields must be filled out");
       return;
     }
@@ -94,7 +93,6 @@ bgcover.addEventListener("click", () => {
   const video = workpopup.querySelector('video');
   if (video) {
     video.pause();
-    console.log(video)
   }
 });
 

@@ -1,107 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>
-      <%= pageTitle || "Software Engineer | Web Developer | Adeniji Olajide Portfolio" %>
-    </title>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="../img/quantum.png" type="image/png" />
-    <link rel="alternate icon" href="../img/quantums.png" type="image/png" />
-    <link rel="icon" href="../img/quantum.png" type="image/png" />
+<head>
+  <meta charset="UTF-8" />
+  <title>
+    <%= pageTitle || "Software Engineer | Web Developer | Adeniji Olajide Portfolio" %>
+  </title>
 
-    <!-- Viewport -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="../img/quantum.png" type="image/png" />
+  <link rel="alternate icon" href="../img/quantums.png" type="image/png" />
+  <link rel="icon" href="../img/quantum.png" type="image/png" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inspiration&family=Twinkle+Star&display=swap"
-      rel="stylesheet"
-    />
+  <!-- Viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Security Policy -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="script-src 'self' https://cdn.socket.io; object-src 'none';"
-    />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inspiration&family=Twinkle+Star&display=swap"
+    rel="stylesheet" />
 
-    <!-- JavaScript Files -->
-     <% customJS.forEach((path) => { %>
-      <script src="../js/dist/<%= path %>" type="module"></script>
-     <% }) %>
-    <script src="../js/dist/websocket.bundle.js" type="module"></script>
+  <!-- Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.socket.io; object-src 'none';" />
 
-    <!-- CSS Stylesheets -->
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../styles/service-request.css" />
+  <!-- JavaScript Files -->
+  <% customJS.forEach((path)=> { %>
+    <script src="../js/dist/<%= path %>" type="module"></script>
+    <% }) %>
+      <script src="../js/dist/websocket.bundle.js" type="module"></script>
 
-    <!-- Language -->
-    <meta http-equiv="content-language" content="en" />
+      <!-- CSS Stylesheets -->
+      <link rel="stylesheet" href="../style.css" />
+      <link rel="stylesheet" href="../styles/service-request.css" />
 
-    <!-- Author and Publisher -->
-    <meta name="author" content="Adeniji Olajide" />
-    <meta name="publisher" content="Adeniji Olajide" />
-    <meta name="copyright" content="Adeniji Olajide" />
+      <!-- Language -->
+      <meta http-equiv="content-language" content="en" />
 
-    <!-- SEO Keywords -->
-    <meta
-      name="keywords"
-      content="software engineer, web developer, freelance, full stack, backend development, frontend, Python, Node.js, Vue.js, MongoDB, MySQL, Redis, API design"
-    />
+      <!-- Author and Publisher -->
+      <meta name="author" content="Adeniji Olajide" />
+      <meta name="publisher" content="Adeniji Olajide" />
+      <meta name="copyright" content="Adeniji Olajide" />
 
-    <!-- Description -->
-    <meta
-      name="description"
-      content="Adeniji Olajide, Full Stack Software Engineer specializing in web development, backend development, and DevOps. Available for freelance projects. Contact me today!"
-    />
+      <!-- SEO Keywords -->
+      <meta name="keywords"
+        content="software engineer, web developer, freelance, full stack, backend development, frontend, Python, Node.js, Vue.js, MongoDB, MySQL, Redis, API design" />
 
-    <!-- Page Type -->
-    <meta name="page-type" content="portfolio" />
-    <meta name="audience" content="Everyone" />
+      <!-- Description -->
+      <meta name="description"
+        content="Adeniji Olajide, Full Stack Software Engineer specializing in web development, backend development, and DevOps. Available for freelance projects. Contact me today!" />
 
-    <!-- Robots -->
-    <meta
-      name="robots"
-      content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"
-    />
+      <!-- Page Type -->
+      <meta name="page-type" content="portfolio" />
+      <meta name="audience" content="Everyone" />
 
-    <!-- Open Graph (OG) Meta Tags for Social Sharing -->
-    <meta
-      property="og:title"
-      content="Adeniji Olajide | Full Stack Developer Available for Freelance Work"
-    />
-    <meta
-      property="og:description"
-      content="I specialize in web development, backend engineering, and DevOps. Reach out for your next project!"
-    />
-    <meta property="og:image" content="<%= url %>portfolioimage/quantumweb.jpg" />
-    <meta property="og:image:alt" content="Adeniji Olajide Portfolio Picture" />
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Adeniji Olajide Portfolio" />
-    <meta property="og:locale" content="en" />
-    <meta property="og:url" content="<%= url %>" />
-    <meta property="og:logo" content="../img/quantum.png" />
+      <!-- Robots -->
+      <meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large" />
 
-    <!-- Twitter Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="<%= url %>portfolioimage/quantumweb.jpg" />
-    <meta name="twitter:image:alt" content="Adeniji Olajide Portfolio Picture" />
-    <meta
-      name="twitter:description"
-      content="Explore the portfolio of Adeniji Olajide, a Full Stack Software Engineer and Web Developer. Available for freelance projects."
-    />
-    <meta name="twitter:site" content="@Goldenthrust3" />
-    <meta name="twitter:url" content="<%= url %>" />
-    <meta name="twitter:domain" content="<%= hostname %>" />
+      <!-- Open Graph (OG) Meta Tags for Social Sharing -->
+      <meta property="og:title" content="Adeniji Olajide | Full Stack Developer Available for Freelance Work" />
+      <meta property="og:description"
+        content="I specialize in web development, backend engineering, and DevOps. Reach out for your next project!" />
+      <meta property="og:image" content="<%= url %>portfolioimage/quantumweb.jpg" />
+      <meta property="og:image:alt" content="Adeniji Olajide Portfolio Picture" />
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Adeniji Olajide Portfolio" />
+      <meta property="og:locale" content="en" />
+      <meta property="og:url" content="<%= url %>" />
+      <meta property="og:logo" content="../img/quantum.png" />
 
-    <!-- Canonical Link -->
-    <link rel="canonical" href="<%= url %>" />
+      <!-- Twitter Cards -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:image" content="<%= url %>portfolioimage/quantumweb.jpg" />
+      <meta name="twitter:image:alt" content="Adeniji Olajide Portfolio Picture" />
+      <meta name="twitter:description"
+        content="Explore the portfolio of Adeniji Olajide, a Full Stack Software Engineer and Web Developer. Available for freelance projects." />
+      <meta name="twitter:site" content="@Goldenthrust3" />
+      <meta name="twitter:url" content="<%= url %>" />
+      <meta name="twitter:domain" content="<%= hostname %>" />
 
-    <!-- Structured Data (JSON-LD) for SEO -->
-    <script type="application/ld+json">
+      <!-- Canonical Link -->
+      <link rel="canonical" href="<%= url %>" />
+
+      <!-- Structured Data (JSON-LD) for SEO -->
+      <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -115,45 +98,52 @@
         "description": "Adeniji Olajide is a Full Stack Software Engineer specializing in web development, backend systems, and freelance work. Available for new projects and collaborations."
       }
     </script>
-  </head>
+</head>
 
-  <body>
-    <aside>
-      <div id="alert"></div>
-      <div id="bgcover"></div>
-      <canvas id="background"></canvas>
-      <div class="glow"></div>
-      <button class="button" style="display: none"></button>
-    </aside>
-    <header>
-      <div class="portlogo_container">
-        <div class="portlogo">
-          <img src="../img/quantum.png" alt="Quantum logo" />
-        </div>
-        <a href="/" class="portname flex-center">
-          <h1 style="display: none;">Quantum Web</h1>
-          <span class="seg">uantum</span><span class="seg2">Web</span>
-        </a>
+<body>
+  <aside>
+    <div id="alert"></div>
+    <div id="bgcover"></div>
+    <canvas id="background"></canvas>
+    <div class="glow"></div>
+    <button class="button" style="display: none"></button>
+  </aside>
+  <div id="loader">
+    <span style="--p: 1; border-top-left-radius: 20%;"></span>
+    <span style="--p: -6;border-top-right-radius: 20%;"></span>
+    <span style="--p: 6;border-bottom-left-radius: 20%;"></span>
+    <span style="--p: -1;border-bottom-right-radius: 20%;"></span>
+  </div>
+  <header>
+    <div class="portlogo_container">
+      <div class="portlogo">
+        <img src="../img/quantum.png" alt="Quantum logo" />
       </div>
-      <nav class="headerNav">
-        <ul>
-          <li><a href="/#home">Home</a></li>
-          <li><a href="/#works">Works</a></li>
-          <li><a href="/#services">Services</a></li>
-          <li><a href="/#gigs">Gigs</a></li>
-          <li><a href="/#blog">Blog</a></li>
-          <li><a href="/#contact">Contact</a></li>
-        </ul>
-        <div class="resume mobile">
-          <a href="../files/Adeniji-Olajide-CV.pdf" download>Resume</a>
-        </div>
-      </nav>
-      <div class="resume">
+      <a href="/" class="portname flex-center">
+        <h1 style="display: none;">Quantum Web</h1>
+        <span class="seg">uantum</span><span class="seg2">Web</span>
+      </a>
+    </div>
+    <nav class="headerNav">
+      <ul>
+        <li><a href="/#home">Home</a></li>
+        <li><a href="/#works">Works</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/#gigs">Gigs</a></li>
+        <li><a href="/#blog">Blog</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <div class="resume mobile">
         <a href="../files/Adeniji-Olajide-CV.pdf" download>Resume</a>
       </div>
-      <img src="../img/menu.svg" class="mobile" id="menu" alt="" />
-    </header>
-    <%- body %>
+    </nav>
+    <div class="resume" style="border-radius: 30%;">
+      <a href="../files/Adeniji-Olajide-CV.pdf" download>Resume</a>
+    </div>
+    <img src="../img/menu.svg" class="mobile" id="menu" alt="" />
+  </header>
+  <%- body %>
     <canvas id="foreground"></canvas>
-  </body>
+</body>
+
 </html>
