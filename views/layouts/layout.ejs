@@ -21,7 +21,8 @@
     rel="stylesheet" />
 
   <!-- Security Policy -->
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.socket.io; object-src 'none';" />
+  <meta http-equiv="Content-Security-Policy"
+    content="script-src 'self' https://cdn.socket.io https://www.googletagmanager.com; object-src 'none';" />
 
   <!-- JavaScript Files -->
   <script src="./js/dist/main.bundle.js" type="module"></script>
@@ -145,6 +146,15 @@
         QuantumWeb. All Rights Reserved</marquee>
     </footer>
     <canvas id="foreground"></canvas>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8CMDG2LEHS"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-8CMDG2LEHS');
+    </script>
 </body>
 
 </html>
