@@ -16,10 +16,7 @@ const adminSchema = new mongoose.Schema({
         required: true
     },
     resetcode: String,
-    image: {
-        type: String,
-        required: true
-    }
+    image: String,
 }, { timestamps: true })
 
 const Admin = mongoose.model("Admin", adminSchema);

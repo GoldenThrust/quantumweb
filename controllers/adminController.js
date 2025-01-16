@@ -1,6 +1,6 @@
 import Admin from "../models/admin.js";
 import User from "../models/user.js";
-import { compare, hash } from "bcrypt";
+import { compare } from "bcrypt";
 import { toolsTechImage } from "../public/js/constant.js";
 import Project from "../models/project.js";
 import { tokens } from "../index.js";
@@ -13,7 +13,6 @@ class AdminController {
     const ip = req.ip;
     const userAgent = req.headers['user-agent'];
     mailService.AdminLoginAttempt(ip, userAgent);
-    console.log(!username);
 
     if (username) {
       await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
@@ -53,7 +52,9 @@ class AdminController {
       };
 
       req.session.regenerate((err) => {
-        if (err) next(err);
+        if (err) return res.render("admin/login", {
+          errors: { msg: err.message },
+        });
 
         req.session.admin = payload;
 

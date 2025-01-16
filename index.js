@@ -42,7 +42,7 @@ app.set("trust proxy", 3)
 app.use(cors());
 
 // app.use(limiter);
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 
 export const tokens = new csrf();
 
@@ -161,7 +161,7 @@ server.listen(PORT, () => {
   mongodb.run().catch(console.dir);
 
   const io = new Server(server, {
-    adapter: createAdapter(redis.client, redis.subClient)
+    adapter: createAdapter(redis.client)
   });
 
   websocket.getConnection(io);

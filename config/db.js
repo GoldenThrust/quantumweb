@@ -5,7 +5,6 @@ import { mongoDBURI, redisOptions } from "../utils/constant.js";
 class Redis {
   constructor() {
     this.client = createClient(redisOptions);
-    this.subClient = this.client.duplicate();
 
     this.client.on("error", (err) => {
       console.error("Redis client failed to connect:", err);
@@ -15,7 +14,6 @@ class Redis {
   async run() {
     try {
       await this.client.connect();
-      await this.subClient.connect();
       console.log("Successfully connected to Redis!");
     } catch (err) {
       console.error("Redis client failed to connect:", err);

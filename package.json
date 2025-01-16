@@ -16,8 +16,8 @@
   "dependencies": {
     "@octokit/graphql": "^8.1.1",
     "@socket.io/redis-streams-adapter": "^0.2.2",
+    "argon2": "^0.41.1",
     "axios": "^1.7.2",
-    "bcrypt": "^5.1.1",
     "bull": "^4.15.1",
     "connect-redis": "^7.1.1",
     "cookie-parser": "^1.4.6",
