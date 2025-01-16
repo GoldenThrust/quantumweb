@@ -24,7 +24,9 @@ class AdminController {
 
       if (!admin) {
         return res.render("admin/login", {
+          layout: 'layouts/empty',
           errors: { msg: "Please provide a valid email address" },
+          pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
         });
       }
 
@@ -32,7 +34,10 @@ class AdminController {
 
       if (!validPassword) {
         return res.render("admin/login", {
+          layout: 'layouts/empty',
+
           errors: { msg: "Please provide a valid password" },
+          pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
         });
       }
 
@@ -43,7 +48,11 @@ class AdminController {
 
       req.session.regenerate((err) => {
         if (err) return res.render("admin/login", {
+          layout: 'layouts/empty',
+
           errors: { msg: err.message },
+          pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
+
         });
 
         req.session.admin = payload;
@@ -51,7 +60,10 @@ class AdminController {
         req.session.save(async (err) => {
           if (err) {
             return res.render("admin/login", {
+              layout: 'layouts/empty',
+
               errors: { msg: err.message },
+              pageTitle: "Sotware Engineer | Web Developer | Adeniji Olajide Portfolio",
             });
           }
 
@@ -65,7 +77,10 @@ class AdminController {
     } catch (err) {
       console.error(err);
       return res.render("admin/login", {
+        layout: 'layouts/empty',
+
         errors: { msg: "Internal Server Error" },
+        pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
       });
     }
   }
@@ -77,40 +92,54 @@ class AdminController {
 
     if (path === 'emails') {
       return res.render("admin/dashboard/emails", {
+        layout: 'layouts/empty',
+
         layout,
         path,
-        visitService
+        visitService,
+        pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
       });
     } else if (path === 'users') {
       return res.render("admin/dashboard/users", {
+        layout: 'layouts/empty',
         layout,
         path,
-        visitService
+        visitService,
+        pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
       });
     }
-  
+
     const projects = await Project.find().sort({ key: 1 });
 
     return res.render("admin/dashboard/projects", {
+      layout: 'layouts/empty',
+
       projects,
       layout,
       path,
       visitService,
-      tools: Object.keys(toolsTechImage)
+      tools: Object.keys(toolsTechImage),
+      pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
     });
   }
 
   dashboardEmails(req, res) {
     return res.render("admin/dashboard/emails", {
+      layout: 'layouts/empty',
+
       layout,
-      path: "emails"
+      path: "emails",
+      pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
     });
   }
 
   dashboardUsers(req, res) {
     return res.render("admin/dashboard/users", {
+      layout: 'layouts/empty',
+
       layout,
-      path: "users"
+      path: "users",
+      pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
     });
   }
 
@@ -118,10 +147,12 @@ class AdminController {
     const projects = await Project.find().sort({ key: 1 });
 
     return res.render("admin/dashboard/projects", {
+      layout: 'layouts/empty',
       projects,
       layout,
       path: "projects",
-      tools: Object.keys(toolsTechImage)
+      tools: Object.keys(toolsTechImage),
+      pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
     });
   }
 }

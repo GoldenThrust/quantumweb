@@ -76,7 +76,7 @@ app.get("/", async (req, res) => {
   res.render("index", {
     hostname: req.get('host'),
     url: req.fulUrl,
-    pageTitle: "",
+    pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
     blogs: blogs.posts,
     projects,
   });
@@ -84,7 +84,8 @@ app.get("/", async (req, res) => {
 
 app.get('/shop', async (req, res) => {
   res.render("comingsoon", {
-    layout: 'layouts/empty'
+    layout: 'layouts/empty',
+    pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
   });
 })
 
