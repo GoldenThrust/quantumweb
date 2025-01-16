@@ -44,8 +44,6 @@ app.use(cors());
 // app.use(limiter);
 app.use(cookieParser(process.env.COOKIE_SECRET));
 
-export const tokens = new csrf();
-
 app.use(
   session({
     store: new RedisStore({ client: redis.client, prefix: "quantumweb:" }),
@@ -57,17 +55,8 @@ app.use(
 );
 
 
-app.use((req, res, next) => {
-  if (!req.session.csrfSecret) {
-    req.session.csrfSecret = tokens.secretSync();
-  }
 
-  const token = tokens.create(req.session.csrfSecret);
-  res.locals.csrfToken = token;
-  next();
-});
-
-const upload = multer({ dest: "views/img/uploads/" });
+// const upload = multer({ dest: "views/img/uploads/" });
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -118,15 +107,10 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
   const secret = req.session.csrfSecret;
   const token = req.body._csrf;
 
-  if (tokens.verify(secret, token)) {
     const ip = req.ip;
     const userAgent = req.headers['user-agent'];
     mailQueue.add({ name, email, message, host, ip, password, userAgent });
     res.status(200).send("Chirpmail sent successfully.");
-  } else {
-    console.log(`Invalid csrf from ${req.ip}`)
-    res.status(403).send(`Invalid CSRF token`);
-  }
 });
 app.get('/getblog/:key([0-9]+)', async (req, res) => {
   const { key } = req.params;

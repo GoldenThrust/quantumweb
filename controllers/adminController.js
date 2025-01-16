@@ -20,15 +20,6 @@ class AdminController {
       return res.redirect('https://google.com/');
     }
 
-
-
-    const secret = req.session.csrfSecret;
-
-    if (!tokens.verify(secret, _csrf)) {
-      console.log(`Invalid csrf from ${ip}`)
-      return res.status(403).send(`Invalid Admin CSRF token`);
-    }
-
     try {
       const admin = await Admin.findOne({ email });
 
