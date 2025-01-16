@@ -31,5 +31,5 @@ jobs:
             npm install || exit
             npm run build || exit
 
-            sudo systemctl restart rocketraider || exit
+            sudo systemctl restart quantumweb || exit
           EOF
