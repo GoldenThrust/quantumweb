@@ -31,6 +31,7 @@
     "express-session": "^1.18.0",
     "express-validator": "^7.1.0",
     "ipinfo": "^1.5.1",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.4",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.14",

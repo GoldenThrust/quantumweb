@@ -2,6 +2,7 @@ import { Router } from "express";
 import { loginValidator, validate } from "../middlewares/validators.js";
 import adminController from "../controllers/adminController.js";
 import isAuthenticated from "../middlewares/validateAdmin.js";
+import { verifyToken } from "../middlewares/tokenManager.js";
 
 const admin = new Router();
 
@@ -14,6 +15,6 @@ admin.post("/login", validate(loginValidator), adminController.login);
 // admin.get("/dashboard/emails", adminController.dashboardEmails);
 // admin.get("/dashboard/users", adminController.dashboardUsers);
 // admin.get("/dashboard/projects", adminController.dashboardProjects);
-admin.get("/dashboard/:path", isAuthenticated, adminController.dashboard);
+admin.get("/dashboard/:path", verifyToken, adminController.dashboard);
 
 export default admin;

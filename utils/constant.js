@@ -3,6 +3,7 @@ import multer from "multer";
 
 export const GITHUB_TOKEN = process.env.OCTOTOKEN;
 export const IPVIF = process.env.IP_VERIFIER
+export const COOKIE_NAME = 'auth_token';
 
 import { fileURLToPath } from "url";
 import path from "path";

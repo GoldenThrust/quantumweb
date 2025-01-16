@@ -5,6 +5,10 @@ import Project from "../models/project.js";
 import mailService from "../config/mailService.js";
 import { redis } from "../config/db.js";
 import { verify } from "argon2";
+import { createToken } from "../middlewares/tokenManager.js";
+import { COOKIE_NAME } from "../utils/constant.js";
+
+const domain = (new URL(process.env.HOST_URL)).hostname
 
 class AdminController {
   async login(req, res) {
@@ -46,34 +50,34 @@ class AdminController {
         email: admin.email,
       };
 
-      req.session.regenerate((err) => {
-        if (err) return res.render("admin/login", {
-          layout: 'layouts/empty',
-
-          errors: { msg: err.message },
-          pageTitle: "Software Engineer | Web Developer | Adeniji Olajide Portfolio",
-
-        });
-
-        req.session.admin = payload;
-
-        req.session.save(async (err) => {
-          if (err) {
-            return res.render("admin/login", {
-              layout: 'layouts/empty',
-
-              errors: { msg: err.message },
-              pageTitle: "Sotware Engineer | Web Developer | Adeniji Olajide Portfolio",
-            });
-          }
-
-          admin.ip_address.push(ip);
-          await admin.save();
-
-          mailService.AdminLogin(ip, userAgent)
-          res.redirect("/admin/dashboard/users");
-        });
+      res.clearCookie(COOKIE_NAME, {
+        secure: true,
+        sameSite: "none",
+        httpOnly: true,
+        domain,
+        signed: true,
+        path: "/",
       });
+
+      const token = createToken(admin, '7d');
+    
+      const expires = new Date();
+      expires.setDate(expires.getDate() + 7);
+
+      res.cookie(COOKIE_NAME, token, {
+        secure: true,
+        sameSite: "none",
+        httpOnly: true,
+        path: "/",
+        domain,
+        expires,
+        signed: true,
+      });
+
+      admin.ip_address.push(ip);
+      await admin.save();
+      mailService.AdminLogin(ip, userAgent)
+      res.redirect("/admin/dashboard/users");
     } catch (err) {
       console.error(err);
       return res.render("admin/login", {
