@@ -79,7 +79,6 @@ app.get("/", async (req, res) => {
     pageTitle: "",
     blogs: blogs.posts,
     projects,
-    csrfToken: res.locals.csrfToken
   });
 });
 
