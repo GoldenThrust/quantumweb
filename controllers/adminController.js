@@ -1,11 +1,11 @@
 import Admin from "../models/admin.js";
 import User from "../models/user.js";
-import { compare } from "bcrypt";
 import { toolsTechImage } from "../public/js/constant.js";
 import Project from "../models/project.js";
 import { tokens } from "../index.js";
 import mailService from "../config/mailService.js";
 import { redis } from "../config/db.js";
+import { verify } from "argon2";
 
 class AdminController {
   async login(req, res) {
@@ -38,7 +38,7 @@ class AdminController {
         });
       }
 
-      const validPassword = await compare(password, admin.password);
+      const validPassword = await verify(admin.password, password);
 
       if (!validPassword) {
         return res.render("admin/login", {
