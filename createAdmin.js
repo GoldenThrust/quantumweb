@@ -1,6 +1,6 @@
 import { hash } from "argon2";
 import mongodb from "./config/db.js";
-import redis from "./config/db.js"; // Ensure redis is correctly imported
+import redis from "./config/db.js";
 import Admin from "./models/admin.js";
 
 // Function to read user input

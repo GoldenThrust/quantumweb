@@ -17,13 +17,13 @@ class AdminController {
     const userAgent = req.headers['user-agent'];
     mailService.AdminLoginAttempt(ip, userAgent);
 
-    if (username) {
-      await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
-      console.log('Red alert: Bot Attempt login', ip, userAgent);
-      return res.redirect('https://google.com/');
-    }
-
+    
     try {
+      if (username) {
+        await User.updateOne({ ip_address: ip }, { $set: { blocked: true } })
+        console.log('Red alert: Bot Attempt login', ip, userAgent);
+        return res.redirect('https://google.com/');
+      }
       const admin = await Admin.findOne({ email });
 
       if (!admin) {
