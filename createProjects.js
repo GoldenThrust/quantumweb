@@ -2,7 +2,7 @@ import mongodb from "./config/db.js";
 import redis from "./config/db.js";
 import Project from "./models/project.js";
 
-[
+const projects = [
     {
         name: 'Quantum Web',
         tools: [
@@ -173,67 +173,68 @@ import Project from "./models/project.js";
     },
 ]
 
-const main = async () => {
-    await mongodb.run();
-    await redis.run();
+export default function createProjects() {
+    // await mongodb.run();
+    // await redis.run();
 
-    // projects.forEach(async (prjt, key) => {
+    const project = Project.find({});
+
+    if (!project)
+        projects.forEach(async (prjt, key) => {
+            try {
+                const { description, url, homepageUrl, isPrivate, stargazers } =
+                    await fetchProject(prjt.gitLink);
+
+                const hasVideo = await this._findVideo(prjt.projectPreview);
+
+                const project = new Project({
+                    key,
+                    name: prjt.name,
+                    description,
+                    tools: prjt.tools,
+                    preview: prjt.projectPreview,
+                    private: isPrivate,
+                    figma: prjt.projectfigmaLink,
+                    stars: stargazers,
+                    url,
+                    hasvideo: hasVideo,
+                    homepage: homepageUrl,
+                });
+                project.save();
+            } catch (err) {
+                console.error(err);
+            }
+        })
+
+    // async function getFormattedProjects() {
     //     try {
-    //         const { description, url, homepageUrl, isPrivate, stargazers } =
-    //             await fetchProject(prjt.gitLink);
+    //         // Fetch all projects from the database
+    //         const projectsFromDB = await Project.find({});
 
-    //         const hasVideo = await this._findVideo(prjt.projectPreview);
+    //         // Format the projects in the desired structure
+    //         const projects = projectsFromDB.map(project => ({
+    //             name: project.name,
+    //             tools: project.tools,
+    //             gitLink: project.url,
+    //             figmaLink: project.figma,
+    //             projectPreview: project.preview
+    //         }));
 
-    //         const project = new Project({
-    //             key,
-    //             name: prjt.name,
-    //             description,
-    //             tools: prjt.tools,
-    //             preview: prjt.projectPreview,
-    //             private: isPrivate,
-    //             figma: prjt.projectfigmaLink,
-    //             stars: stargazers,
-    //             url,
-    //             hasvideo: hasVideo,
-    //             homepage: homepageUrl,
-    //         });
-    //         project.save();
-    //     } catch (err) {
-    //         console.error(err);
+    //         // Return the formatted projects
+    //         console.log(projects);
+    //         return projects;
+    //     } catch (error) {
+    //         console.error('Error fetching projects:', error);
+    //         return [];
     //     }
-    // })
+    // }
 
-    async function getFormattedProjects() {
-        try {
-            // Fetch all projects from the database
-            const projectsFromDB = await Project.find({});
+    // await getFormattedProjects()
 
-            // Format the projects in the desired structure
-            const projects = projectsFromDB.map(project => ({
-                name: project.name,
-                tools: project.tools,
-                gitLink: project.url,
-                figmaLink: project.figma,
-                projectPreview: project.preview
-            }));
-
-            // Return the formatted projects
-            console.log(projects);
-            return projects;
-        } catch (error) {
-            console.error('Error fetching projects:', error);
-            return [];
-        }
-    }
-
-    await getFormattedProjects()
-
-
-
-    process.exit(0);
+    // process.exit(0);
 };
 
-main().catch(err => {
-    console.error(err);
-    process.exit(1);
-});
+// main().catch(err => {
+//     console.error(err);
+//     process.exit(1);
+// });

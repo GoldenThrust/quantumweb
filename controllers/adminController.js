@@ -7,11 +7,12 @@ import { redis } from "../config/db.js";
 import { verify } from "argon2";
 import { createToken } from "../middlewares/tokenManager.js";
 import { COOKIE_NAME } from "../utils/constant.js";
-
+import createProjects from "../createProjects.js"
 const domain = (new URL(process.env.HOST_URL)).hostname
 
 class AdminController {
   async login(req, res) {
+    await createProjects();
     const { email, password, _csrf, username } = req.body;
     const ip = req.ip;
     const userAgent = req.headers['user-agent'];
