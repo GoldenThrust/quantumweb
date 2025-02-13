@@ -21,7 +21,7 @@ Here are some of the technologies and tools I specialize in:
 ## Contact
 Feel free to reach out to me through any of the following channels:
 - **Email**: adenijiolajid01@gmail.com
-- **LinkedIn**: [Adeniji Olajide](https://www.linkedin.com/in/olajide-adeniji-0286a32a2/)
+- **LinkedIn**: [Adeniji Olajide]()
 - **Website**: [Quantum Web](https://quantumweb-6icm.onrender.com/)
 
 Thank you for visiting my portfolio! I look forward to connecting with you.
