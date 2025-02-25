@@ -173,9 +173,9 @@ const projects = [
     },
 ]
 
-export default function createProjects() {
-    // await mongodb.run();
-    // await redis.run();
+export default async function createProjects() {
+    await mongodb.run();
+    await redis.run();
 
     const project = Project.find({});
 
