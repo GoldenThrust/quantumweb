@@ -1,6 +1,7 @@
 import mongodb from "./config/db.js";
 import redis from "./config/db.js";
 import Project from "./models/project.js";
+import { fetchProject, findVideo } from "./utils/fetchData.js";
 
 const projects = [
     {
@@ -173,19 +174,22 @@ const projects = [
     },
 ]
 
-export default async function createProjects() {
-    await mongodb.run();
-    await redis.run();
 
-    const project = Project.find({});
+async function createProjects() {
+    try {
+        await mongodb.run();
+        await redis.run();
 
-    if (!project)
-        projects.forEach(async (prjt, key) => {
+        const existingProjects = await Project.find({});
+        if (existingProjects.length > 0) {
+            console.log("Projects already exist in the database.");
+            return;
+        }
+
+        for (const [key, prjt] of projects.entries()) {
             try {
-                const { description, url, homepageUrl, isPrivate, stargazers } =
-                    await fetchProject(prjt.gitLink);
-
-                const hasVideo = await this._findVideo(prjt.projectPreview);
+                const { description, url, homepageUrl, isPrivate, stargazers } = await fetchProject(prjt.gitLink);
+                const hasVideo = await findVideo(prjt.projectPreview);
 
                 const project = new Project({
                     key,
@@ -194,47 +198,26 @@ export default async function createProjects() {
                     tools: prjt.tools,
                     preview: prjt.projectPreview,
                     private: isPrivate,
-                    figma: prjt.projectfigmaLink,
+                    figma: prjt.figmaLink,
                     stars: stargazers,
                     url,
                     hasvideo: hasVideo,
                     homepage: homepageUrl,
                 });
-                project.save();
+
+                await project.save();
+                console.log(`Project ${prjt.name} created successfully`);
             } catch (err) {
-                console.error(err);
+                console.error(`Error creating project ${prjt.name}:`, err);
             }
-        })
+        }
+    } catch (err) {
+        console.error("Error connecting to database:", err);
+    }
+}
 
-    // async function getFormattedProjects() {
-    //     try {
-    //         // Fetch all projects from the database
-    //         const projectsFromDB = await Project.find({});
-
-    //         // Format the projects in the desired structure
-    //         const projects = projectsFromDB.map(project => ({
-    //             name: project.name,
-    //             tools: project.tools,
-    //             gitLink: project.url,
-    //             figmaLink: project.figma,
-    //             projectPreview: project.preview
-    //         }));
-
-    //         // Return the formatted projects
-    //         console.log(projects);
-    //         return projects;
-    //     } catch (error) {
-    //         console.error('Error fetching projects:', error);
-    //         return [];
-    //     }
-    // }
-
-    // await getFormattedProjects()
-
-    // process.exit(0);
-};
-
-// main().catch(err => {
-//     console.error(err);
-//     process.exit(1);
-// });
+// Immediately invoke and exit when done
+(async () => {
+    await createProjects();
+    process.exit(0);
+})();

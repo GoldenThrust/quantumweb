@@ -3,6 +3,9 @@ import { GITHUB_TOKEN } from "./constant.js";
 import { redis } from "../config/db.js";
 import axios from "axios";
 import Project from "../models/project.js";
+import fs from 'fs';
+import path from "path";
+import { __rootDir } from "../utils/constant.js";
 
 export function parseGitHubUrl(url) {
   const regex = /https:\/\/github\.com\/([^/]+)\/([^/]+)/;
@@ -123,4 +126,19 @@ export async function fetchBlogPosts(page = 1, showmore=false) {
       hasMore: false,
     };
   }
+}
+
+
+export async function findVideo(videoPath) {
+  return await new Promise((resolve, reject) => {
+    const fullPath = path.join(__rootDir, `/public/portfoliovideo/${videoPath}.mp4`);
+    (fullPath);
+    fs.access(fullPath, fs.constants.F_OK, (err) => {
+      if (err) {
+        resolve(false);
+      } else {
+        resolve(true);
+      }
+    });
+  });
 }

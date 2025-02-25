@@ -1,5 +1,5 @@
 import Project from "../models/project.js";
-import { fetchProject, fetchProjectData } from "../utils/fetchData.js";
+import { fetchProject, fetchProjectData, findVideo } from "../utils/fetchData.js";
 import fs from 'fs';
 import path from "path";
 import { __rootDir } from "../utils/constant.js";
@@ -12,19 +12,6 @@ class ProjectController {
     this.refresh = this.refresh.bind(this);
   }
 
-  async _findVideo(videoPath) {
-    return await new Promise((resolve, reject) => {
-      const fullPath = path.join(__rootDir, `/public/portfoliovideo/${videoPath}.mp4`);
-      (fullPath);
-      fs.access(fullPath, fs.constants.F_OK, (err) => {
-        if (err) {
-          resolve(false);
-        } else {
-          resolve(true);
-        }
-      });
-    });
-  }
   async create(req, res) {
     const { key, name, tools } = req.body;
     const gitLink = req.body["git-link"];
@@ -40,7 +27,7 @@ class ProjectController {
     const { description, url, homepageUrl, isPrivate, stargazers } =
       await fetchProject(gitLink);
 
-    const hasVideo = await this._findVideo(projectPreview);
+    const hasVideo = await findVideo(projectPreview);
 
 
 
