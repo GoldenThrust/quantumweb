@@ -15,11 +15,14 @@ const main = async () => {
     await mongodb.run();
     await redis.run();
 
-    const admin = {};
+    const admin = {
+        image: "img/olajide.png",
+    };
 
     admin.email = await getInput('Enter your Email Address: ');
     admin.name = await getInput('Enter your Name: ');
     admin.password = await hash(await getInput('Enter your Password: '));
+
 
     console.log(admin);
 

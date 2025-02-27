@@ -16,7 +16,10 @@ const adminSchema = new mongoose.Schema({
         required: true
     },
     resetcode: String,
-    image: String,
+    image: {
+        type: String,
+        default: "img/olajide.png"
+    },
 }, { timestamps: true })
 
 const Admin = mongoose.model("Admin", adminSchema);

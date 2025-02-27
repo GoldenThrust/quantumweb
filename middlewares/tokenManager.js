@@ -14,7 +14,6 @@ export function createToken(admin, expiresIn) {
 
 export async function verifyToken(req, res, next) {
   const token = req.signedCookies[COOKIE_NAME];
-  console.log(`Verifying1`, token);
 
   if (!token || token.trim() === "") {
     return res.status(401).redirect('/admin/login');

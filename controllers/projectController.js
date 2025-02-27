@@ -116,7 +116,7 @@ class ProjectController {
       return res.status(400).json({ error: "Invalid input" });
     }
 
-    const hasVideo = await this._findVideo(projectPreview);
+    const hasVideo = await findVideo(projectPreview);
 
 
     try {
