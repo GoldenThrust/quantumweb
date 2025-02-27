@@ -76,7 +76,7 @@ class AdminController {
       admin.ip_address.push(ip);
       await admin.save();
       mailService.AdminLogin(ip, userAgent)
-      res.redirect("/admin/dashboard/users");
+      return res.redirect("/admin/dashboard/users");
     } catch (err) {
       console.error(err);
       return res.render("admin/login", {

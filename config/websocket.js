@@ -4,6 +4,7 @@ class WebSocket {
         this.socket = null;
         this.room = null;
         this.connectionPromise = null;
+        this.connectedUser = 0;
     }
 
     async getConnection(io) {
@@ -11,6 +12,7 @@ class WebSocket {
 
         this.connectionPromise = new Promise((resolve, reject) => {
             io.on("connection", (socket) => {
+                this.connectedUser++;
                 this.socket = socket;
                 const clientIp = socket.handshake.headers['x-forwarded-for'] || socket.handshake.address;
 
@@ -18,11 +20,16 @@ class WebSocket {
 
                 this.room = io.to(clientIp);
 
-                socket.emit("connected");
+                io.emit("connected", this.connectedUser);
 
                 resolve(true);
 
                 socket.on("disconnect", async () => {
+                    if (this.connectedUser > 0) {
+                        this.connectedUser--;
+                        io.emit("connected", this.connectedUser);
+                    }
+
                     console.log(`Client with IP ${await this.getSocketIp()} disconnected`);
                 });
             });

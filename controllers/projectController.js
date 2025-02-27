@@ -48,8 +48,7 @@ class ProjectController {
       project.save();
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Failed to create project" });
-      return;
+      return res.status(500).json({ error: "Failed to create project" });
     }
 
     res.status(200).json({ success: true });
@@ -81,7 +80,7 @@ class ProjectController {
         .json({ message: "Projects updated successfully", result });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Failed to update project key" });
+      return res.status(500).json({ error: "Failed to update project key" });
     }
   }
 
@@ -99,12 +98,11 @@ class ProjectController {
         return res.status(404).json({ error: "Project not found" });
       }
 
-      res.status(200).json({ message: "Project deleted successfully" });
+      return res.status(200).json({ message: "Project deleted successfully" });
 
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Failed to delete project" });
-      return;
+      return res.status(500).json({ error: "Failed to delete project" });
     }
   }
 
@@ -137,8 +135,7 @@ class ProjectController {
       res.status(200).json({ message: "Project updated successfully", result });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Failed to update project" });
-      return;
+      return res.status(500).json({ error: "Failed to update project" });
     }
 
   }
@@ -173,10 +170,10 @@ class ProjectController {
         { new: true }
       );
 
-      res.status(200).json({ message: "Projects refreshed successfully", result });
+      return res.status(200).json({ message: "Projects refreshed successfully", result });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: "Failed to fetch project data" });
+      return res.status(500).json({ error: "Failed to fetch project data" });
     }
   }
 

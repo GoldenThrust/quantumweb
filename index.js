@@ -107,10 +107,10 @@ app.post("/chirpmail", multer().none(), async (req, res) => {
   const secret = req.session.csrfSecret;
   const token = req.body._csrf;
 
-    const ip = req.ip;
-    const userAgent = req.headers['user-agent'];
-    mailQueue.add({ name, email, message, host, ip, password, userAgent });
-    res.status(200).send("Chirpmail sent successfully.");
+  const ip = req.ip;
+  const userAgent = req.headers['user-agent'];
+  mailQueue.add({ name, email, message, host, ip, password, userAgent });
+  res.status(200).send("Chirpmail sent successfully.");
 });
 app.get('/getblog/:key([0-9]+)', async (req, res) => {
   const { key } = req.params;

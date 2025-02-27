@@ -1,12 +1,12 @@
 import { io } from "socket.io-client";
 import { showAlert } from "./utils.js";
-
+const onlineUserElem = document.getElementById('online-users');
 const socket = io("/", {
     withCredentials: true
 })
 
-socket.on("connected", () => {
-    console.log("Connected to the server");
+socket.on("connected", (connectedUser) => {
+    onlineUserElem.innerText = `${connectedUser} user${connectedUser > 1 ?'s': ''} online`;
 });
 
 socket.on("mail-sent", () => {

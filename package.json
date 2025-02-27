@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js && worker.js",
-    "start-server": "nodemon index.js && worker.js",
+    "start": "node index.js",
+    "start-server": "nodemon index.js",
     "build": "webpack",
+    "watcher": "webpack --watch",
     "test": "jest --passWithNoTests"
   },
   "keywords": [],

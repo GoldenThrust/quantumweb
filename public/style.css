@@ -1476,3 +1476,29 @@ overrides;
     height: calc(2vw + 1.5rem);
   }
 }
+
+#online-users {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-color: #000;
+  font-variant: small-caps;
+  padding: 8px;
+  border-radius: 40px;
+}
+
+#online-users::before {
+  content: '🟢 ';
+  font-size: 1.3ch;
+  animation: fade 1s linear infinite alternate-reverse;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
