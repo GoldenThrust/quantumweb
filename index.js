@@ -5,16 +5,12 @@ import cors from "cors";
 import "dotenv/config";
 import mongodb, { redis } from "./config/db.js";
 import admin from "./routes/admin.js";
-import session from "express-session";
-import RedisStore from "connect-redis";
 import { fetchBlogPosts, fetchProjectData } from "./utils/fetchData.js";
-import { DEV } from "./utils/constant.js";
 import { mailQueue } from "./worker.js";
 import multer from "multer";
 import rateLimit from "express-rate-limit";
 import expressLayouts from "express-ejs-layouts";
 import project from "./routes/project.js";
-import csrf from "csrf";
 import cookieParser from "cookie-parser";
 import verifyUser from "./middlewares/verifyUser.js";
 import service from "./routes/services.js";
@@ -43,17 +39,6 @@ app.use(cors());
 
 // app.use(limiter);
 app.use(cookieParser(process.env.COOKIE_SECRET));
-
-app.use(
-  session({
-    store: new RedisStore({ client: redis.client, prefix: "quantumweb:" }),
-    secret: process.env.COOKIE_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    cookie: { secure: DEV ? false : true, httpOnly: true, sameSite: 'strict' },
-  })
-);
-
 
 
 // const upload = multer({ dest: "views/img/uploads/" });
@@ -118,14 +103,13 @@ app.get('/getblog/:key([0-9]+)', async (req, res) => {
   const blogPost = await fetchBlogPosts(key, true) || new Array();
 
   res.json(blogPost);
-})
+})  
 
 app.set('layout', 'layouts/layout');
 
 app.use("/admin", admin);
 app.use("/project", project);
 app.use("/service", service);
-
 
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "404.html"));
