@@ -3,11 +3,9 @@ import mongoose from "mongoose";
 
 const ReferrerSchema = mongoose.Schema({
     user: {
-        type: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            required: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     referrer: {
         type: String,

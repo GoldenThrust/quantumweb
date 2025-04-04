@@ -2,26 +2,37 @@ import { createTransport } from "nodemailer";
 // import { DEV } from "../utils/constant.js";
 import fs from "fs"
 import websocket from "./websocket.js";
+import { DEV } from "../utils/constant.js";
+
+const { MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD } = process.env;
+
+if (!MAIL_HOST || !MAIL_PORT || !MAIL_USERNAME || !MAIL_PASSWORD) {
+  throw new Error('Missing required environment variables for mail configuration');
+}
+
+const configOptions = DEV ? {
+  host: '0.0.0.0',
+  port: 1025,
+  secure: false,
+  tls: {
+      rejectUnauthorized: false,
+  },
+
+} : {
+  service: "Gmail",
+  host: MAIL_HOST,
+  port: MAIL_PORT,
+  secure: true,
+  auth: {
+    user: MAIL_USERNAME,
+    pass: MAIL_PASSWORD,
+  },
+}
 
 class MailService {
   transporter;
   constructor() {
-    const { MAIL_HOST, MAIL_PORT, MAIL_USERNAME, MAIL_PASSWORD } = process.env;
-
-    if (!MAIL_HOST || !MAIL_PORT || !MAIL_USERNAME || !MAIL_PASSWORD) {
-      throw new Error('Missing required environment variables for mail configuration');
-    }
-
-    this.transporter = createTransport({
-      service: "Gmail",
-      host: MAIL_HOST,
-      port: MAIL_PORT,
-      secure: true,
-      auth: {
-        user: MAIL_USERNAME,
-        pass: MAIL_PASSWORD,
-      },
-    });
+    this.transporter = createTransport(configOptions);
   }
 
   sendMessage(name, email, message, hostname, ip) {
