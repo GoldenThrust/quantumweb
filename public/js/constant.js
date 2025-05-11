@@ -11,6 +11,7 @@ export const toolsTechImage = {
     ansible: "ansible.svg",
     css3: "css.svg",
     cpp: "cpp.svg",
+    flutter: "flutter.svg",
     bootstrap: "bootstrap.svg",
     djangorestframework: "djangorest.svg",
     docker: "docker.svg",

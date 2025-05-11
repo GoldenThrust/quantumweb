@@ -18,6 +18,7 @@ const professions = [
   "Software Engineer",
   "Frontend Developer",
   "Backend Developer",
+  "Mobile Developer",
   "Full Stack Developer",
   "SysAdmin and DevOps Engineer"
 ];
